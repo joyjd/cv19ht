@@ -11,6 +11,11 @@ import HospitalItem from "./HospitalItem/HospitalItem.component";
 import { HospitalModalDetailTemplate } from "./../../../Modals/HospitalDetailsModal/HospitalModalDetailTemplate.component";
 import HospitalListModal from "./HospitalListModal/HospitalListModal.component";
 
+import { createHospitalProfile } from "./../../../firebase/firebase.util";
+
+import { setRawHospitalData } from "./../../../redux/totalHospitalDetails/rawHospitalData.action";
+import { setSelectedHospitalList } from "./../../../redux/selectedHospital/selectedHospital.action";
+
 class HospitalListDisplay extends React.Component {
   completeHospitalData = [];
   modalContent = {
@@ -67,7 +72,7 @@ class HospitalListDisplay extends React.Component {
       CommunicatorFetch(ApiUrls.getPlaceDetails, params)
         .then(
           (data) => {
-            if (data["candidates"].length != 0) {
+            if (data["candidates"].length != 0 && data["status"] == "OK") {
               let place_id = data["candidates"][0]["place_id"];
               let prms = place_id + "&fields=name,geometry,photos,rating,adr_address,business_status,formatted_address,formatted_phone_number,international_phone_number,opening_hours,website,price_level,rating,review,user_ratings_total";
               return prms;
@@ -81,13 +86,18 @@ class HospitalListDisplay extends React.Component {
             console.log("HospitalZoneComponent+ First call====p_id-=====ERROR !!!!!!");
           }
         )
-        .then((prms) => CommunicatorFetch(ApiUrls.getHospitalCompleteDetails, prms))
+        .then((prms) => (prms != "" ? CommunicatorFetch(ApiUrls.getHospitalCompleteDetails, prms) : ""))
         .then(
           (data) => {
             if (data != "") {
               //get the new data
-              if (data != undefined) {
+              if (data["status"] == "OK") {
                 this.completeHospitalData[h_name] = data["result"];
+                this.props.setRawHospitalData(this.completeHospitalData);
+                createHospitalProfile(h_name, data["result"]);
+                //UPDATE h_dist
+                this.props.selectedHospitalList[this.props.selectedHospitalList.findIndex((el) => el.h_name == h_name)]["h_loc"] = data["result"]["geometry"]["location"];
+                this.props.setSelectedlList(this.props.selectedHospitalList);
                 //Call function to form body
                 this.createHospitalDetailModayBody(this.completeHospitalData[h_name], c_bed, h_dist);
                 this.handleOpenModal();
@@ -129,8 +139,13 @@ class HospitalListDisplay extends React.Component {
     ) : null;
   }
 }
+const mapDispatchToProps = (dispatch) => ({
+  setRawHospitalData: (rawHospitalData) => dispatch(setRawHospitalData(rawHospitalData)),
+  setSelectedlList: (selectedHospitalList) => dispatch(setSelectedHospitalList(selectedHospitalList)),
+});
+
 const mapStateToProps = (state) => ({
   selectedHospitalList: state.selectedHospitalList.selectedHospital,
   completeHospitalData: state.rawHospitalData.rawHospitalData,
 });
-export default connect(mapStateToProps)(HospitalListDisplay);
+export default connect(mapStateToProps, mapDispatchToProps)(HospitalListDisplay);

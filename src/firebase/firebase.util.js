@@ -13,6 +13,36 @@ const config = {
   measurementId: "G-JLY08JDRW4",
 };
 
+export const createHospitalProfile = async (h_name, h_data) => {
+  const hospRef = firestore.doc(`hospitals/${h_name}`);
+
+  const snapShot = await hospRef.get();
+
+  //console.log(firestore.doc("hospitals/abc"));
+  if (!snapShot.exists) {
+    try {
+      await hospRef.set({
+        ...h_data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  return hospRef;
+};
+
+export const getHospitalProfileAll = async () => {
+  const snapshot = await firebase.firestore().collection("hospitals").get();
+  const collection = {};
+  snapshot.forEach((doc) => {
+    collection[doc.id] = doc.data();
+  });
+  return collection;
+};
+
 firebase.initializeApp(config);
 
 export const firestore = firebase.firestore();
+
+export default firebase;

@@ -33,7 +33,9 @@ import { setRawHospitalData } from "./redux/totalHospitalDetails/rawHospitalData
 
 import { dummyLoc } from "./assets/dummyLoc";
 
-const env = "dev"; // prod -  dev
+import { createHospitalProfile, getHospitalProfileAll } from "./firebase/firebase.util";
+
+const env = "prod"; // prod -  dev
 class App extends React.Component {
   errorBodyMessage = "";
   hospitalList = [];
@@ -59,6 +61,7 @@ class App extends React.Component {
       },
       () => this.prepareHospitalData()
     );
+    // createHospitalProfile();
   }
 
   componentDidUpdate() {
@@ -77,13 +80,20 @@ class App extends React.Component {
         let tempArr = data.filter((elem) => Object.keys(elem).length >= 4).filter((el) => el["vacant"] != 0 && typeof el["vacant"] !== "string");
         this.hospitalList = Object.assign([], tempArr);
       })
-      .then(() => CommunicatorFetch(ApiUrls.getHospitalDetails))
+      .then(() => getHospitalProfileAll())
       .then((data) => {
         this.arrangeHospitalKeyMap(data);
       });
   };
 
   arrangeHospitalKeyMap(data) {
+    //test insertion
+    //createHospitalProfile(Object.keys(data)[0], data[Object.keys(data)[0]]);
+
+    //Object.keys(data).forEach((el) => createHospitalProfile(el, data[el]));
+
+    //ends
+
     let hospitalDetailsData = data;
     let tempDup = {};
     let tempMap = {};
@@ -144,7 +154,7 @@ class App extends React.Component {
 
   getLocationTrack = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.watchPosition(
+      navigator.geolocation.getCurrentPosition(
         //watchPosition(  // need to implement getPosition logic with timeout for movement
         (pos) => {
           if (this.loc_locationCoordinates_lat != pos.coords.latitude && this.loc_locationCoordinates_long != pos.coords.longitude) {
