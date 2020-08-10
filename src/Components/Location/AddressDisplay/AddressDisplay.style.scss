@@ -1,0 +1,58 @@
+@import "./../../../styles/mixins.style.scss";
+
+.locationTitleContainer {
+  background-image: url("./../../../assets/loc_headBg.jpg"); /* The image used */
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  @include space(padding, top, 10px);
+  font-weight: bolder;
+  color: #ffffff;
+  border-bottom: 15px solid #24375a30;
+  @include transparentBorder(-15px);
+}
+
+.locationIconholder {
+  position: relative;
+  @include space(margin, top, -29px);
+  right: 10px;
+  width: 35px;
+  background-color: #ffffffad;
+  width: 35px;
+  height: 35px;
+  border-radius: 30px;
+  @include elemFloat(right);
+  animation: glow 1s infinite alternate;
+}
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px -10px #aee1f4;
+  }
+  to {
+    box-shadow: 0 0 10px 10px #aee1f4;
+  }
+}
+.AddressContainer {
+  @include space(padding, top, 15px);
+  @include space(padding, bottom, 8px);
+  @include space(padding, left, 6px);
+  @include space(padding, right, 2px);
+}
+.addressHolder {
+  @include space(padding, left, 10px);
+  @include space(padding, right, 4px);
+  @include space(padding, top, 5px);
+  @include space(padding, bottom, 5px);
+  flex-wrap: wrap;
+  border-left: 5px solid #03a3a15c;
+  text-align: left;
+  color: #0000008a;
+  line-height: 1.3;
+}
+.locationDesc {
+  text-align: left;
+  @include displayType(flex);
+  @include space(margin, left, 5px);
+}

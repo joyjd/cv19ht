@@ -1,0 +1,51 @@
+@mixin space($type: margin, $direction: all, $amount: $medium) {
+  @if $type == padding {
+    @if $direction == all {
+      padding: $amount;
+    } @else if $direction == top {
+      padding-top: $amount;
+    } @else if $direction == left {
+      padding-left: $amount;
+    } @else if $direction == right {
+      padding-right: $amount;
+    } @else {
+      padding-bottom: $amount;
+    }
+  } @else {
+    @if $direction == all {
+      margin: $amount;
+    } @else if $direction == top {
+      margin-top: $amount;
+    } @else if $direction == left {
+      margin-left: $amount;
+    } @else if $direction == right {
+      margin-right: $amount;
+    } @else {
+      margin-bottom: $amount;
+    }
+  }
+}
+
+@mixin displayType($displayProp) {
+  display: $displayProp;
+}
+@mixin justifyContent($displayProp) {
+  justify-content: $displayProp;
+}
+@mixin displayDirectionj($prop) {
+  flex-direction: $prop;
+}
+
+@mixin elemFloat($propVal) {
+  float: $propVal;
+}
+
+@mixin transparentBorder($propVal) {
+  outline-offset: $propVal;
+  z-index: 999;
+  opacity: 1;
+}
+
+.w_100 {
+  width: 100%;
+}

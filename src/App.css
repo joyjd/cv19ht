@@ -1,38 +1,37 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.displayFlex {
+  display: flex;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.loadTrackerWelcome {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 70px;
+}
+.loaderContainer {
+  display: flex;
+  padding: 50px;
+  justify-content: center;
+}
+.loaderTextContainer {
+  color: #93a7c5;
 }
 
-.App-link {
-  color: #61dafb;
+.transparentBorder {
+  box-shadow: 0px 3px 3px 0px #00000033, 3px 3px 2px 3px #00000026, 0px 1px 8px 0px #0000001f;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.shadowCustom {
+  box-shadow: 0px 0px 0px 0px #00000033, 0px 2px 7px 4px #00000026, 0px 1px 0px 0px #0000001f;
+}
+.MuiPaper-elevation3 {
+  box-shadow: 0px 3px 3px -2px #0000002e, 0px 3px 4px 0px #0000002b, 0px 1px 8px 0px #000000a3 !important;
+}
+.MuiDialog-paperFullWidth {
+  top: 40px;
+}
+.MuiTableCell-root {
+  text-align: left !important;
+  padding: 5px !important;
 }

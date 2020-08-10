@@ -1,0 +1,44 @@
+@import "./../../../../styles/mixins.style.scss";
+
+.filterTagsHeader {
+  background-image: url("./../../../../assets/set_header.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  @include space(padding, all, 15px);
+  color: #ffffff;
+  border-bottom: 15px solid #24375a30;
+  @include transparentBorder(-15px);
+  font-weight: bold;
+}
+
+.filterTagsBody {
+  @include space(padding, all, 10px);
+}
+
+.dividerHolder {
+  @include space(padding, all, 10px);
+}
+.chipsKey {
+  @include space(margin, top, 5px);
+  @include space(margin, left, 5px);
+  @include space(margin, bottom, 5px);
+  @include space(margin, right, 10px);
+}
+.chipsHolder {
+  @include space(padding, all, 5px);
+  @include displayType(flex);
+  flex-wrap: wrap;
+}
+.displayEqual {
+  display: flex;
+  justify-content: flex-end;
+}
+.displayEqual {
+  button {
+    margin-left: 10px;
+  }
+}
+.headerTagLineDesc {
+  @include space(margin, left, 10px);
+}

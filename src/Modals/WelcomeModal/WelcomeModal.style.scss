@@ -1,0 +1,143 @@
+.headerImageContainer {
+  position: fixed;
+  height: 125px;
+  /* width: auto; */
+  margin-top: -82px;
+}
+.headerImageHolder {
+  width: 165px;
+  height: 120px;
+
+  background-image: url("./../../assets/phn_sp12.png"); /* The image used */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+.headerImageFiller {
+  background: linear-gradient(180deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  width: 127px;
+  height: 90px;
+  //margin-top: -90px;
+  //margin-left: 20px;
+  background-image: url("./../../assets/mbl_bck_1.jpg"); /* The image used */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-animation: zoomin 10s ease-in infinite;
+  animation: zoomin 10s ease-in infinite;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  position: relative;
+}
+.headerImageFillerInner {
+  width: 127px;
+  height: 90px;
+  //margin-top: -90px;
+  -webkit-animation: zoomout 10s ease-in infinite;
+  animation: zoomout 10s ease-in infinite;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+}
+.animatorTest {
+  width: 127px;
+  height: 90px;
+  margin-top: -90px;
+  margin-left: 20px;
+  overflow: hidden;
+}
+.extraFiller {
+  background: rgb(59, 135, 255);
+  background: linear-gradient(0deg, rgba(59, 135, 255, 1) 31%, rgba(0, 212, 255, 0) 100%);
+  width: 127px;
+  height: 10px;
+  margin-top: -9px;
+  margin-left: 20px;
+}
+.welcomeNote {
+  font-weight: bolder;
+  color: #ffffffff;
+  margin-top: -25px;
+  margin-left: 40px;
+  font-size: xx-large;
+  position: relative;
+  text-shadow: 0 8.36px 8.896px #3f51b5, 0 0 1px #fff;
+}
+
+.welcomeBodyContent {
+  color: white;
+  margin-top: 55px;
+  padding: 0 0 0 15px;
+}
+.div_0 {
+  padding: 4px 0 10px 0;
+}
+.div_1 {
+  margin-bottom: 2px;
+  margin-top: 5px;
+}
+.div_2 {
+  margin-bottom: 10px;
+}
+.btn_Container {
+  padding: 5px 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.NameHolder {
+  border-radius: 6px;
+  padding: 3px 6px;
+  background-image: linear-gradient(to right, #f27121cc, #e94057cc, #8a2387cc);
+  margin: 0 4px -3px 0;
+}
+
+/* Zoom in Keyframes */
+@-webkit-keyframes zoomin {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes zoomin {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+} /*End of Zoom in Keyframes */
+
+/* Zoom out Keyframes */
+@-webkit-keyframes zoomout {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.67);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes zoomout {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.67);
+  }
+  100% {
+    transform: scale(1);
+  }
+} /*End of Zoom out Keyframes */

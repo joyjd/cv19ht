@@ -1,0 +1,24 @@
+@import "./../../../styles/mixins.style.scss";
+
+.staticTagHolderContainer {
+  background-color: #a4deddb5;
+  width: 100%;
+  @include displayType(flex);
+  flex-wrap: wrap;
+  @include space(padding, top, 15px);
+  @include space(padding, bottom, 15px);
+  @include space(padding, left, 3px);
+  @include space(padding, right, 10px);
+}
+.staticKeyTags {
+  @include space(margin, top, 3px);
+  @include space(margin, bottom, 3px);
+  @include space(margin, left, 5px);
+  @include space(margin, right, 5px);
+  color: #bee8e7;
+  @include space(padding, all, 5px);
+  background-color: #0046817a;
+  /* flex-wrap: wrap; */
+  border-radius: 5px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 1px 1px #dff2f2eb;
+}

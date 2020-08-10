@@ -1,0 +1,11 @@
+@import "./../../../styles/mixins.style.scss";
+
+.hospitalListHoldContainer {
+  @include space(margin, top, 10px);
+}
+
+.disclaimerHospital {
+  font-size: 0.75rem !important;
+  padding: 5px 15px 20px 5px;
+  color: #a8b5c3;
+}

@@ -1,0 +1,68 @@
+.icon-green {
+  margin-right: 5px;
+  margin-top: 3px;
+  i {
+    border-radius: 50%;
+    border: 2px solid #61ef61;
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    vertical-align: 6px;
+    background-color: #61ef61;
+    animation: anim-glow-green 2s ease infinite;
+  }
+}
+@keyframes anim-glow-green {
+  0% {
+    box-shadow: 0 0 rgba(#61ef61, 1);
+  }
+  100% {
+    box-shadow: 0 0 10px 8px transparent;
+    border-width: 2px;
+  }
+}
+
+.icon-orange {
+  margin-right: 5px;
+  margin-top: 3px;
+  i {
+    border-radius: 50%;
+    border: 2px solid #eca554;
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    vertical-align: 6px;
+    background-color: #eca554;
+    animation: anim-glow-orange 2s ease infinite;
+  }
+}
+@keyframes anim-glow-orange {
+  0% {
+    box-shadow: 0 0 rgba(#eca554, 1);
+  }
+  100% {
+    box-shadow: 0 0 10px 8px transparent;
+    border-width: 2px;
+  }
+}
+
+.displayFlex {
+  display: flex;
+}
+#hospitalDetailTable .distanceIndicator {
+  font-size: 0.75rem !important;
+}
+.distanceIndicator .distanceData {
+  color: #5d839f;
+}
+.distanceIndicator .errorData {
+  color: red;
+}
+
+.distanceIndicator svg {
+  font-size: 0.75rem !important;
+}
+.noResultFoundcontainer {
+  padding: 15px;
+  color: #8f969e;
+}

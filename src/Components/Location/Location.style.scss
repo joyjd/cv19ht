@@ -1,0 +1,6 @@
+@import "./../../styles/mixins.style.scss";
+
+.locationCardContainer {
+  @include space(margin, top, 35px);
+  @include space(margin, bottom, 15px);
+}

@@ -1,0 +1,7 @@
+@import "./../../../styles/mixins.style.scss";
+
+.mapcontainer {
+  @include space(padding, all, 5px);
+  @include space(margin, bottom, 10px);
+  width: 100%;
+}
