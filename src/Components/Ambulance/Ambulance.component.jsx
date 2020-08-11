@@ -51,7 +51,7 @@ class Ambulance extends React.Component {
 
     if (leftPosition < -335) {
       this.myRef2.current.style.left = leftPosition + 350 + "px";
-      this.myRef2.current.style.transition = "left 1.5s";
+      this.myRef2.current.style.transition = "left 3s";
     }
 
     if (this.ambulanceTravelNode != null && this.ambulanceTravelNode > leftPosition) {

@@ -24,7 +24,7 @@ export default class LocationOptionInput extends React.Component {
 
   handleInputChange = (event) => {
     let nam = event.target.name;
-    let val = event.target.value.trim();
+    let val = event.target.value;
     this.setState({ [nam]: val });
   };
 
