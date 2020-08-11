@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/cv19ht/static/css/main.8c3ed1de.chunk.css",
-    "main.js": "/cv19ht/static/js/main.75af67d6.chunk.js",
-    "main.js.map": "/cv19ht/static/js/main.75af67d6.chunk.js.map",
+    "main.css": "/cv19ht/static/css/main.2d35a8fc.chunk.css",
+    "main.js": "/cv19ht/static/js/main.1f9eba5e.chunk.js",
+    "main.js.map": "/cv19ht/static/js/main.1f9eba5e.chunk.js.map",
     "runtime-main.js": "/cv19ht/static/js/runtime-main.86e215a4.js",
     "runtime-main.js.map": "/cv19ht/static/js/runtime-main.86e215a4.js.map",
     "static/js/2.4a8662fa.chunk.js": "/cv19ht/static/js/2.4a8662fa.chunk.js",
     "static/js/2.4a8662fa.chunk.js.map": "/cv19ht/static/js/2.4a8662fa.chunk.js.map",
     "index.html": "/cv19ht/index.html",
-    "precache-manifest.baab16a8af2fa562c518ac04a313b72e.js": "/cv19ht/precache-manifest.baab16a8af2fa562c518ac04a313b72e.js",
+    "precache-manifest.a5d8e5bfdf7fc379c0327aa6aa0f766d.js": "/cv19ht/precache-manifest.a5d8e5bfdf7fc379c0327aa6aa0f766d.js",
     "service-worker.js": "/cv19ht/service-worker.js",
-    "static/css/main.8c3ed1de.chunk.css.map": "/cv19ht/static/css/main.8c3ed1de.chunk.css.map",
+    "static/css/main.2d35a8fc.chunk.css.map": "/cv19ht/static/css/main.2d35a8fc.chunk.css.map",
     "static/js/2.4a8662fa.chunk.js.LICENSE.txt": "/cv19ht/static/js/2.4a8662fa.chunk.js.LICENSE.txt",
     "static/media/Ambulance.style.scss": "/cv19ht/static/media/ambulance2.e72a7e98.png",
     "static/media/HospitalListModal.style.scss": "/cv19ht/static/media/hospital_bg.ec8aec7e.jpg",
@@ -21,7 +21,7 @@
   "entrypoints": [
     "static/js/runtime-main.86e215a4.js",
     "static/js/2.4a8662fa.chunk.js",
-    "static/css/main.8c3ed1de.chunk.css",
-    "static/js/main.75af67d6.chunk.js"
+    "static/css/main.2d35a8fc.chunk.css",
+    "static/js/main.1f9eba5e.chunk.js"
   ]
 }
