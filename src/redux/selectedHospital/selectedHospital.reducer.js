@@ -7,7 +7,7 @@ const selectedHospitalReducer = (state = INITIAL_STATE, action) => {
     case "SET_SELECTED_HOSPITAL_LIST": {
       return {
         ...state,
-        selectedHospital: action.payload,
+        selectedHospital: Object.assign([], action.payload),
       };
     }
     default:

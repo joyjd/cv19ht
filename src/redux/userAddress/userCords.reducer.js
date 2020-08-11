@@ -7,7 +7,7 @@ const userCordsReducer = (state = INITIAL_STATE, action) => {
     case "SET_USER_CORDS": {
       return {
         ...state,
-        userCords: action.payload,
+        userCords: Object.assign([], action.payload),
       };
     }
     default:

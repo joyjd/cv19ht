@@ -7,7 +7,7 @@ const selectedHospitalZoneTagsReducer = (state = INITIAL_STATE, action) => {
     case "SET_SELECTED_HOSPITAL_ZONE_TAGS": {
       return {
         ...state,
-        selectedHospitalZoneTags: action.payload,
+        selectedHospitalZoneTags: Object.assign([], action.payload),
       };
     }
     default:

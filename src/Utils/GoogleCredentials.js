@@ -1,5 +1,5 @@
 const GoogleCredentials = {
-  apiKey: "AIzaSyArulgFkLD1tIDxd0ia5YDtjMd53J8Zuwc",
+  apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo",
 };
 
 export default GoogleCredentials;

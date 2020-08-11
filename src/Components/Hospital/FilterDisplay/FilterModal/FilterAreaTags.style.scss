@@ -10,10 +10,14 @@
   border-bottom: 15px solid #24375a30;
   @include transparentBorder(-15px);
   font-weight: bold;
+  font-size: large;
 }
 
 .filterTagsBody {
   @include space(padding, all, 10px);
+  margin: 5px;
+  border: 1px solid #0266b438;
+  border-radius: 10px;
 }
 
 .dividerHolder {

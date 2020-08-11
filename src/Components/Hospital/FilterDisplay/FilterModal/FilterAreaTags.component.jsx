@@ -67,7 +67,7 @@ class FilterTags extends React.Component {
   handleDelete = (type, el) => this.handleFilterChange(type, el);
 
   render() {
-    return (
+    return this.props.open ? (
       <Dialog fullScreen open={this.props.open} onClose={this.props.onclose} aria-labelledby='Select Hospital Zones' aria-describedby='Option to select Hospital Area Tags'>
         <Header />
         <div className='filterTagsHeader'>Select Areas/ Zones</div>
@@ -110,7 +110,7 @@ class FilterTags extends React.Component {
           </div>
         </div>
       </Dialog>
-    );
+    ) : null;
   }
 }
 

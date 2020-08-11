@@ -81,10 +81,8 @@ class Hospital extends React.Component {
         <div className='customButtonGroup'>
           <Paper variant='outlined' square>
             <div className='btnCol'>
-              <ButtonGroup variant='contained' color='primary' aria-label='contained primary button group'>
-                <FilterDisplay />
-                <SortDisplay />
-              </ButtonGroup>
+              <FilterDisplay />
+              <SortDisplay />
             </div>
             {this.props.searchText == null ? (
               <div>

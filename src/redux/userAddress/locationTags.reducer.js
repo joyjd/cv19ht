@@ -7,7 +7,7 @@ const locationTagsReducer = (state = INITIAL_STATE, action) => {
     case "SET_LOCATION_TAGS": {
       return {
         ...state,
-        locationTags: action.payload,
+        locationTags: Object.assign([], action.payload),
       };
     }
     default:

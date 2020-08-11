@@ -7,7 +7,7 @@ const addressComponentsReducer = (state = INITIAL_STATE, action) => {
     case "SET_ADDRESS_COMPONENTS": {
       return {
         ...state,
-        addressComponents: action.payload,
+        addressComponents: Object.assign([], action.payload),
       };
     }
     default:

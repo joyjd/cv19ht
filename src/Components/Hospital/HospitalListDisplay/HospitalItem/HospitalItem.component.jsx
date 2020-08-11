@@ -41,7 +41,6 @@ const formatter = new Intl.NumberFormat("en-US", {
 });
 const HospitalItem = (props) => {
   const classes = useStyles();
-  // let distance = geolib.getPreciseDistance({ latitude: Number(localStorage.getItem("CV19Tracker_lat")), longitude: Number(localStorage.getItem("CV19Tracker_long")) }, { latitude: 22.5683058, longitude: 88.41166559999999 });
   return props.userCords != null ? (
     <TableContainer component={Paper} id='hospitalDetailTable'>
       <Table className={classes.table} aria-label='customized table'>
@@ -106,5 +105,6 @@ const HospitalItem = (props) => {
 };
 const mapStateToProps = (state) => ({
   userCords: state.userCords.userCords,
+  selectedHospitalList: state.selectedHospitalList.selectedHospital,
 });
 export default connect(mapStateToProps)(HospitalItem);

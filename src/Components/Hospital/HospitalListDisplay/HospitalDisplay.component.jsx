@@ -11,7 +11,7 @@ import HospitalItem from "./HospitalItem/HospitalItem.component";
 import { HospitalModalDetailTemplate } from "./../../../Modals/HospitalDetailsModal/HospitalModalDetailTemplate.component";
 import HospitalListModal from "./HospitalListModal/HospitalListModal.component";
 
-import { createHospitalProfile } from "./../../../firebase/firebase.util";
+import { createHospitalProfile, getHospitalProfileAll } from "./../../../firebase/firebase.util";
 
 import { setRawHospitalData } from "./../../../redux/totalHospitalDetails/rawHospitalData.action";
 import { setSelectedHospitalList } from "./../../../redux/selectedHospital/selectedHospital.action";
@@ -35,6 +35,12 @@ class HospitalListDisplay extends React.Component {
       this.completeHospitalData = this.props.completeHospitalData;
     }
   }
+  componentDidUpdate() {
+    if (this.props.completeHospitalData != null) {
+      this.completeHospitalData = this.props.completeHospitalData;
+    }
+  }
+
   createHospitalDetailModayBody = (data, c_bed, h_dist) => {
     let tempHtml;
     if (typeof data == "string") {
@@ -92,9 +98,10 @@ class HospitalListDisplay extends React.Component {
             if (data != "") {
               //get the new data
               if (data["status"] == "OK") {
-                this.completeHospitalData[h_name] = data["result"];
-                this.props.setRawHospitalData(this.completeHospitalData);
+                // this.completeHospitalData[h_name] = data["result"];
+
                 createHospitalProfile(h_name, data["result"]);
+                this.props.setRawHospitalData(getHospitalProfileAll());
                 //UPDATE h_dist
                 this.props.selectedHospitalList[this.props.selectedHospitalList.findIndex((el) => el.h_name == h_name)]["h_loc"] = data["result"]["geometry"]["location"];
                 this.props.setSelectedlList(this.props.selectedHospitalList);
@@ -128,7 +135,7 @@ class HospitalListDisplay extends React.Component {
     return this.props.selectedHospitalList != null ? (
       <CardMedia>
         <div className='hospitalListHoldContainer'>
-          <HospitalItem selectedHospitalList={this.props.selectedHospitalList} onClick={(h_name, h_zone, c_bed, h_dist) => this.handleHospitalDetailsPre(h_name, h_zone, c_bed, h_dist)} />
+          <HospitalItem onClick={(h_name, h_zone, c_bed, h_dist) => this.handleHospitalDetailsPre(h_name, h_zone, c_bed, h_dist)} />
         </div>
         <div className='disclaimerHospital'>
           <div>* Data displayed is as per WB Government website</div>

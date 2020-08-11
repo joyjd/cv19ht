@@ -7,7 +7,7 @@ const rawHospitalDataReducer = (state = INITIAL_STATE, action) => {
     case "SET_RAW_HOSPITAL_DATA": {
       return {
         ...state,
-        rawHospitalData: action.payload,
+        rawHospitalData: Object.assign({}, action.payload),
       };
     }
     default:

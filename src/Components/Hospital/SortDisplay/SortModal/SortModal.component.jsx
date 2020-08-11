@@ -7,43 +7,44 @@ import Divider from "@material-ui/core/Divider";
 import Radio from "@material-ui/core/Radio";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
+import "./../SortModal/SortModal.style.scss";
 
-class SortModal extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+import Button from "@material-ui/core/Button";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 
-  render() {
-    return (
-      <Dialog fullScreen open={this.props.open} onClose={this.props.onclose} aria-labelledby='Select Hospital Zones' aria-describedby='Option to select Hospital Area Tags'>
-        <Header />
-        <div className='filterTagsHeader'>Select Areas/ Zones</div>
-        <div className='filterTagsBody'>
-          <div>You can select areas/zones to view COVID19 treatment providing hospitals of that area.</div>
-          <div className='dividerHolder'>
-            <Divider />
-          </div>
-          <div className='displayFlex headerTagLineDesc'>
-            <div>
-              <LocalOfferIcon fontSize='small' />
-            </div>
-          </div>
-          <div className='chipsHolder'>
-            <RadioGroup aria-label='gender' name='gender1' value={value} onChange={handleChange}>
-              <FormControlLabel value='isChecked_op_bed' control={<Radio color='primary' />} label='More vacancy of COVID beds' />
-              <FormControlLabel value='isChecked_op_hospital' control={<Radio color='primary' />} label='Hospitals nearer to your current location' />
-            </RadioGroup>
-          </div>
-          <div className='dividerHolder displayEqual'>
-            <Button onClick={() => props.onClose(false)} color='primary'>
-              Cancel
-            </Button>
-            <Button onClick={() => props.onClose(true)} color='primary' autoFocus>
-              Okay
-            </Button>
-          </div>
+export default function SortModal(props) {
+  const [value, setValue] = React.useState(props.initialVal == "" ? "isChecked_op_bed" : props.initialVal);
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    props.handleRadioChange(event.target.value);
+  };
+
+  return (
+    <Dialog fullScreen open={props.open} onClose={props.onclose} aria-labelledby='Sort Hospitals' aria-describedby='Option to sort Hospitals'>
+      <Header />
+      <div className='filterTagsHeader'>Sort Hospitals</div>
+      <div className='filterTagsBodySort'>
+        <div className='SortTitleDesc'>You can sort list of hospitals according to your view</div>
+        <div className='dividerHolder'>
+          <Divider />
         </div>
-      </Dialog>
-    );
-  }
+        <div className='displayFlex headerTagLineDesc'></div>
+        <div className='chipsHolder'>
+          <RadioGroup aria-label='gender' name='gender1' value={value} onChange={handleChange}>
+            <FormControlLabel value='isChecked_op_bed' control={<Radio color='primary' />} label='More vacancy of COVID beds' />
+            <FormControlLabel value='isChecked_op_hospital' control={<Radio color='primary' />} label='Hospitals nearer to your current location' />
+          </RadioGroup>
+        </div>
+        <div className='dividerHolder displayEqual'>
+          <Button variant='contained' color='primary' onClick={() => props.onClose(false)} color='primary'>
+            Cancel
+          </Button>
+          <Button variant='contained' color='primary' onClick={() => props.onClose(true)} color='primary' autoFocus>
+            Sort
+          </Button>
+        </div>
+      </div>
+    </Dialog>
+  );
 }

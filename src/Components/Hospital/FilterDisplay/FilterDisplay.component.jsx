@@ -46,8 +46,8 @@ class FilterDisplay extends React.Component {
 
   render() {
     return this.props.selectedHospitalZoneTags != null && this.props.hospitalDetails != null ? (
-      <div>
-        <Button className='customButtonText' onClick={() => this.handleOpenAreaTags()}>
+      <div className='filterDiv'>
+        <Button variant='contained' color='primary' onClick={() => this.handleOpenAreaTags()}>
           Filter by Area / Zones
         </Button>
         <FilterTags open={this.state.areaTagsOption} onClose={(el, opt) => this.handleCloseAreaTags(el, opt)} />
