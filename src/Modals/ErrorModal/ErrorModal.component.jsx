@@ -2,14 +2,12 @@ import React from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import { makeStyles } from "@material-ui/core/styles";
+import "./../ErrorModal/ErrorModal.style.scss";
+import BuildIcon from "@material-ui/icons/Build";
+import NewReleasesIcon from "@material-ui/icons/NewReleases";
+import Button from "@material-ui/core/Button";
 
-/* const style = {
-  borderRadius: "50px",
-  background: "#d6d6d6",
-  boxShadow: "20px 20px 60px #b6b6b6,-20px -20px 60px #f6f6f6",
-}; */
-
-export const ErrorModal = ({ open, onClose, body }) => {
+export const ErrorModal = ({ open, onclose, body }) => {
   return (
     <Dialog
       BackdropProps={{
@@ -28,12 +26,30 @@ export const ErrorModal = ({ open, onClose, body }) => {
           boxShadow: "6px 6px 12px #96a4b0,-6px -6px 12px #cadeee",
         },
       }}
-      onClose={onClose}
+      onClose={onclose}
       aria-labelledby='simple-dialog-title'
       open={open}
     >
       <DialogContent>
-        <div>{body}</div>
+        <div className='ErrorBody'>
+          <div className='ErrorHeader'>
+            <div className='contentdiv'>
+              <NewReleasesIcon fontSize='large' />
+            </div>
+            <div className='contentdiv'>
+              <BuildIcon fontSize='large' />
+            </div>
+            <div className='contentdiv textHeader'> OOPS !</div>
+          </div>
+          <div className='ErrorDesc'>{body}</div>
+          <div className='ErrorAction'>
+            <div>
+              <Button variant='contained' color='primary' onClick={() => onclose(true)}>
+                Okay
+              </Button>
+            </div>
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );

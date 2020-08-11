@@ -16,6 +16,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { connect } from "react-redux";
 
 import { Header } from "./Components/Header/Header.component";
+import { Footer } from "./Components/Footer/Footer.component";
 import Location from "./Components/Location/Location.component";
 import Hospital from "./Components/Hospital/Hospital.component";
 
@@ -24,18 +25,20 @@ import ApiUrls from "./Utils/ApiUrls.data";
 
 import { ErrorModal } from "./Modals/ErrorModal/ErrorModal.component";
 import WelcomeModal from "./Modals/WelcomeModal/WelcomeModal.component";
+import LocationOptionInput from "./Modals/AddressDetailModal/LocationOptionInput.component";
 
 import { setTotalHospitalDetails } from "./redux/totalHospitalDetails/totalHospital.action";
 import { setAddressComponents } from "./redux/userAddress/addressComponents.action";
 import { setFormattedAddress } from "./redux/userAddress/formattedAddress.action";
 import { setUserCords } from "./redux/userAddress/userCords.action";
 import { setRawHospitalData } from "./redux/totalHospitalDetails/rawHospitalData.action";
+import { setLocationModal } from "./redux/locationInput/locationInput.action";
 
 import { dummyLoc } from "./assets/dummyLoc";
 
 import { createHospitalProfile, getHospitalProfileAll } from "./firebase/firebase.util";
 
-const env = "dev"; // prod -  dev
+const env = "prod"; // prod -  dev
 class App extends React.Component {
   errorBodyMessage = "";
   hospitalList = [];
@@ -52,12 +55,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // setInterval(() => this.props.setSelectedlList(["a", "b"]), 4000);
-    //  this.props.setSelectedlList(["a", "b"]);
     console.log("App mounted");
     this.setState(
       {
         openWelcomeAlert: true,
+        openPermissionDeniedAlert: false,
       },
       () => this.prepareHospitalData()
     );
@@ -87,13 +89,6 @@ class App extends React.Component {
   };
 
   arrangeHospitalKeyMap(data) {
-    //test insertion
-    //createHospitalProfile(Object.keys(data)[0], data[Object.keys(data)[0]]);
-
-    //Object.keys(data).forEach((el) => createHospitalProfile(el, data[el]));
-
-    //ends
-
     let hospitalDetailsData = data;
     let tempDup = {};
     let tempMap = {};
@@ -161,6 +156,10 @@ class App extends React.Component {
             console.log(pos.coords.latitude);
             console.log(pos.coords.longitude);
             this.getFormattedAddress(pos.coords.latitude, pos.coords.longitude);
+          } else {
+            this.setState({
+              openBackDrop: false,
+            });
           }
         },
         (error) => {
@@ -181,7 +180,7 @@ class App extends React.Component {
             //show pop up if denied
             this.handleBackDropClose();
             this.setState({
-              openLocationAlert: true,
+              openPermissionDeniedAlert: true,
             });
           }
         }
@@ -205,7 +204,7 @@ class App extends React.Component {
         } else {
           // Google denied Map, hence need to show proper error messages
           if (env == "prod") {
-            this.errorBodyMessage = "Google MAP API Denied";
+            this.errorBodyMessage = "Well, it seems Google MAP API is denied at the moment. This is something unusual. Please refresh the page or try again in sometime.";
             this.setState(
               {
                 openBackDrop: false,
@@ -232,7 +231,7 @@ class App extends React.Component {
       (error) => {
         // Google Web api failed, hence need to show proper error messages
         if (env == "prod") {
-          this.errorBodyMessage = "Google MAP API failed";
+          this.errorBodyMessage = "Well, it seems Google MAP API failed at the moment. This is something unusual. Please refresh the page or try again in sometime.";
           this.setState(
             {
               openBackDrop: false,
@@ -258,10 +257,125 @@ class App extends React.Component {
     );
   };
 
+  searchGoogleForUserDetails = (el) => {
+    let searchText = "" + el.locality + "," + el.district + "," + el.pin + ",West Bengal,India";
+    let params = searchText + "&inputtype=textquery&fields=formatted_address,geometry";
+    CommunicatorFetch(ApiUrls.getPlaceDetails, params).then(
+      (data) => {
+        if (data["candidates"].length != 0) {
+          this.props.setUserCords([data["candidates"][0].geometry.location.lat, data["candidates"][0].geometry.location.lng]);
+          /* localStorage.setItem("CV19Tracker_lat", data["candidates"][0].geometry.location.lat);
+          localStorage.setItem("CV19Tracker_long", data["candidates"][0].geometry.location.lng); */
+          //make custom address componnets
+          let address_components = [];
+          let tempAddr = data["candidates"][0]["formatted_address"].split(",");
+          tempAddr.pop();
+
+          tempAddr = tempAddr.forEach((elem) => {
+            address_components.push({
+              long_name: elem.trim(),
+              short_name: elem.trim(),
+              types: ["political", "sublocality", "sublocality_level_1"],
+            });
+          });
+
+          this.props.setFormattedAddress(data["candidates"][0]["formatted_address"]);
+          this.props.setAddressComponents(address_components);
+
+          this.setState({
+            openBackDrop: false,
+          });
+          /* this.setState(
+            {
+              formattedAddress: data["candidates"][0]["formatted_address"],
+              compoundAddress: "",
+              addressComponents: Object.assign([], address_components),
+              locationCoordinates_lat: data["candidates"][0].geometry.location.lat,
+              locationCoordinates_long: data["candidates"][0].geometry.location.lng,
+            }, */
+          /* () => this.handleBackDropClose()
+          ); */
+        } else {
+          //show pop up for google denial
+
+          //custom create address_format
+          let address_components = [];
+          let tempAddr = el.locality.split(" ");
+          tempAddr.push(el.district);
+          tempAddr = tempAddr.forEach((elem) => {
+            address_components.push({
+              long_name: elem.trim(),
+              short_name: elem.trim(),
+              types: ["political", "sublocality", "sublocality_level_1"],
+            });
+          });
+          let tmmpAddr = el.locality + "," + el.district + ", pin -" + el.pin;
+
+          this.props.setUserCords([0, 0]);
+          this.props.setFormattedAddress(tmmpAddr);
+          this.props.setAddressComponents(address_components);
+
+          this.setState({
+            openBackDrop: false,
+          });
+
+          /* this.setState(
+            {
+              formattedAddress: tmmpAddr,
+              compoundAddress: "",
+              addressComponents: Object.assign([], address_components),
+              locationCoordinates_lat: 0,
+              locationCoordinates_long: 0,
+            },
+            () => this.handleBackDropClose()
+          ); */
+        }
+      },
+      (error) => {
+        //show pop up for google denial
+
+        //custom create address_format
+        let address_components = [];
+        let tempAddr = el.locality.split(" ");
+        tempAddr.push(el.district);
+        tempAddr = tempAddr.forEach((elem) => {
+          address_components.push({
+            long_name: elem.trim(),
+            short_name: elem.trim(),
+            types: ["political", "sublocality", "sublocality_level_1"],
+          });
+        });
+
+        let tmmpAddr = el.locality + "," + el.district + ", pin -" + el.pin;
+
+        this.props.setUserCords([0, 0]);
+        this.props.setFormattedAddress(tmmpAddr);
+        this.props.setAddressComponents(address_components);
+
+        this.setState({
+          openBackDrop: false,
+        });
+        /* this.setState(
+          {
+            formattedAddress: tmmpAddr,
+            compoundAddress: "",
+            addressComponents: Object.assign([], address_components),
+            locationCoordinates_lat: 0,
+            locationCoordinates_long: 0,
+          },
+          () => this.handleBackDropClose()
+        ); */
+      }
+    );
+  };
+
   handleErrorClose = () => {
-    this.setState({
-      viewErrorModal: false,
-    });
+    this.setState(
+      {
+        viewErrorModal: false,
+      },
+      () => window.location.reload()
+    );
   };
   handleCloseWelcomeAlert = (el) => {
     this.setState(
@@ -279,6 +393,21 @@ class App extends React.Component {
       openBackDrop: false,
     });
   };
+  handleCloseLocationOptionAlert = (el) => {
+    this.props.setLocationModal(false);
+    this.setState(
+      {
+        openBackDrop: true,
+      },
+      () => {
+        if (el.locality == "" && el.district == "" && el.pin == "") {
+          this.getLocationTrack();
+        } else {
+          this.searchGoogleForUserDetails(el);
+        }
+      }
+    );
+  };
 
   render() {
     console.log("App Component rendered");
@@ -286,12 +415,14 @@ class App extends React.Component {
       <React.Fragment>
         <CssBaseline />
         <Header />
-        <Container maxWidth='md'>
+        <Container maxWidth='md' className='containerApp'>
           <Location />
           <Hospital />
         </Container>
+        {!this.state.openBackDrop ? <Footer /> : null}
         <WelcomeModal open={this.state.openWelcomeAlert} onClose={(el) => this.handleCloseWelcomeAlert(el)} />
-        <ErrorModal open={this.state.viewErrorModal} onclose={() => this.handleErrorClose()} body={this.errorBodyMessage} /* open={true} onClose={() => this.handleClose()} */ />
+        <LocationOptionInput open={this.props.locationModal} onClose={(el) => this.handleCloseLocationOptionAlert(el)} />
+        <ErrorModal open={this.state.viewErrorModal} onclose={() => this.handleErrorClose()} body={this.errorBodyMessage} />
         <Backdrop open={this.state.openBackDrop} style={{ backgroundColor: "#183259" }}>
           <div className='loadTrackerWelcome'>
             <div className='loaderContainer'>
@@ -305,12 +436,17 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  locationModal: state.locationModal.locationModalOpen,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   setTotalHospitalDetails: (hospitalDetails) => dispatch(setTotalHospitalDetails(hospitalDetails)),
   setAddressComponents: (addressComponents) => dispatch(setAddressComponents(addressComponents)),
   setFormattedAddress: (formattedAddress) => dispatch(setFormattedAddress(formattedAddress)),
   setUserCords: (userCords) => dispatch(setUserCords(userCords)),
   setRawHospitalData: (rawHospitalData) => dispatch(setRawHospitalData(rawHospitalData)),
+  setLocationModal: (locationModal) => dispatch(setLocationModal(locationModal)),
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

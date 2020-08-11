@@ -1,0 +1,49 @@
+.ErrorBody {
+  height: 97%;
+  border-radius: 10px;
+}
+.ErrorHeader {
+  height: 20%;
+  background-color: #ffffff;
+  text-align: center;
+  justify-content: center;
+  vertical-align: middle;
+  color: #437598;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+}
+.ErrorDesc {
+  height: 60%;
+  background-color: #437598;
+  text-align: center;
+  justify-content: center;
+  vertical-align: middle;
+  color: #ffffff;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ErrorAction {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 20%;
+  background-color: #ffffff;
+  text-align: center;
+  justify-content: center;
+  vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contentdiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.textHeader {
+  font-size: x-large;
+  font-weight: 500;
+}

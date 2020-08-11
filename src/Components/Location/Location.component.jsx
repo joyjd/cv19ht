@@ -1,14 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import { makeStyles } from "@material-ui/core/styles";
 import "./../Location/Location.style.scss";
 import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 
 import AddressDisplay from "./AddressDisplay/AddressDisplay.component";
 import MapsDisplay from "./../Common/MapsDisplay/MapsDisplay.component";
 import TagsDisplay from "./../Common/TagsDisplay/TagsDisplay.component";
 import { setLocationTags } from "./../../redux/userAddress/locationTags.action";
+import { setLocationModal } from "./../../redux/locationInput/locationInput.action";
+import Ambulance from "./../Ambulance/Ambulance.component";
 
+import BorderColorIcon from "@material-ui/icons/BorderColor";
 const exclusiveKeywords = ["country"];
 
 class Location extends React.Component {
@@ -43,14 +47,38 @@ class Location extends React.Component {
     this.props.setLocationTags([...new Set(finalTags.map((el) => el["long_name"]).filter((el) => el !== "West Bengal"))]);
   };
 
+  handleOpenLocationModal = () => {
+    this.props.setLocationModal(true);
+  };
+
   render() {
     return this.props.addressComponents != null ? (
-      <div className='locationCardContainer'>
-        <Paper elevation={3} className='transparentBorder'>
-          <AddressDisplay />
-          <MapsDisplay />
-          <TagsDisplay tagtype='userTag' />
-        </Paper>
+      <div>
+        <div className='locationCardContainer'>
+          <Paper elevation={3} className='transparentBorder'>
+            <AddressDisplay />
+            <MapsDisplay />
+            <div className='addressInputHolder'>
+              <div className='addressInputIconHolder'>
+                <BorderColorIcon fontSize='small' />
+              </div>
+              <Button
+                style={{
+                  fontWeight: "500",
+                  letterSpacing: "0",
+                  textTransform: "none",
+                }}
+                size='small'
+                onClick={() => this.handleOpenLocationModal()}
+              >
+                Not Correct? Type your current address
+              </Button>
+            </div>
+
+            <TagsDisplay tagtype='userTag' />
+          </Paper>
+        </div>
+        <Ambulance />
       </div>
     ) : null;
   }
@@ -58,6 +86,7 @@ class Location extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   setLocationTags: (locationTags) => dispatch(setLocationTags(locationTags)),
+  setLocationModal: (locationModal) => dispatch(setLocationModal(locationModal)),
 });
 
 const mapStateToProps = (state) => ({

@@ -1,0 +1,25 @@
+@import "./../../styles/mixins.style.scss";
+
+.locPromptheader {
+  background-image: url("./../../assets/set_header.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  @include space(padding, all, 15px);
+  color: #ffffff;
+  border-bottom: 15px solid #24375a30;
+  @include transparentBorder(-15px);
+}
+.locBodyHolder {
+  margin-top: 20px;
+}
+.locPromptbody {
+  @include space(padding, all, 12px);
+}
+.w_100 {
+  width: 100%;
+}
+.textFieldContainer {
+  @include space(padding, top, 5px);
+  @include space(padding, bottom, 5px);
+}

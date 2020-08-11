@@ -16,6 +16,9 @@ import SortDisplay from "./SortDisplay/SortDisplay.component";
 import TagsDisplay from "./../Common/TagsDisplay/TagsDisplay.component";
 import HostiptalZoneCountDisplay from "./HostiptalZoneCountDisplay.component";
 import HospitalListDisplay from "./HospitalListDisplay/HospitalDisplay.component";
+import * as geolib from "geolib";
+
+import { customSort } from "./../../Utils/Sort.component";
 
 import { setSelectedHospitalList } from "./../../redux/selectedHospital/selectedHospital.action";
 import { setSelectedHospitalZoneTags } from "./../../redux/selectedHospital/selectedHospitalZoneTags.action";
@@ -32,9 +35,9 @@ class Hospital extends React.Component {
 
   componentDidMount() {}
   componentDidUpdate() {
-    if (this.props.locationTags != null && this.props.hospitalDetails != null && this.props.searchText == null) {
+    if (this.props.locationTags != null && this.props.hospitalDetails != null && this.props.userCords != null && this.props.searchText == null) {
       this.prepareSelectedZoneHospitalList();
-    } else if (this.props.locationTags != null && this.props.hospitalDetails != null && this.props.searchText != null) {
+    } else if (this.props.locationTags != null && this.props.hospitalDetails != null && this.props.userCords != null && this.props.searchText != null) {
       this.pendingChange = true; //********** IMPLEMENT LATER */
     }
   }
@@ -45,7 +48,12 @@ class Hospital extends React.Component {
 
     this.props.locationTags.forEach((elem) => {
       if (this.props.hospitalDetails[elem]) {
-        this.props.hospitalDetails[elem].forEach((el) => tempHptlList.push(el));
+        this.props.hospitalDetails[elem].forEach((el) => {
+          if (el["h_loc"]["lat"] != undefined || el["h_loc"]["lng"] != undefined) {
+            el["h_dist"] = geolib.getPreciseDistance({ latitude: this.props.userCords[0], longitude: this.props.userCords[1] }, { latitude: el["h_loc"]["lat"], longitude: el["h_loc"]["lng"] });
+          }
+          tempHptlList.push(el);
+        });
         hospitalZoneTags.push(elem);
       }
     });
@@ -57,7 +65,7 @@ class Hospital extends React.Component {
       hospitalZoneTags.push("Kolkata");
     }
 
-    this.props.setSelectedlList(tempHptlList);
+    this.props.setSelectedlList(customSort(tempHptlList));
     this.props.setSelectedHospitalZoneTags(hospitalZoneTags);
     this.loc_selectedHospitalCount = tempHptlList.length;
     this.pendingChange = false;
@@ -116,6 +124,7 @@ const mapStateToProps = (state) => ({
   hospitalDetails: state.totalHospitalDetails.totalHospitalDetails,
   locationTags: state.locationTags.locationTags,
   searchText: state.searchText.searchText,
+  userCords: state.userCords.userCords,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Hospital);

@@ -4,3 +4,15 @@
   @include space(margin, top, 35px);
   @include space(margin, bottom, 15px);
 }
+.addressInputHolder {
+  display: flex;
+  padding: 0 10px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+.addressInputIconHolder {
+  font-size: small !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

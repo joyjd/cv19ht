@@ -117,7 +117,7 @@ export const HospitalModalDetailTemplate = (props) => {
       <div className='dividerCont'>
         <Divider />
       </div>
-      {props.data != undefined ? (
+      {props.data != undefined && props.data.reviews != undefined ? (
         <div>
           <div className='displayFlex m_tb_10'>
             <div>

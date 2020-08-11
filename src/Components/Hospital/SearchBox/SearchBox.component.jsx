@@ -7,6 +7,7 @@ import { setSearchText } from "./../../../redux/search/search.action";
 import "./../SearchBox/SearchBox.style.scss";
 import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
+import { customSort } from "./../../../Utils/Sort.component";
 
 class SearchBox extends React.Component {
   org_selectedHospital = [];
@@ -70,7 +71,7 @@ class SearchBox extends React.Component {
     /* this.setState({
       selectedHospitalList: finalResult,
     }); */
-    this.props.setSelectedlList(finalResult);
+    this.props.setSelectedlList(customSort(finalResult));
   };
 
   preparePostSearchSelectedZoneHospitalList = () => {
@@ -80,7 +81,7 @@ class SearchBox extends React.Component {
         this.props.hospitalDetails[elem].forEach((el) => tempHptlList.push(el));
       }
     });
-    this.props.setSelectedlList(tempHptlList);
+    this.props.setSelectedlList(customSort(tempHptlList));
     /* this.setState({
       selectedHospitalList: tempHptlList,
     }); */

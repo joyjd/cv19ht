@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import CardMedia from "@material-ui/core/CardMedia";
+
 import "./../HospitalListDisplay/HospitalDisplay.style.scss";
 
 import { CommunicatorFetch } from "./../../../Utils/Communicator/Communicator.component";
@@ -10,14 +11,18 @@ import ApiUrls from "./../../../Utils/ApiUrls.data";
 import HospitalItem from "./HospitalItem/HospitalItem.component";
 import { HospitalModalDetailTemplate } from "./../../../Modals/HospitalDetailsModal/HospitalModalDetailTemplate.component";
 import HospitalListModal from "./HospitalListModal/HospitalListModal.component";
-
+import BackDropCustom from "./../../../Utils/BackDropCustom/BackDropCustom.component";
 import { createHospitalProfile, getHospitalProfileAll } from "./../../../firebase/firebase.util";
+import { ErrorModal } from "./../../../Modals/ErrorModal/ErrorModal.component";
 
 import { setRawHospitalData } from "./../../../redux/totalHospitalDetails/rawHospitalData.action";
 import { setSelectedHospitalList } from "./../../../redux/selectedHospital/selectedHospital.action";
 
+import { customSort } from "./../../../Utils/Sort.component";
+
 class HospitalListDisplay extends React.Component {
   completeHospitalData = [];
+  errorBodyMessage = "";
   modalContent = {
     body: "",
     headerTitle: "",
@@ -28,6 +33,7 @@ class HospitalListDisplay extends React.Component {
     this.state = {
       openZoneBackDrop: false,
       openModal: false,
+      viewErrorModal: false,
     };
   }
   componentDidMount() {
@@ -90,6 +96,11 @@ class HospitalListDisplay extends React.Component {
           (error) => {
             //handle error scenerio for first call
             console.log("HospitalZoneComponent+ First call====p_id-=====ERROR !!!!!!");
+            this.errorBodyMessage = "It seems Google API failed to retrieve details for " + h_name + ".Either there is no details data available for this particular hospital over internet or Google failed to retrieve data at the moment.Please try again in sometime.";
+            this.setState({
+              openZoneBackDrop: false,
+              viewErrorModal: true,
+            });
           }
         )
         .then((prms) => (prms != "" ? CommunicatorFetch(ApiUrls.getHospitalCompleteDetails, prms) : ""))
@@ -104,7 +115,7 @@ class HospitalListDisplay extends React.Component {
                 this.props.setRawHospitalData(getHospitalProfileAll());
                 //UPDATE h_dist
                 this.props.selectedHospitalList[this.props.selectedHospitalList.findIndex((el) => el.h_name == h_name)]["h_loc"] = data["result"]["geometry"]["location"];
-                this.props.setSelectedlList(this.props.selectedHospitalList);
+                this.props.setSelectedlList(customSort(this.props.selectedHospitalList));
                 //Call function to form body
                 this.createHospitalDetailModayBody(this.completeHospitalData[h_name], c_bed, h_dist);
                 this.handleOpenModal();
@@ -120,6 +131,13 @@ class HospitalListDisplay extends React.Component {
           (error) => {
             // handle error scenerio for second call
             console.log("HospitalZoneComponent+ Second call====details-=====ERROR !!!!!!");
+            if (!this.state.viewErrorModal) {
+              this.errorBodyMessage = "It seems Google API failed to retrieve details for " + h_name + ".Either there is no details data available for this particular hospital over internet or Google failed to retrieve data at the moment.Please try again in sometime.";
+              this.setState({
+                openZoneBackDrop: false,
+                viewErrorModal: true,
+              });
+            }
           }
         );
     }
@@ -129,6 +147,11 @@ class HospitalListDisplay extends React.Component {
     this.setState({ openModal: false });
     this.modalContent.headerTitle = "";
     this.modalContent.body = "";
+  };
+  handleErrorClose = () => {
+    this.setState({
+      viewErrorModal: false,
+    });
   };
 
   render() {
@@ -142,6 +165,8 @@ class HospitalListDisplay extends React.Component {
           <div>* Distances shown are tentative and may not be exactly accurate</div>
         </div>
         <HospitalListModal open={this.state.openModal} onClose={this.handleCloseModal} headerTitle={this.modalContent.headerTitle} body={this.modalContent.body} />
+        <BackDropCustom open={this.state.openZoneBackDrop} />
+        <ErrorModal open={this.state.viewErrorModal} onclose={() => this.handleErrorClose()} body={this.errorBodyMessage} />
       </CardMedia>
     ) : null;
   }

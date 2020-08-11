@@ -7,7 +7,7 @@ import "./../FilterDisplay/FilterDisplay.style.scss";
 import { setSelectedHospitalList } from "./../../../redux/selectedHospital/selectedHospital.action";
 import { setSearchText } from "./../../../redux/search/search.action";
 import { setSelectedHospitalZoneTags } from "./../../../redux/selectedHospital/selectedHospitalZoneTags.action";
-
+import { customSort } from "./../../../Utils/Sort.component";
 import FilterTags from "./FilterModal/FilterAreaTags.component";
 
 class FilterDisplay extends React.Component {
@@ -27,7 +27,7 @@ class FilterDisplay extends React.Component {
         }
       });
 
-      this.props.setSelectedlList(temp);
+      this.props.setSelectedlList(customSort(temp));
       this.props.setSelectedHospitalZoneTags(el);
     }
     this.setState(

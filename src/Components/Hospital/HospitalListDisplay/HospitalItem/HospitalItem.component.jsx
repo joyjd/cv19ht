@@ -15,6 +15,8 @@ import "./../HospitalItem/HospitalItem.style.scss";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 import * as geolib from "geolib";
 import PriorityHighIcon from "@material-ui/icons/PriorityHigh";
+import { customSort } from "./../../../../Utils/Sort.component";
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: "#1a355c",
@@ -34,6 +36,13 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 const useStyles = makeStyles({
   table: {},
+  root: {
+    borderRadius: "205px",
+    background: "#e9e2e2",
+    boxShadow: "3px 3px 7px #c6c0c0,  -3px -3px 7px #ffffff",
+    color: "#1a355c9e",
+    margin: "0 5px 2px 0",
+  },
 });
 const formatter = new Intl.NumberFormat("en-US", {
   minimumFractionDigits: 2,
@@ -41,6 +50,7 @@ const formatter = new Intl.NumberFormat("en-US", {
 });
 const HospitalItem = (props) => {
   const classes = useStyles();
+
   return props.userCords != null ? (
     <TableContainer component={Paper} id='hospitalDetailTable'>
       <Table className={classes.table} aria-label='customized table'>
@@ -91,7 +101,7 @@ const HospitalItem = (props) => {
                 </div>
               </StyledTableCell>
               <StyledTableCell align='right'>
-                <Fab size='small' color='secondary' aria-label='add' onClick={() => props.onClick(el["h_name"], el["h_zone"], el["c_bed"], el["h_dist"])}>
+                <Fab classes={{ root: classes.root }} size='small' color='primary' aria-label='add' onClick={() => props.onClick(el["h_name"], el["h_zone"], el["c_bed"], el["h_dist"])}>
                   <FindInPageIcon fontSize='small' />
                 </Fab>
               </StyledTableCell>
