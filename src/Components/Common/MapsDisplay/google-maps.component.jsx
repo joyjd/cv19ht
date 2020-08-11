@@ -16,6 +16,7 @@ class GoogleMaps extends React.Component {
     return (
       <div className='mapHolder'>
         <Map
+          key={new Date().getTime()}
           google={this.props.google}
           zoom={14}
           containerStyle={containerStyle}

@@ -18,7 +18,7 @@ import HostiptalZoneCountDisplay from "./HostiptalZoneCountDisplay.component";
 import HospitalListDisplay from "./HospitalListDisplay/HospitalDisplay.component";
 import * as geolib from "geolib";
 
-import { customSort } from "./../../Utils/Sort.component";
+import { customSort, capitalletter } from "./../../Utils/Sort.component";
 
 import { setSelectedHospitalList } from "./../../redux/selectedHospital/selectedHospital.action";
 import { setSelectedHospitalZoneTags } from "./../../redux/selectedHospital/selectedHospitalZoneTags.action";
@@ -47,14 +47,15 @@ class Hospital extends React.Component {
     let hospitalZoneTags = [];
 
     this.props.locationTags.forEach((elem) => {
-      if (this.props.hospitalDetails[elem]) {
-        this.props.hospitalDetails[elem].forEach((el) => {
+      if (this.props.hospitalDetails[capitalletter(elem)]) {
+        this.props.hospitalDetails[capitalletter(elem)].forEach((el) => {
           if (el["h_loc"]["lat"] != undefined || el["h_loc"]["lng"] != undefined) {
-            el["h_dist"] = geolib.getPreciseDistance({ latitude: this.props.userCords[0], longitude: this.props.userCords[1] }, { latitude: el["h_loc"]["lat"], longitude: el["h_loc"]["lng"] });
+            el["h_dist"] = Number(geolib.getPreciseDistance({ latitude: this.props.userCords[0], longitude: this.props.userCords[1] }, { latitude: el["h_loc"]["lat"], longitude: el["h_loc"]["lng"] }) / 1000);
           }
+          // console.log(el["h_dist"]);
           tempHptlList.push(el);
         });
-        hospitalZoneTags.push(elem);
+        hospitalZoneTags.push(capitalletter(elem));
       }
     });
     //By default Show Kolkata zone- if nothing matches

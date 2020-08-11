@@ -30,6 +30,10 @@ class FilterTags extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    console.log(this.props.selectedHospitalZoneTags);
+    console.log(this.state.selectedTags);
+  }
   handleCancel = () => {
     this.setState(
       {

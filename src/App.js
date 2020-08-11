@@ -38,7 +38,7 @@ import { dummyLoc } from "./assets/dummyLoc";
 
 import { createHospitalProfile, getHospitalProfileAll } from "./firebase/firebase.util";
 
-const env = "prod"; // prod -  dev
+const env = "dev"; // prod -  dev
 class App extends React.Component {
   errorBodyMessage = "";
   hospitalList = [];
@@ -264,8 +264,7 @@ class App extends React.Component {
       (data) => {
         if (data["candidates"].length != 0) {
           this.props.setUserCords([data["candidates"][0].geometry.location.lat, data["candidates"][0].geometry.location.lng]);
-          /* localStorage.setItem("CV19Tracker_lat", data["candidates"][0].geometry.location.lat);
-          localStorage.setItem("CV19Tracker_long", data["candidates"][0].geometry.location.lng); */
+
           //make custom address componnets
           let address_components = [];
           let tempAddr = data["candidates"][0]["formatted_address"].split(",");
@@ -285,16 +284,6 @@ class App extends React.Component {
           this.setState({
             openBackDrop: false,
           });
-          /* this.setState(
-            {
-              formattedAddress: data["candidates"][0]["formatted_address"],
-              compoundAddress: "",
-              addressComponents: Object.assign([], address_components),
-              locationCoordinates_lat: data["candidates"][0].geometry.location.lat,
-              locationCoordinates_long: data["candidates"][0].geometry.location.lng,
-            }, */
-          /* () => this.handleBackDropClose()
-          ); */
         } else {
           //show pop up for google denial
 
@@ -318,17 +307,6 @@ class App extends React.Component {
           this.setState({
             openBackDrop: false,
           });
-
-          /* this.setState(
-            {
-              formattedAddress: tmmpAddr,
-              compoundAddress: "",
-              addressComponents: Object.assign([], address_components),
-              locationCoordinates_lat: 0,
-              locationCoordinates_long: 0,
-            },
-            () => this.handleBackDropClose()
-          ); */
         }
       },
       (error) => {
@@ -355,16 +333,6 @@ class App extends React.Component {
         this.setState({
           openBackDrop: false,
         });
-        /* this.setState(
-          {
-            formattedAddress: tmmpAddr,
-            compoundAddress: "",
-            addressComponents: Object.assign([], address_components),
-            locationCoordinates_lat: 0,
-            locationCoordinates_long: 0,
-          },
-          () => this.handleBackDropClose()
-        ); */
       }
     );
   };
