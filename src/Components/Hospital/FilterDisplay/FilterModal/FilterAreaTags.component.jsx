@@ -32,14 +32,16 @@ class FilterTags extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    console.log(this.props.selectedHospitalZoneTags);
-    console.log(this.state.selectedTags);
+  componentDidUpdate(prevprops) {
+    if (prevprops.selectedHospitalZoneTags != this.props.selectedHospitalZoneTags) {
+      console.log(this.props.selectedHospitalZoneTags);
+      console.log(this.state.selectedTags);
 
-    this.loc_selectedTags = this.props.selectedHospitalZoneTags;
-    this.loc_leftTags = Object.keys(this.props.hospitalDetails).filter((el) => !this.props.selectedHospitalZoneTags.includes(el));
-    if (this.loc_selectedTags != this.state.selectedTags) {
-      this.updateLocateStates();
+      this.loc_selectedTags = this.props.selectedHospitalZoneTags;
+      this.loc_leftTags = Object.keys(this.props.hospitalDetails).filter((el) => !this.props.selectedHospitalZoneTags.includes(el));
+      if (this.loc_selectedTags != this.state.selectedTags) {
+        this.updateLocateStates();
+      }
     }
   }
 
