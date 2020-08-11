@@ -38,7 +38,7 @@ import { dummyLoc } from "./assets/dummyLoc";
 
 import { createHospitalProfile, getHospitalProfileAll } from "./firebase/firebase.util";
 
-const env = "dev"; // prod -  dev
+const env = "prod"; // prod -  dev
 class App extends React.Component {
   errorBodyMessage = "";
   hospitalList = [];

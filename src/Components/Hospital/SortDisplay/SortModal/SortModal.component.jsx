@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 
 export default function SortModal(props) {
-  const [value, setValue] = React.useState(props.initialVal == "" ? "isChecked_op_bed" : props.initialVal);
+  const [value, setValue] = React.useState(props.initialVal == "" ? "isChecked_op_hospital" : props.initialVal);
 
   const handleChange = (event) => {
     setValue(event.target.value);
