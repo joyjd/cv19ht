@@ -13,6 +13,8 @@ import Button from "@material-ui/core/Button";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 
 class FilterTags extends React.Component {
+  loc_selectedTags = null;
+  loc_leftTags = null;
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +35,20 @@ class FilterTags extends React.Component {
   componentDidUpdate() {
     console.log(this.props.selectedHospitalZoneTags);
     console.log(this.state.selectedTags);
+
+    this.loc_selectedTags = this.props.selectedHospitalZoneTags;
+    this.loc_leftTags = Object.keys(this.props.hospitalDetails).filter((el) => !this.props.selectedHospitalZoneTags.includes(el));
+    if (this.loc_selectedTags != this.state.selectedTags) {
+      this.updateLocateStates();
+    }
   }
+
+  updateLocateStates = () => {
+    this.setState({
+      selectedTags: this.loc_selectedTags,
+      leftTags: this.loc_leftTags,
+    });
+  };
   handleCancel = () => {
     this.setState(
       {
