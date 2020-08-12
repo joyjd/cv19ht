@@ -115,3 +115,204 @@
   transition: 3s;
   margin-left: 50% !important;
 }
+
+.ambulancePromptHolder {
+  float: left;
+
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.coronaDetailsPromptHolder {
+  width: 60%;
+  text-align: center;
+}
+.displayAmb2 .coronaDetailsPromptHolder {
+  float: right;
+}
+/*iphone 5s*/
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  .dataHolder {
+    width: 60%;
+    float: left;
+    margin-left: 2px;
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-around;
+    font-size: small;
+    text-align: center;
+  }
+  .displayAmb2 .dataHolder {
+    float: right;
+    margin-right: 1px;
+  }
+  .ambulancePromptHolder {
+    float: left;
+    text-align: center;
+    margin-top: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .displayAmb1 .ambulancePromptHolder label {
+    background-color: #da2b34;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 0px 5px;
+    margin-right: 17px;
+    width: fit-content;
+    color: #ffffff;
+    font-weight: bolder;
+    text-decoration: underline;
+  }
+  .displayAmb2 .ambulancePromptHolder label {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #da2b34;
+    margin-left: 16px;
+    padding: 0px 5px;
+    width: fit-content;
+    color: #ffffff;
+    font-weight: bolder;
+    text-decoration: underline;
+  }
+  .coronaDetailsPromptHolder {
+    float: left;
+    width: 60%;
+    text-align: left;
+    font-size: small;
+    margin-top: 3px;
+    color: #ffffff;
+    cursor: pointer;
+    margin-left: 6px;
+  }
+  .displayAmb2 .coronaDetailsPromptHolder {
+    float: right;
+    text-align: right;
+    margin-right: 6px;
+  }
+}
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  .ambulancePromptHolder {
+    float: left;
+    margin-top: 3px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .coronaDetailsPromptHolder {
+    float: left;
+    width: 60%;
+    text-align: left;
+    font-size: small;
+    margin-top: 12px;
+    color: #ffffff;
+    cursor: pointer;
+    margin-left: 6px;
+  }
+  .displayAmb2 .coronaDetailsPromptHolder {
+    float: right;
+    text-align: right;
+    margin-right: 6px;
+  }
+  .dataHolder {
+    width: 60%;
+    float: left;
+    margin-left: 5px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    font-size: small;
+    text-align: center;
+  }
+  .displayAmb1 .ambulancePromptHolder label {
+    background-color: #da2b34e0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 3px 5px 2px 10px;
+    margin-right: 0px;
+    width: fit-content;
+    color: #ffffff;
+    font-weight: bolder;
+    text-decoration: underline;
+  }
+  .displayAmb2 .ambulancePromptHolder label {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #da2b34e0;
+    padding: 3px 5px 2px 10px;
+    margin-left: 0px;
+    width: fit-content;
+    color: #ffffff;
+    font-weight: bolder;
+    text-decoration: underline;
+  }
+}
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  .dataHolder {
+    width: 60%;
+    float: left;
+    margin-left: 5px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    font-size: small;
+    text-align: center;
+  }
+  .coronaDetailsPromptHolder {
+    float: left;
+    width: 60%;
+    text-align: left;
+    font-size: small;
+    margin-top: 17px;
+    color: #ffffff;
+    cursor: pointer;
+    margin-left: 8px;
+  }
+  .displayAmb2 .coronaDetailsPromptHolder {
+    float: right;
+    text-align: right;
+    margin-right: 8px;
+  }
+  .ambulancePromptHolder {
+    float: left;
+    margin-top: 5px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .displayAmb1 .ambulancePromptHolder label {
+    background-color: #da2b34e0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 3px 20px 4px 10px;
+    margin-right: 0px;
+    width: fit-content;
+    color: #ffffff;
+    font-weight: bolder;
+    text-decoration: underline;
+  }
+  .displayAmb2 .ambulancePromptHolder label {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #da2b34e0;
+    padding: 3px 20px 4px 10px;
+    margin-left: 0px;
+    width: fit-content;
+    color: #ffffff;
+    font-weight: bolder;
+    text-decoration: underline;
+  }
+}

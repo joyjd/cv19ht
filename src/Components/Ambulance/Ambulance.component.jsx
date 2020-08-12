@@ -2,10 +2,15 @@ import React from "react";
 
 import "./../Ambulance/Ambulance.style.scss";
 
+import DisplayAmbulance from "./DisplayAmbulance/DisplayAmbulanceModal.component";
+
 import { CommunicatorFetch } from "./../../Utils/Communicator/Communicator.component";
 import APiUrls from "./../../Utils/ApiUrls.data";
 
+import DisplayCoronaDetails from "./DisplayCoronaDetails/DisplayCoronaModal.component";
+
 class Ambulance extends React.Component {
+  totalData = null;
   constructor() {
     super();
     this.myRef = React.createRef();
@@ -14,6 +19,8 @@ class Ambulance extends React.Component {
       infected: 0,
       recovered: 0,
       deceased: 0,
+      displayambulance: false,
+      displayCorona: false,
     };
   }
   componentDidMount() {
@@ -25,14 +32,14 @@ class Ambulance extends React.Component {
     CommunicatorFetch(APiUrls.getCoronaUpdate).then(
       (data) => {
         console.log(data);
-        let totalData = data["West Bengal"]["districtData"];
+        this.totalData = data["West Bengal"]["districtData"];
         let infected = 0;
         let recovered = 0;
         let dead = 0;
-        Object.keys(totalData).forEach((dst_name) => {
-          infected += totalData[dst_name]["confirmed"];
-          recovered += totalData[dst_name]["recovered"];
-          dead += totalData[dst_name]["deceased"];
+        Object.keys(this.totalData).forEach((dst_name) => {
+          infected += this.totalData[dst_name]["confirmed"];
+          recovered += this.totalData[dst_name]["recovered"];
+          dead += this.totalData[dst_name]["deceased"];
         });
         this.setState({
           infected: infected,
@@ -63,27 +70,62 @@ class Ambulance extends React.Component {
     this.ambulanceTravelNode = leftPosition;
   };
 
+  handleCloseAmbulanceModal = () => {
+    this.setState({
+      displayambulance: false,
+    });
+  };
+  openAmbulanceModal = () => {
+    this.setState({
+      displayambulance: true,
+    });
+  };
+
+  openCoronaModal = () => {
+    this.setState({
+      displayCorona: true,
+    });
+  };
+
+  closeCoronaModal = () => {
+    this.setState({
+      displayCorona: false,
+    });
+  };
+
   render() {
     return (
-      <div className='amb' ref={this.myRef} onScroll={this.handleScroll}>
-        <div className='bg-move displayAmb1' ref={this.myRef2}>
-          <div className='ambLight light--flash'></div>
-          <div className='coronaDataHolderTitle '>COVID19 Updates(WB)</div>
-          <div className='dataHolder'>
-            <div>
-              <div className='dataDiv'>Infected</div>
-              <div>{this.state.infected}</div>
+      <div>
+        <div className='amb' ref={this.myRef} onScroll={this.handleScroll}>
+          <div className='bg-move displayAmb1' ref={this.myRef2}>
+            <div className='ambLight light--flash'></div>
+            <div className='coronaDataHolderTitle '>COVID19 Updates(WB)</div>
+            <div className='dataHolder'>
+              <div>
+                <div className='dataDiv'>Infected</div>
+                <div>{this.state.infected}</div>
+              </div>
+              <div>
+                <div className='dataDiv'>Recovered</div>
+                <div>{this.state.recovered}</div>
+              </div>
+              <div>
+                <div className='dataDiv'>Death</div>
+                <div>{this.state.deceased}</div>
+              </div>
             </div>
-            <div>
-              <div className='dataDiv'>Recovered</div>
-              <div>{this.state.recovered}</div>
+            <div className='coronaDetailsPromptHolder'>
+              <div onClick={() => this.openCoronaModal()}>
+                <em>View District-wise</em>
+              </div>
             </div>
-            <div>
-              <div className='dataDiv'>Death</div>
-              <div>{this.state.deceased}</div>
+            <div className='ambulancePromptHolder'>
+              <label onClick={() => this.openAmbulanceModal()}>Find Ambulances</label>
             </div>
           </div>
         </div>
+        <DisplayAmbulance onclose={() => this.handleCloseAmbulanceModal()} open={this.state.displayambulance} />
+        <DisplayCoronaDetails c_data={this.totalData} open={this.state.displayCorona} onClose={() => this.closeCoronaModal()} />
       </div>
     );
   }

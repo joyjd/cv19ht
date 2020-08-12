@@ -8,7 +8,7 @@ export const CommunicatorFetch = (urlName, params) => {
   console.log("Communication fetched==" + urlName);
   let url;
   if (params !== undefined) {
-    url = proxyurl + urlName + params + apiKey;
+    url = /* proxyurl + */ urlName + params + apiKey;
   } else {
     url = urlName;
   }
