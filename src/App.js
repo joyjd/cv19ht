@@ -33,6 +33,7 @@ import { setFormattedAddress } from "./redux/userAddress/formattedAddress.action
 import { setUserCords } from "./redux/userAddress/userCords.action";
 import { setRawHospitalData } from "./redux/totalHospitalDetails/rawHospitalData.action";
 import { setLocationModal } from "./redux/locationInput/locationInput.action";
+import { setCordChangeFlag } from "./redux/userAddress/cordChangeFlag.action";
 
 import { dummyLoc } from "./assets/dummyLoc";
 
@@ -44,7 +45,7 @@ class App extends React.Component {
   hospitalList = [];
   loc_locationCoordinates_lat = null;
   loc_locationCoordinates_long = null;
-
+  loc_cordChangeFlag = null;
   constructor() {
     super();
     this.state = {
@@ -66,15 +67,14 @@ class App extends React.Component {
     // createHospitalProfile();
   }
 
-  componentDidUpdate() {
-    console.log("App updated");
-    console.log(this.state);
+  componentDidUpdate(prevProps) {
+    if (this.loc_cordChangeFlag != this.props.userCordChangeFlag) {
+      console.log("inside app update");
+      this.loc_cordChangeFlag = !this.props.userCordChangeFlag;
+      this.getLocationWhenCordsChangedByUser();
+      this.props.setuserCordsFlag(this.loc_cordChangeFlag);
+    }
   }
-  /* shouldComponentUpdate(nextProps, nextState) {
-    // return true;
-    // console.log("shouldComponentUpdate executed");
-    return this.state != nextState.value;
-  } */
 
   prepareHospitalData = () => {
     CommunicatorFetch(ApiUrls.getHospitalCodes)
@@ -146,6 +146,15 @@ class App extends React.Component {
     this.props.setTotalHospitalDetails(tempMap);
     this.props.setRawHospitalData(data);
   }
+
+  getLocationWhenCordsChangedByUser = () => {
+    this.setState(
+      {
+        openBackDrop: true,
+      },
+      () => this.getFormattedAddress(this.props.userCords[0], this.props.userCords[1])
+    );
+  };
 
   getLocationTrack = () => {
     if (navigator.geolocation) {
@@ -406,6 +415,8 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
   locationModal: state.locationModal.locationModalOpen,
+  userCords: state.userCords.userCords,
+  userCordChangeFlag: state.userCordChangeFlag.cordChangeFlag,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -415,6 +426,7 @@ const mapDispatchToProps = (dispatch) => ({
   setUserCords: (userCords) => dispatch(setUserCords(userCords)),
   setRawHospitalData: (rawHospitalData) => dispatch(setRawHospitalData(rawHospitalData)),
   setLocationModal: (locationModal) => dispatch(setLocationModal(locationModal)),
+  setuserCordsFlag: (flag) => dispatch(setCordChangeFlag(flag)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

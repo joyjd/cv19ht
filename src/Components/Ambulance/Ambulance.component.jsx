@@ -49,7 +49,7 @@ class Ambulance extends React.Component {
     const offsetTop = this.myRef.current.offsetTop;
     let leftPosition = scrollY - offsetTop;
     leftPosition = leftPosition + 250;
-    console.log(leftPosition);
+    //console.log(leftPosition);
     this.myRef2.current.style.left = leftPosition + "px";
     //this.myRef2.current.style.transition = "left 1s";
 

@@ -10,6 +10,7 @@ import selectedHospitalZoneTagsReducer from "./selectedHospital/selectedHospital
 import rawHospitalDataReducer from "./totalHospitalDetails/rawHospitalData.reducer";
 import searchReducer from "./search/search.reducer";
 import locationInputReducer from "./locationInput/locationInput.reducer";
+import cordChangeFlagReducer from "./userAddress/cordChangeFlag.reducer";
 
 export default combineReducers({
   selectedHospitalList: selectedHospitalReducer,
@@ -22,4 +23,5 @@ export default combineReducers({
   rawHospitalData: rawHospitalDataReducer,
   searchText: searchReducer,
   locationModal: locationInputReducer,
+  userCordChangeFlag: cordChangeFlagReducer,
 });
