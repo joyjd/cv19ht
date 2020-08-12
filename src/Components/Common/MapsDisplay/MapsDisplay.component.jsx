@@ -11,7 +11,8 @@ const MapsDisplay = ({ userCords }) => {
     <div className='mapcontainer'>
       <Paper variant='outlined' className='shadowCustom'>
         <div className='mapcontainer'>
-          <GoogleMaps currentLat={userCords[0]} currentLong={userCords[1]}></GoogleMaps>
+          <GoogleMaps currentLat={userCords[0]} currentLong={userCords[1]} draggable={true}></GoogleMaps>
+          <div className='instruction'>Drag the Locator to change your present location.</div>
         </div>
       </Paper>
     </div>

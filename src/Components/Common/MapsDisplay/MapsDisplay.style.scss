@@ -5,3 +5,12 @@
   @include space(margin, bottom, 10px);
   width: 100%;
 }
+.instruction {
+  margin-bottom: -10px;
+  background-color: #004682d1;
+  color: #ffffff;
+  padding: 5px;
+  margin-top: -25px;
+  position: relative;
+  font-size: small;
+}

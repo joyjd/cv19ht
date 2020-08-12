@@ -19,11 +19,14 @@ class GoogleMaps extends React.Component {
     super();
   }
   onMarkerDragEnd = (coord) => {
-    const { latLng } = coord;
-    const lat = latLng.lat();
-    const lng = latLng.lng();
-    this.props.setUserCords([lat, lng]);
-    this.props.setuserCordsFlag(true);
+    if (this.props.draggable) {
+      const { latLng } = coord;
+      const lat = latLng.lat();
+      const lng = latLng.lng();
+      this.props.setUserCords([lat, lng]);
+      this.props.setuserCordsFlag(true);
+    }
+
     //console.log(lat + "," + lng);
   };
   render() {
@@ -39,13 +42,7 @@ class GoogleMaps extends React.Component {
             lng: this.props.currentLong,
           }}
         >
-          <Marker title='Your current location' position={{ lat: this.props.currentLat, lng: this.props.currentLong }} name={"Your position"} id={1} draggable={true} onDragend={(t, map, coord) => this.onMarkerDragEnd(coord)}>
-            <InfoWindow visible={true}>
-              <div>
-                <p>Click on the map or drag the marker to change your location</p>
-              </div>
-            </InfoWindow>
-          </Marker>
+          <Marker title='Your current location' position={{ lat: this.props.currentLat, lng: this.props.currentLong }} name={"Your position"} id={1} draggable={this.props.draggable} onDragend={(t, map, coord) => this.onMarkerDragEnd(coord)}></Marker>
         </Map>
       </div>
     );

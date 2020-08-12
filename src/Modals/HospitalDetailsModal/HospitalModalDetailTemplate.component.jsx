@@ -99,7 +99,7 @@ export const HospitalModalDetailTemplate = (props) => {
             ) : null}
             {props.data != undefined ? (
               <div className='mapcontainerHospital'>
-                <GoogleMaps currentLat={props.data.geometry.location.lat} currentLong={props.data.geometry.location.lng}></GoogleMaps>
+                <GoogleMaps draggable={false} currentLat={props.data.geometry.location.lat} currentLong={props.data.geometry.location.lng}></GoogleMaps>
               </div>
             ) : null}
             {props.h_dist != "" ? (
