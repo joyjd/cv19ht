@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/cv19ht/static/css/main.75c8ce09.chunk.css",
+    "main.css": "/cv19ht/static/css/main.a51c5ad4.chunk.css",
     "main.js": "/cv19ht/static/js/main.dc481d0f.chunk.js",
     "main.js.map": "/cv19ht/static/js/main.dc481d0f.chunk.js.map",
     "runtime-main.js": "/cv19ht/static/js/runtime-main.86e215a4.js",
@@ -8,9 +8,9 @@
     "static/js/2.bca97b92.chunk.js": "/cv19ht/static/js/2.bca97b92.chunk.js",
     "static/js/2.bca97b92.chunk.js.map": "/cv19ht/static/js/2.bca97b92.chunk.js.map",
     "index.html": "/cv19ht/index.html",
-    "precache-manifest.5adf31b74b8f8b8bfba852cca7ea41f3.js": "/cv19ht/precache-manifest.5adf31b74b8f8b8bfba852cca7ea41f3.js",
+    "precache-manifest.09715ae897c20050343711dd4b8dfc1a.js": "/cv19ht/precache-manifest.09715ae897c20050343711dd4b8dfc1a.js",
     "service-worker.js": "/cv19ht/service-worker.js",
-    "static/css/main.75c8ce09.chunk.css.map": "/cv19ht/static/css/main.75c8ce09.chunk.css.map",
+    "static/css/main.a51c5ad4.chunk.css.map": "/cv19ht/static/css/main.a51c5ad4.chunk.css.map",
     "static/js/2.bca97b92.chunk.js.LICENSE.txt": "/cv19ht/static/js/2.bca97b92.chunk.js.LICENSE.txt",
     "static/media/Ambulance.style.scss": "/cv19ht/static/media/ambulance2.e72a7e98.png",
     "static/media/HospitalListModal.style.scss": "/cv19ht/static/media/hospital_bg.ec8aec7e.jpg",
@@ -21,7 +21,7 @@
   "entrypoints": [
     "static/js/runtime-main.86e215a4.js",
     "static/js/2.bca97b92.chunk.js",
-    "static/css/main.75c8ce09.chunk.css",
+    "static/css/main.a51c5ad4.chunk.css",
     "static/js/main.dc481d0f.chunk.js"
   ]
 }
