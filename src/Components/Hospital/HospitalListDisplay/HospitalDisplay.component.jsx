@@ -112,7 +112,10 @@ class HospitalListDisplay extends React.Component {
                 // this.completeHospitalData[h_name] = data["result"];
 
                 createHospitalProfile(h_name, data["result"]);
-                this.props.setRawHospitalData(getHospitalProfileAll());
+                //getHospitalProfileAll().then((data) => this.props.setRawHospitalData(data));
+                this.completeHospitalData[h_name] = data["result"];
+                this.props.setRawHospitalData(this.completeHospitalData);
+                // this.props.setRawHospitalData(getHospitalProfileAll());
                 //UPDATE h_dist
                 this.props.selectedHospitalList[this.props.selectedHospitalList.findIndex((el) => el.h_name == h_name)]["h_loc"] = data["result"]["geometry"]["location"];
                 this.props.setSelectedlList(customSort(this.props.selectedHospitalList));
