@@ -209,7 +209,7 @@ class App extends React.Component {
           this.props.setUserCords([data.results[0].geometry.location.lat, data.results[0].geometry.location.lng]);
           this.props.setAddressComponents(data.results[0].address_components);
 
-          fetch("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=22.5815353,88.4669842&radius=3000&type=ambulance&keyword=medical&key=AIzaSyB9KK0V5vZnoWeYbZY7PHBS8srtgWTyvoI")
+          fetch("https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=22.5815353,88.4669842&radius=3000&type=ambulance&keyword=medical&key=AIzaSyB9KK0V5vZnoWeYbZY7PHBS8srtgWTyvoI")
             .then((data) => data.json())
             .then((data) => console.log(data));
 
