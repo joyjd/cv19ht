@@ -11,6 +11,7 @@ import TagsDisplay from "./../Common/TagsDisplay/TagsDisplay.component";
 import { setLocationTags } from "./../../redux/userAddress/locationTags.action";
 import { setLocationModal } from "./../../redux/locationInput/locationInput.action";
 import Ambulance from "./../Ambulance/Ambulance.component";
+import SelectedHospitalSnapShot from "./SelectedHospitalSnapShot/SelectedHospitalSnapShot.component";
 
 import BorderColorIcon from "@material-ui/icons/BorderColor";
 const exclusiveKeywords = ["country"];
@@ -76,6 +77,7 @@ class Location extends React.Component {
             </div>
 
             <TagsDisplay tagtype='userTag' />
+            <SelectedHospitalSnapShot />
           </Paper>
         </div>
         <Ambulance />
