@@ -67,7 +67,7 @@ const HospitalItem = (props) => {
           {props.selectedHospitalList.map((el) => (
             <StyledTableRow key={el["h_name"]}>
               <StyledTableCell component='th' scope='row'>
-                <div onClick={() => props.onClick(el["h_name"], el["h_zone"], el["c_bed"], el["h_dist"])}>
+                <div style={{ textDecoration: "underline" }} onClick={() => props.onClick(el["h_name"], el["h_zone"], el["c_bed"], el["h_dist"])}>
                   <strong> {el["h_name"]}</strong>
                 </div>
                 <div className='distanceIndicator'>
@@ -81,7 +81,7 @@ const HospitalItem = (props) => {
                     </span>
                   )}
                   <span>{el["h_loc"] != "" ? (el["h_dist"] = formatter.format(geolib.getPreciseDistance({ latitude: props.userCords[0], longitude: props.userCords[1] }, { latitude: el["h_loc"]["lat"], longitude: el["h_loc"]["lng"] }) / 1000)) : ""}</span>
-                  {el["h_loc"] != "" ? <span>Km away</span> : <span>Data not known</span>}
+                  {el["h_loc"] != "" ? <span>Km away*</span> : <span>Data not known</span>}
                 </div>
               </StyledTableCell>
               <StyledTableCell align='right'>{el["h_zone"]}</StyledTableCell>

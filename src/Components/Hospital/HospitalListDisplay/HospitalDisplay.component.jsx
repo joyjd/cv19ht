@@ -83,7 +83,17 @@ class HospitalListDisplay extends React.Component {
     } /* else if(){
            // For satellite cases
     }  */ else {
-      let searchText = "" + h_name + "," + h_zone + ",West Bengal,India";
+      let temp_hname;
+
+      if (h_name.split("").includes("[")) {
+        temp_hname = h_name.split("[")[0];
+      }
+      if (h_name.split("").includes("{")) {
+        temp_hname = h_name.split("{")[0];
+      } else {
+        temp_hname = h_name;
+      }
+      let searchText = "" + temp_hname + " Hospital Medical," + h_zone + ",West Bengal,India";
       let params = searchText + "&inputtype=textquery&fields=place_id";
       let firstCall;
 

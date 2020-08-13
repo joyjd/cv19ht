@@ -5,8 +5,8 @@
   width: 100%;
   @include displayType(flex);
   flex-wrap: wrap;
-  @include space(padding, top, 15px);
-  @include space(padding, bottom, 15px);
+  @include space(padding, top, 10px);
+  @include space(padding, bottom, 10px);
   @include space(padding, left, 3px);
   @include space(padding, right, 10px);
 }
