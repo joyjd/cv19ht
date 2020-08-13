@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2ca3eaa2f066cce2ff79f6d07daf4dc9",
+    "revision": "55d4644bda2945178ca458576dda0783",
     "url": "/cv19ht/index.html"
   },
   {
-    "revision": "fa0cf6bda389c8396d26",
-    "url": "/cv19ht/static/css/main.d54f4dd4.chunk.css"
+    "revision": "7baa3185a9348b1f4964",
+    "url": "/cv19ht/static/css/main.e3bae7e5.chunk.css"
   },
   {
     "revision": "bac56aa52b4a4915fb6d",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cv19ht/static/js/2.bca97b92.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fa0cf6bda389c8396d26",
-    "url": "/cv19ht/static/js/main.dc481d0f.chunk.js"
+    "revision": "7baa3185a9348b1f4964",
+    "url": "/cv19ht/static/js/main.df22d9b6.chunk.js"
   },
   {
     "revision": "7098091923f2a77594f8",
@@ -38,6 +38,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "ec8aec7e840686e4a9caed865ed556f6",
     "url": "/cv19ht/static/media/hospital_bg.ec8aec7e.jpg"
+  },
+  {
+    "revision": "8da3908528ec2235187354e7570832f2",
+    "url": "/cv19ht/static/media/iframeLoader.8da39085.gif"
   },
   {
     "revision": "d64636ff86dac68e4bd6979d63ddda06",
