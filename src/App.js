@@ -4,6 +4,12 @@ import "./App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+import Snackbar from "@material-ui/core/Snackbar";
+import Slide from "@material-ui/core/Slide";
+import Fade from "@material-ui/core/Fade";
+
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import Zoom from "@material-ui/core/Zoom";
@@ -58,6 +64,8 @@ class App extends React.Component {
       openWelcomeAlert: false,
       viewErrorModal: false,
       openBackDrop: false,
+      snackBar: false,
+      snackBarMessage: "",
     };
   }
 
@@ -274,6 +282,10 @@ class App extends React.Component {
     );
   };
 
+  TransitionDown = (props) => {
+    return <Slide {...props} direction='down' />;
+  };
+
   searchGoogleForUserDetails = (el) => {
     let searchText = "" + el.locality + "," + el.district + "," + el.pin + ",West Bengal,India";
     let params = searchText + "&inputtype=textquery&fields=formatted_address,geometry";
@@ -321,6 +333,7 @@ class App extends React.Component {
             this.proxyNeedFlag = false;
 
             //custom create address_format
+
             let address_components = [];
             let tempAddr = el.locality.split(" ");
             tempAddr.push(el.district);
@@ -339,6 +352,8 @@ class App extends React.Component {
 
             this.setState({
               openBackDrop: false,
+              snackBar: true,
+              snackBarMessage: "The location obtained seems a non-valid address or a place outside West Bengal.Since currently we are supporting only within West Bengal, hence your default area is set as Kolkata.",
             });
           }
         }
@@ -374,6 +389,8 @@ class App extends React.Component {
 
           this.setState({
             openBackDrop: false,
+            snackBar: true,
+            snackBarMessage: "The location obtained seems a non-valid address or a place outside West Bengal.Since currently we are supporting only within West Bengal, hence your default area is set as Kolkata.",
           });
         }
       }
@@ -420,6 +437,12 @@ class App extends React.Component {
     );
   };
 
+  handleCloseSnackBar = () => {
+    this.setState({
+      snackBar: false,
+    });
+  };
+
   render() {
     console.log("App Component rendered");
     return (
@@ -430,6 +453,20 @@ class App extends React.Component {
           <Location />
           <Hospital />
           <BackDropDefault open={this.state.openBackDrop} />
+          <Snackbar
+            open={this.state.snackBar}
+            autoHideDuration={10000}
+            TransitionComponent={this.TransitionDown}
+            message={this.state.snackBarMessage}
+            key={Fade}
+            action={
+              <React.Fragment>
+                <IconButton size='small' aria-label='close' color='inherit' onClick={() => this.handleCloseSnackBar()}>
+                  <CloseIcon fontSize='small' />
+                </IconButton>
+              </React.Fragment>
+            }
+          />
         </Container>
 
         {!this.state.openBackDrop ? <Footer /> : null}

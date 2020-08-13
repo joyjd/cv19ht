@@ -30,12 +30,23 @@ export default class LocationOptionInput extends React.Component {
 
   render() {
     return (
-      <Dialog fullScreen open={this.props.open} onClose={this.props.handleAlertClose} aria-labelledby='alert-dialog-title' aria-describedby='alert-dialog-description'>
+      <Dialog
+        BackdropProps={{
+          style: {
+            background: "#495aa0cc",
+          },
+        }}
+        fullScreen
+        open={this.props.open}
+        onClose={this.props.handleAlertClose}
+        aria-labelledby='Location prompt'
+        aria-describedby='Get user Location'
+      >
         <Header />
-        <Container>
+        <Container style={{ backgroundColor: "#495aa0cc" }}>
           <div className='shadowCustom locBodyHolder'>
             <Paper elevation={3}>
-              <div className='locPromptheader'>Provide address details</div>
+              <div className='locPromptheader'>Provide Address Details</div>
               <div className='locPromptbody'>
                 <div>We can trace your current location based on the address details you provide.</div>
                 <div className='textFieldContainer'>
