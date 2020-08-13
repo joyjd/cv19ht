@@ -21,6 +21,11 @@ import { setSelectedHospitalList } from "./../../../redux/selectedHospital/selec
 import { customSort } from "./../../../Utils/Sort.component";
 
 class HospitalListDisplay extends React.Component {
+  proxyNeedFlagFirstCall = false;
+  proxyNeedFlagSecondCall = false;
+  googleFetchTryCountFirstCall = 0;
+  googleFetchTryCountSecondCall = 0;
+
   completeHospitalData = [];
   errorBodyMessage = "";
   modalContent = {
@@ -80,8 +85,15 @@ class HospitalListDisplay extends React.Component {
     }  */ else {
       let searchText = "" + h_name + "," + h_zone + ",West Bengal,India";
       let params = searchText + "&inputtype=textquery&fields=place_id";
+      let firstCall;
 
-      CommunicatorFetch(ApiUrls.getPlaceDetails, params)
+      if (this.proxyNeedFlagFirstCall) {
+        firstCall = CommunicatorFetch(ApiUrls.getPlaceDetails, params, "proxyNeeded");
+      } else {
+        firstCall = CommunicatorFetch(ApiUrls.getPlaceDetails, params);
+      }
+
+      firstCall
         .then(
           (data) => {
             if (data["candidates"].length != 0 && data["status"] == "OK") {
@@ -95,15 +107,25 @@ class HospitalListDisplay extends React.Component {
           },
           (error) => {
             //handle error scenerio for first call
-            console.log("HospitalZoneComponent+ First call====p_id-=====ERROR !!!!!!");
-            this.errorBodyMessage = "It seems Google API failed to retrieve details for " + h_name + ".Either there is no details data available for this particular hospital over internet or Google failed to retrieve data at the moment.Please try again in sometime.";
-            this.setState({
-              openZoneBackDrop: false,
-              viewErrorModal: true,
-            });
+            ++this.googleFetchTryCountFirstCall;
+            if (this.googleFetchTryCountFirstCall == 1) {
+              this.proxyNeedFlagFirstCall = true;
+              this.handleHospitalDetails(h_name, h_zone, c_bed, h_dist);
+            }
+            if (this.googleFetchTryCountFirstCall > 1) {
+              this.googleFetchTryCountFirstCall = 0;
+              this.proxyNeedFlagFirstCall = false;
+
+              console.log("HospitalZoneComponent+ First call====p_id-=====ERROR !!!!!!");
+              this.errorBodyMessage = "It seems Google API failed to retrieve details for " + h_name + ".Either there is no details data available for this particular hospital over internet or Google failed to retrieve data at the moment.Please try again in sometime.";
+              this.setState({
+                openZoneBackDrop: false,
+                viewErrorModal: true,
+              });
+            }
           }
         )
-        .then((prms) => (prms != "" ? CommunicatorFetch(ApiUrls.getHospitalCompleteDetails, prms) : ""))
+        .then((prms) => (this.proxyNeedFlagSecondCall ? CommunicatorFetch(ApiUrls.getHospitalCompleteDetails, prms, "proxyNeeded") : CommunicatorFetch(ApiUrls.getHospitalCompleteDetails, prms)))
         .then(
           (data) => {
             if (data != "") {
@@ -133,13 +155,24 @@ class HospitalListDisplay extends React.Component {
           },
           (error) => {
             // handle error scenerio for second call
-            console.log("HospitalZoneComponent+ Second call====details-=====ERROR !!!!!!");
-            if (!this.state.viewErrorModal) {
-              this.errorBodyMessage = "It seems Google API failed to retrieve details for " + h_name + ".Either there is no details data available for this particular hospital over internet or Google failed to retrieve data at the moment.Please try again in sometime.";
-              this.setState({
-                openZoneBackDrop: false,
-                viewErrorModal: true,
-              });
+            ++this.googleFetchTryCountSecondCall;
+            if (this.googleFetchTryCountSecondCall == 1) {
+              this.proxyNeedFlagSecondCall = true;
+              //this.handleHospitalDetails(h_name, h_zone, c_bed, h_dist);
+            }
+
+            if (this.googleFetchTryCountSecondCall > 1) {
+              this.googleFetchTryCountSecondCall = 0;
+              this.proxyNeedFlagSecondCall = false;
+
+              console.log("HospitalZoneComponent+ Second call====details-=====ERROR !!!!!!");
+              if (!this.state.viewErrorModal) {
+                this.errorBodyMessage = "It seems Google API failed to retrieve details for " + h_name + ".Either there is no details data available for this particular hospital over internet or Google failed to retrieve data at the moment.Please try again in sometime.";
+                this.setState({
+                  openZoneBackDrop: false,
+                  viewErrorModal: true,
+                });
+              }
             }
           }
         );

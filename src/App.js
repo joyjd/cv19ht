@@ -42,7 +42,11 @@ import { dummyLoc } from "./assets/dummyLoc";
 import { createHospitalProfile, getHospitalProfileAll } from "./firebase/firebase.util";
 
 const env = "prod"; // prod -  dev
+
 class App extends React.Component {
+  proxyNeedFlag = false;
+  googleFetchTryCount = 0;
+
   errorBodyMessage = "";
   hospitalList = [];
   loc_locationCoordinates_lat = null;
@@ -273,7 +277,14 @@ class App extends React.Component {
   searchGoogleForUserDetails = (el) => {
     let searchText = "" + el.locality + "," + el.district + "," + el.pin + ",West Bengal,India";
     let params = searchText + "&inputtype=textquery&fields=formatted_address,geometry";
-    CommunicatorFetch(ApiUrls.getPlaceDetails, params).then(
+    let googleFetchCall;
+    if (this.proxyNeedFlag) {
+      googleFetchCall = CommunicatorFetch(ApiUrls.getPlaceDetails, params, "proxyNeeded");
+    } else {
+      googleFetchCall = CommunicatorFetch(ApiUrls.getPlaceDetails, params);
+    }
+
+    googleFetchCall.then(
       (data) => {
         if (data["candidates"].length != 0) {
           this.props.setUserCords([data["candidates"][0].geometry.location.lat, data["candidates"][0].geometry.location.lng]);
@@ -299,6 +310,49 @@ class App extends React.Component {
           });
         } else {
           //show pop up for google denial
+          ++this.googleFetchTryCount;
+          if (this.googleFetchTryCount == 1) {
+            this.proxyNeedFlag = true;
+            this.searchGoogleForUserDetails(el);
+          }
+
+          if (this.googleFetchTryCount > 1) {
+            this.googleFetchTryCount = 0;
+            this.proxyNeedFlag = false;
+
+            //custom create address_format
+            let address_components = [];
+            let tempAddr = el.locality.split(" ");
+            tempAddr.push(el.district);
+            tempAddr = tempAddr.forEach((elem) => {
+              address_components.push({
+                long_name: elem.trim(),
+                short_name: elem.trim(),
+                types: ["political", "sublocality", "sublocality_level_1"],
+              });
+            });
+            let tmmpAddr = el.locality + "," + el.district + ", pin -" + el.pin;
+
+            this.props.setUserCords([22.5726, 88.3639]);
+            this.props.setFormattedAddress(tmmpAddr);
+            this.props.setAddressComponents(address_components);
+
+            this.setState({
+              openBackDrop: false,
+            });
+          }
+        }
+      },
+      (error) => {
+        //show pop up for google denial
+        ++this.googleFetchTryCount;
+        if (this.googleFetchTryCount == 1) {
+          this.proxyNeedFlag = true;
+          this.searchGoogleForUserDetails(el);
+        }
+        if (this.googleFetchTryCount > 1) {
+          this.googleFetchTryCount = 0;
+          this.proxyNeedFlag = false;
 
           //custom create address_format
           let address_components = [];
@@ -311,6 +365,7 @@ class App extends React.Component {
               types: ["political", "sublocality", "sublocality_level_1"],
             });
           });
+
           let tmmpAddr = el.locality + "," + el.district + ", pin -" + el.pin;
 
           this.props.setUserCords([22.5726, 88.3639]);
@@ -321,31 +376,6 @@ class App extends React.Component {
             openBackDrop: false,
           });
         }
-      },
-      (error) => {
-        //show pop up for google denial
-
-        //custom create address_format
-        let address_components = [];
-        let tempAddr = el.locality.split(" ");
-        tempAddr.push(el.district);
-        tempAddr = tempAddr.forEach((elem) => {
-          address_components.push({
-            long_name: elem.trim(),
-            short_name: elem.trim(),
-            types: ["political", "sublocality", "sublocality_level_1"],
-          });
-        });
-
-        let tmmpAddr = el.locality + "," + el.district + ", pin -" + el.pin;
-
-        this.props.setUserCords([22.5726, 88.3639]);
-        this.props.setFormattedAddress(tmmpAddr);
-        this.props.setAddressComponents(address_components);
-
-        this.setState({
-          openBackDrop: false,
-        });
       }
     );
   };
