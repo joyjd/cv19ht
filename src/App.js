@@ -193,6 +193,8 @@ class App extends React.Component {
             this.setState({
               openPermissionDeniedAlert: true,
             });
+
+            this.props.setLocationModal(true);
           }
         }
       );
@@ -311,7 +313,7 @@ class App extends React.Component {
           });
           let tmmpAddr = el.locality + "," + el.district + ", pin -" + el.pin;
 
-          this.props.setUserCords([0, 0]);
+          this.props.setUserCords([22.5726, 88.3639]);
           this.props.setFormattedAddress(tmmpAddr);
           this.props.setAddressComponents(address_components);
 
@@ -337,7 +339,7 @@ class App extends React.Component {
 
         let tmmpAddr = el.locality + "," + el.district + ", pin -" + el.pin;
 
-        this.props.setUserCords([0, 0]);
+        this.props.setUserCords([22.5726, 88.3639]);
         this.props.setFormattedAddress(tmmpAddr);
         this.props.setAddressComponents(address_components);
 

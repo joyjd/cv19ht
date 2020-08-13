@@ -98,8 +98,8 @@ class Ambulance extends React.Component {
       <div>
         <div className='amb' ref={this.myRef} onScroll={this.handleScroll}>
           <div className='bg-move displayAmb1' ref={this.myRef2}>
-            <div className='ambLight light--flash'></div>
             <div className='coronaDataHolderTitle '>COVID19 Updates(WB)</div>
+
             <div className='dataHolder'>
               <div>
                 <div className='dataDiv'>Infected</div>
@@ -114,16 +114,26 @@ class Ambulance extends React.Component {
                 <div>{this.state.deceased}</div>
               </div>
             </div>
-            <div className='coronaDetailsPromptHolder'>
+            <div className='coronaDetailsPromptHolder' onClick={() => this.openCoronaModal()}>
+              <mark>
+                <em>View District-wise</em>
+              </mark>
+            </div>
+            {/*  <div className='coronaDetailsPromptHolder'>
               <div onClick={() => this.openCoronaModal()}>
                 <em>View District-wise</em>
               </div>
             </div>
             <div className='ambulancePromptHolder'>
               <label onClick={() => this.openAmbulanceModal()}>Find Ambulances</label>
-            </div>
+            </div> */}
           </div>
         </div>
+        <div className='ambLight light--flash'></div>
+        <div className='ambulanceContainer' onClick={() => this.openAmbulanceModal()}>
+          <div className='ambulancePromptHolder'>Find Ambulances Near You</div>
+        </div>
+
         <DisplayAmbulance onclose={() => this.handleCloseAmbulanceModal()} open={this.state.displayambulance} />
         <DisplayCoronaDetails c_data={this.totalData} open={this.state.displayCorona} onClose={() => this.closeCoronaModal()} />
       </div>

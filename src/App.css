@@ -38,3 +38,8 @@
 .containerApp {
   min-height: 100%;
 }
+
+.iframe-container {
+  min-height: 100px;
+  background: #fff url("./assets/iframeLoader.gif") no-repeat 50% top !important;
+}

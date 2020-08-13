@@ -24,6 +24,7 @@ import { green, pink } from "@material-ui/core/colors";
 import RateReviewIcon from "@material-ui/icons/RateReview";
 import CommuteIcon from "@material-ui/icons/Commute";
 import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
+import GmapIframe from "./RoadDirectionHospital/gmapIframe.component";
 
 const useStyles = makeStyles((theme) => ({
   smallGreen: {
@@ -92,14 +93,13 @@ export const HospitalModalDetailTemplate = (props) => {
                 <div>
                   <LanguageIcon fontSize='small' />
                 </div>
-                <div className='displayData'>
-                  <a href='{props.data.website}'>{props.data.website} </a>
-                </div>
+                <div className='displayData'>{props.data.website ? <a href='{props.data.website}'>{props.data.website} </a> : "Not Known"}</div>
               </div>
             ) : null}
             {props.data != undefined ? (
               <div className='mapcontainerHospital'>
-                <GoogleMaps draggable={false} currentLat={props.data.geometry.location.lat} currentLong={props.data.geometry.location.lng}></GoogleMaps>
+                {/* <GoogleMaps draggable={false} currentLat={props.data.geometry.location.lat} currentLong={props.data.geometry.location.lng}></GoogleMaps> */}
+                <GmapIframe hospitalCord={[props.data.geometry.location.lat, props.data.geometry.location.lng]} />
               </div>
             ) : null}
             {props.h_dist != "" ? (
@@ -108,7 +108,8 @@ export const HospitalModalDetailTemplate = (props) => {
                   <CommuteIcon />
                   <DirectionsWalkIcon fontSize='small' />
                 </div>
-                <div className='displayData'>Tentatively {props.h_dist} Km away from you</div>
+                {/* <div className='displayData'>Tentatively {props.h_dist} Km away from you</div> */}
+                <div className='displayData'>Tentative road-map shown, does not display present traffic conditions</div>
               </div>
             ) : null}
           </div>

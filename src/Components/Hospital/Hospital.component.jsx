@@ -89,10 +89,12 @@ class Hospital extends React.Component {
         <SearchBox />
         <div className='customButtonGroup'>
           <Paper variant='outlined' square>
-            <div className='btnCol'>
-              <FilterDisplay />
-              <SortDisplay />
-            </div>
+            {this.props.searchText == null ? (
+              <div className='btnCol'>
+                <FilterDisplay />
+                <SortDisplay />
+              </div>
+            ) : null}
             {this.props.searchText == null ? (
               <div>
                 <div className='tagHeaderTitle'>

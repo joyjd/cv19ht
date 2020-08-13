@@ -70,8 +70,8 @@ const DisplayCoronaDetails = (props) => {
               </TableHead>
 
               <TableBody>
-                {Object.keys(props.c_data).map((el) => (
-                  <StyledTableRow key={el["h_name"]}>
+                {Object.keys(props.c_data).map((el, index) => (
+                  <StyledTableRow key={index}>
                     <StyledTableCell align='right'>{el}</StyledTableCell>
                     <StyledTableCell align='right'>{props.c_data[el]["confirmed"]}</StyledTableCell>
                     <StyledTableCell align='right'>{props.c_data[el]["active"]}</StyledTableCell>

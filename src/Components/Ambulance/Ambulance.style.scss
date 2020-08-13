@@ -4,7 +4,7 @@
   position: relative;
   //max-width: 920px;
   min-height: 180px;
-  margin-bottom: 30px;
+
   overflow-x: hidden;
 }
 .bg-move {
@@ -40,7 +40,7 @@
   color: #ffffff;
   @include space(padding, left, 10px);
   @include space(padding, right, 10px);
-  @include space(margin, top, 5px);
+  @include space(margin, top, 2px);
 }
 .displayAmb1 {
   background-image: url("./../../assets/ambulance.png");
@@ -56,18 +56,41 @@
   justify-content: flex-end;
 }
 .dataHolder {
-  width: 22%;
   float: left;
   margin-left: 5px;
   @include space(margin, top, 10px);
   display: flex;
-  justify-content: space-around;
+  width: 100%;
   font-size: small;
   text-align: center;
 }
+.coronaDetailsPromptHolder {
+  float: left;
+  margin-left: 5px;
+  display: flex;
+  width: 100%;
+  font-variant: all-petite-caps;
+  color: #000000;
+  text-decoration: underline;
+  text-align: start;
+  text-decoration-color: #ffffff;
+}
+.dataHolder div {
+  margin-right: 5px;
+}
+
+.displayAmb2 .dataHolder div {
+  margin-right: 3px;
+}
+
 .displayAmb2 .dataHolder {
   float: right;
-  margin-right: 5px;
+  margin-left: 2px;
+}
+
+.displayAmb2 .coronaDetailsPromptHolder {
+  float: right;
+  margin-right: 10px;
 }
 
 .dataDiv {
@@ -78,18 +101,18 @@
   background-color: #ffffff00;
   height: 10px;
   width: 10px;
-  position: absolute;
-  left: 65%;
-  top: 15%;
+  position: relative;
+  left: 50%;
+  margin-bottom: 2px;
 }
-.displayAmb2 .ambLight {
+/* .displayAmb2 .ambLight {
   background-color: #ffffff00;
   height: 10px;
   width: 10px;
   position: absolute;
   left: 32%;
   top: 15%;
-}
+} */
 .light--flash {
   animation: glowing 0.5s linear infinite;
 }
@@ -115,7 +138,28 @@
   transition: 3s;
   margin-left: 50% !important;
 }
-
+.ambulancePromptHolder {
+  width: 100%;
+  padding: 10px;
+  background-color: #d82c34;
+  text-align: center;
+  font-weight: 900;
+  font-size: large;
+  color: #ffffff;
+}
+.ambulanceContainer {
+  width: 100%;
+  border: 10px solid #d82c34;
+  padding: 10px;
+  margin-bottom: 50px;
+  background-color: #ffffff;
+}
+mark {
+  background-color: #e6272b;
+  color: #ffffff;
+  padding: 2px;
+  border-radius: 5px;
+}
 /* .ambulancePromptHolder {
   float: left;
 
@@ -162,7 +206,7 @@
 } */
 
 /*iphone 5s*/
-@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+/* @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
   .dataHolder {
     width: 60%;
     float: left;
@@ -223,11 +267,11 @@
     text-align: right;
     margin-right: 6px;
   }
-}
+} */
 /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+/* @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
   .ambulancePromptHolder {
     float: left;
     margin-top: 3px;
@@ -284,11 +328,11 @@
     font-weight: bolder;
     text-decoration: underline;
   }
-}
+} */
 /* ----------- iPhone 6+, 7+ and 8+ ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+/* @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
   .dataHolder {
     width: 60%;
     float: left;
@@ -346,11 +390,11 @@
     font-weight: bolder;
     text-decoration: underline;
   }
-}
+} */
 /* ----------- Galaxy S4, S5 and Note 3 ----------- */
 
 /* Portrait and Landscape */
-@media screen and (min-device-width: 320px) and (max-device-height: 640px) and (-webkit-min-device-pixel-ratio: 3) {
+/* @media screen and (min-device-width: 320px) and (max-device-height: 640px) and (-webkit-min-device-pixel-ratio: 3) {
   .dataHolder {
     width: 60%;
     float: left;
@@ -408,12 +452,12 @@
     font-weight: bolder;
     text-decoration: underline;
   }
-}
+} */
 
 /* ----------- Google Pixel XL ----------- */
 
 /* Portrait and Landscape */
-@media only screen and (min-width: 411px) and (max-width: 767px) {
+/* @media only screen and (min-width: 411px) and (max-width: 767px) {
   .dataHolder {
     width: 60%;
     float: left;
@@ -471,4 +515,4 @@
     font-weight: bolder;
     text-decoration: underline;
   }
-}
+} */

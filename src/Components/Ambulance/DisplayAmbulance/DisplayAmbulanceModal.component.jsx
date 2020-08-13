@@ -13,7 +13,7 @@ const iframe = "<iframe width='100%' height='450px' frameborder='0' style='borde
 
 const Iframe = (props) => {
   //props.iframe = props.iframe + props.pin + "' allowfullscreen></iframe>";
-  return <div dangerouslySetInnerHTML={{ __html: props.iframe ? props.iframe + GoogleCredentials.apiKey + "&q=health+ambulance+service+medical+near+" + props.pin + "' allowfullscreen></iframe>" : "" }} />;
+  return <div className='iframe-container' dangerouslySetInnerHTML={{ __html: props.iframe ? props.iframe + GoogleCredentials.apiKey + "&center=" + props.userCords[0] + "," + props.userCords[1] + "&zoom=12&q=health+ambulance+service+medical+near+" + props.pin + "' allowfullscreen></iframe>" : "" }} />;
 };
 
 const DisplayAmbulance = (props) => {
@@ -21,13 +21,13 @@ const DisplayAmbulance = (props) => {
     <Dialog fullScreen open={props.open} onClose={props.onclose} aria-labelledby='Display Ambulances' aria-describedby='Display Ambulances'>
       <Header />
       <div className='filterTagsHeader'>Check Ambulance Services Near You</div>
-      <div className='filterTagsBodySort'>
+      <div className='filterTagsBodySortAmbulance'>
         <div className='SortTitleDesc'>View available ambulance services near you.We strongly suggest to call and book an appointment.</div>
         <div className='dividerHolder'>
           <Divider />
         </div>
         <div className='iframeContainer'>
-          <Iframe iframe={iframe} pin={props.addressComponents[props.addressComponents.length - 1]["long_name"]} />
+          <Iframe iframe={iframe} pin={props.addressComponents[props.addressComponents.length - 1]["long_name"]} userCords={props.userCords} />
         </div>
         <div className='actionHolder'>
           <Button variant='contained' color='primary' onClick={() => props.onclose()} color='primary'>
@@ -40,5 +40,6 @@ const DisplayAmbulance = (props) => {
 };
 const mapStateToProps = (state) => ({
   addressComponents: state.addressComponents.addressComponents,
+  userCords: state.userCords.userCords,
 });
 export default connect(mapStateToProps)(DisplayAmbulance);
