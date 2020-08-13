@@ -109,7 +109,7 @@ export const HospitalModalDetailTemplate = (props) => {
                   <DirectionsWalkIcon fontSize='small' />
                 </div>
                 {/* <div className='displayData'>Tentatively {props.h_dist} Km away from you</div> */}
-                <div className='displayData'>Tentative road-map shown, does not display present traffic conditions</div>
+                <div className='displayData'>Tentative road-map shown, does not display present traffic conditions.Zoom in to check detils.</div>
               </div>
             ) : null}
           </div>

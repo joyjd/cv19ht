@@ -22,7 +22,7 @@ export default function HospitalListModal(props) {
 
         <DialogContent>{props.body}</DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={() => props.onClose()} color='primary'>
+          <Button style={{ margin: "10px 20px 10px 0" }} autoFocus onClick={() => props.onClose()} variant='contained' color='primary'>
             Close
           </Button>
         </DialogActions>
