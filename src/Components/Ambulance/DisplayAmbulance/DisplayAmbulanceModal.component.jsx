@@ -13,7 +13,7 @@ const iframe = "<iframe width='100%' height='450px' frameborder='0' style='borde
 
 const Iframe = (props) => {
   //props.iframe = props.iframe + props.pin + "' allowfullscreen></iframe>";
-  return <div className='iframe-container' dangerouslySetInnerHTML={{ __html: props.iframe ? props.iframe + GoogleCredentials.apiKey + "&center=" + props.userCords[0] + "," + props.userCords[1] + "&q=health+ambulance+service+medical+near+" + props.pin + "' allowfullscreen></iframe>" : "" }} />;
+  return <div className='iframe-container' dangerouslySetInnerHTML={{ __html: props.iframe ? props.iframe + GoogleCredentials.apiKey + "&center=" + props.userCords[0] + "," + props.userCords[1] + "&zoom=9&q=health+ambulance+service+medical+near+" + props.pin + "' allowfullscreen></iframe>" : "" }} />;
 };
 
 const DisplayAmbulance = (props) => {
