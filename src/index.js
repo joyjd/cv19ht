@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
-//import Bootbase from "./BootBase";
+//import App from "./App";
+import Bootbase from "./BootBase";
 import * as serviceWorker from "./serviceWorker";
 
 import { Provider } from "react-redux";
@@ -11,8 +11,8 @@ import store from "./redux/store";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
-      {/* <Bootbase /> */}
+      {/* <App /> */}
+      <Bootbase />
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

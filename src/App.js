@@ -82,9 +82,9 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    /*  if (prevProps.showLocation != this.props.showLocation) {
+    if (prevProps.showLocation != this.props.showLocation) {
       this.handleCloseWelcomeAlert();
-    } */
+    }
     if (this.loc_cordChangeFlag != this.props.userCordChangeFlag) {
       console.log("inside app update");
       this.loc_cordChangeFlag = !this.props.userCordChangeFlag;
@@ -473,7 +473,7 @@ class App extends React.Component {
         </Container>
 
         {!this.state.openBackDrop ? <Footer /> : null}
-        <WelcomeModal open={this.state.openWelcomeAlert} onClose={(el) => this.handleCloseWelcomeAlert(el)} />
+        {/*  <WelcomeModal open={this.state.openWelcomeAlert} onClose={(el) => this.handleCloseWelcomeAlert(el)} /> */}
         <LocationOptionInput open={this.props.locationModal} onClose={(el) => this.handleCloseLocationOptionAlert(el)} />
         <ErrorModal open={this.state.viewErrorModal} onclose={() => this.handleErrorClose()} body={this.errorBodyMessage} />
       </React.Fragment>
