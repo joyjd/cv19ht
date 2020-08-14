@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b1dec42c597dd8e0d6a3aad728a2aeb5",
+    "revision": "cbc2b203b4bb3eb8c5d0ffebd1ce69bc",
     "url": "/cv19ht/index.html"
   },
   {
-    "revision": "f5ef877fa84534594d82",
-    "url": "/cv19ht/static/css/main.501d765a.chunk.css"
+    "revision": "fde92296af62f0b750ed",
+    "url": "/cv19ht/static/css/main.ebbe350c.chunk.css"
   },
   {
     "revision": "790ce2d347bf3d5055f9",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cv19ht/static/js/2.8a23902b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f5ef877fa84534594d82",
+    "revision": "fde92296af62f0b750ed",
     "url": "/cv19ht/static/js/main.84ea5637.chunk.js"
   },
   {
@@ -24,12 +24,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cv19ht/static/js/runtime-main.86e215a4.js"
   },
   {
-    "revision": "a688fca21bdcacce77a8aa612fec1e02",
-    "url": "/cv19ht/static/media/ambulance.a688fca2.png"
+    "revision": "50581117c06fe958b3ca4e090119e4e8",
+    "url": "/cv19ht/static/media/ambulance.50581117.png"
   },
   {
-    "revision": "e72a7e981778a6d672a27c7a6fd1a394",
-    "url": "/cv19ht/static/media/ambulance2.e72a7e98.png"
+    "revision": "84fd7e072904e411f4886cac93f77e55",
+    "url": "/cv19ht/static/media/ambulance2.84fd7e07.png"
   },
   {
     "revision": "150f9bdfadd5c2ba94eb2e513c4d15b0",
@@ -40,8 +40,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cv19ht/static/media/hospital_bg.ec8aec7e.jpg"
   },
   {
-    "revision": "8da3908528ec2235187354e7570832f2",
-    "url": "/cv19ht/static/media/iframeLoader.8da39085.gif"
+    "revision": "f0b0cd73d4a9f6170c9d295f2208606c",
+    "url": "/cv19ht/static/media/iframeLoader.f0b0cd73.gif"
   },
   {
     "revision": "d64636ff86dac68e4bd6979d63ddda06",
