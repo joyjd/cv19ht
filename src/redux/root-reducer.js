@@ -11,6 +11,7 @@ import rawHospitalDataReducer from "./totalHospitalDetails/rawHospitalData.reduc
 import searchReducer from "./search/search.reducer";
 import locationInputReducer from "./locationInput/locationInput.reducer";
 import cordChangeFlagReducer from "./userAddress/cordChangeFlag.reducer";
+import commuteFlagReducer from "./userAddress/commuteFlag.reducer";
 
 export default combineReducers({
   selectedHospitalList: selectedHospitalReducer,
@@ -24,4 +25,5 @@ export default combineReducers({
   searchText: searchReducer,
   locationModal: locationInputReducer,
   userCordChangeFlag: cordChangeFlagReducer,
+  commmuteFlag: commuteFlagReducer,
 });

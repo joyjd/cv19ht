@@ -47,9 +47,13 @@ import { dummyLoc } from "./assets/dummyLoc";
 
 import { createHospitalProfile, getHospitalProfileAll } from "./firebase/firebase.util";
 
+import SideAlert from "./Utils/SideAlert/SideALert.component";
+
 const env = "prod"; // prod -  dev
 
 class App extends React.Component {
+  geoLocationMove = null;
+
   proxyNeedFlag = false;
   googleFetchTryCount = 0;
 
@@ -65,6 +69,7 @@ class App extends React.Component {
       viewErrorModal: false,
       openBackDrop: false,
       snackBar: false,
+      alertBar: false,
       snackBarMessage: "",
     };
   }
@@ -81,6 +86,10 @@ class App extends React.Component {
     // createHospitalProfile();
   }
 
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.geoLocationMove);
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.showLocation != this.props.showLocation) {
       this.handleCloseWelcomeAlert();
@@ -90,6 +99,14 @@ class App extends React.Component {
       this.loc_cordChangeFlag = !this.props.userCordChangeFlag;
       this.getLocationWhenCordsChangedByUser();
       this.props.setuserCordsFlag(this.loc_cordChangeFlag);
+    }
+    console.log("prevProps" + prevProps);
+    console.log("CurrentProps" + this.props);
+    if (prevProps.commuteFlag != this.props.commuteFlag) {
+      if (this.props.commuteFlag != undefined && !this.props.commuteFlag && this.geoLocationMove != null) {
+        navigator.geolocation.clearWatch(this.geoLocationMove);
+      }
+      this.getLocationTrack();
     }
   }
 
@@ -175,44 +192,103 @@ class App extends React.Component {
 
   getLocationTrack = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.watchPosition(
-        //watchPosition(  // need to implement getPosition logic with timeout for movement
-        (pos) => {
-          if (this.loc_locationCoordinates_lat != pos.coords.latitude && this.loc_locationCoordinates_long != pos.coords.longitude) {
-            console.log(pos.coords.latitude);
-            console.log(pos.coords.longitude);
-            this.getFormattedAddress(pos.coords.latitude, pos.coords.longitude);
-          } else {
-            this.setState({
-              openBackDrop: false,
-            });
-          }
-        },
-        (error) => {
-          //ifgeolocation failed
-          if (error.message == "Timeout expired") {
-            this.handleBackDropClose();
-            this.errorBodyMessage = "Geo location timed out";
-            this.setState(
-              {
-                viewErrorModal: true,
-              },
-              () => this.getLocationTrack()
-            );
+      if (this.props.commuteFlag) {
+        /* if (this.geoLocationStatic != null) {
+          navigator.geolocation.clearWatch(this.geoLocationStatic);
+        } */
 
-            //temporary for DEV
-            //this.getFormattedAddress(22.5815353, 88.466984);
-          } else {
-            //show pop up if denied
-            this.handleBackDropClose();
-            this.setState({
-              openPermissionDeniedAlert: true,
-            });
+        this.geoLocationMove = navigator.geolocation.watchPosition(
+          //watchPosition(  // need to implement getPosition logic with timeout for movement
+          (pos) => {
+            if (this.loc_locationCoordinates_lat != pos.coords.latitude && this.loc_locationCoordinates_long != pos.coords.longitude) {
+              this.setState({
+                alertBar: true,
+              });
+              console.log(pos.coords.latitude);
+              console.log(pos.coords.longitude);
+              this.getFormattedAddress(pos.coords.latitude, pos.coords.longitude);
+            } else {
+              this.setState({
+                openBackDrop: false,
+              });
+            }
+          },
+          (error) => {
+            //ifgeolocation failed
+            if (error.message == "Timeout expired") {
+              this.handleBackDropClose();
+              this.errorBodyMessage = "Geo location timed out";
+              this.setState(
+                {
+                  viewErrorModal: true,
+                },
+                () => this.getLocationTrack()
+              );
 
-            this.props.setLocationModal(true);
+              //temporary for DEV
+              //this.getFormattedAddress(22.5815353, 88.466984);
+            } else {
+              //show pop up if denied
+              this.handleBackDropClose();
+              this.setState({
+                openPermissionDeniedAlert: true,
+              });
+
+              this.props.setLocationModal(true);
+            }
+          },
+          {
+            timeout: 10000,
+            maximumAge: 10000,
+            enableHighAccuracy: true,
           }
-        }
-      );
+        );
+      } else {
+        /* if (this.geoLocationMove != null) {
+          navigator.geolocation.clearWatch(this.geoLocationMove);
+        } */
+        navigator.geolocation.getCurrentPosition(
+          //watchPosition(  // need to implement getPosition logic with timeout for movement
+          (pos) => {
+            if (this.loc_locationCoordinates_lat != pos.coords.latitude && this.loc_locationCoordinates_long != pos.coords.longitude) {
+              this.setState({
+                alertBar: true,
+              });
+              console.log(pos.coords.latitude);
+              console.log(pos.coords.longitude);
+              this.getFormattedAddress(pos.coords.latitude, pos.coords.longitude);
+            } else {
+              this.setState({
+                openBackDrop: false,
+              });
+            }
+          },
+          (error) => {
+            //ifgeolocation failed
+            if (error.message == "Timeout expired") {
+              this.handleBackDropClose();
+              this.errorBodyMessage = "Geo location timed out";
+              this.setState(
+                {
+                  viewErrorModal: true,
+                },
+                () => this.getLocationTrack()
+              );
+
+              //temporary for DEV
+              //this.getFormattedAddress(22.5815353, 88.466984);
+            } else {
+              //show pop up if denied
+              this.handleBackDropClose();
+              this.setState({
+                openPermissionDeniedAlert: true,
+              });
+
+              this.props.setLocationModal(true);
+            }
+          }
+        );
+      }
     }
   };
 
@@ -445,7 +521,11 @@ class App extends React.Component {
       snackBar: false,
     });
   };
-
+  handleAlertClose = () => {
+    this.setState({
+      alertBar: false,
+    });
+  };
   render() {
     console.log("App Component rendered");
     return (
@@ -470,6 +550,7 @@ class App extends React.Component {
               </React.Fragment>
             }
           />
+          <SideAlert open={this.state.alertBar} handleAlertClose={() => this.handleAlertClose()} />
         </Container>
 
         {!this.state.openBackDrop ? <Footer /> : null}
@@ -485,6 +566,7 @@ const mapStateToProps = (state) => ({
   locationModal: state.locationModal.locationModalOpen,
   userCords: state.userCords.userCords,
   userCordChangeFlag: state.userCordChangeFlag.cordChangeFlag,
+  commuteFlag: state.commmuteFlag.commuteFlag,
 });
 
 const mapDispatchToProps = (dispatch) => ({
