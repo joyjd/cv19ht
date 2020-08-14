@@ -10,7 +10,8 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import "./../SortModal/SortModal.style.scss";
 
 import Button from "@material-ui/core/Button";
-import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
 
 export default function SortModal(props) {
   const [value, setValue] = React.useState(props.initialVal == "" ? "isChecked_op_hospital" : props.initialVal);
@@ -19,9 +20,10 @@ export default function SortModal(props) {
     setValue(event.target.value);
     props.handleRadioChange(event.target.value);
   };
-
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <Dialog fullScreen open={props.open} onClose={props.onclose} aria-labelledby='Sort Hospitals' aria-describedby='Option to sort Hospitals'>
+    <Dialog fullScreen={fullScreen} open={props.open} onClose={props.onclose} aria-labelledby='Sort Hospitals' aria-describedby='Option to sort Hospitals'>
       <Header />
       <div className='filterTagsHeader'>Sort Hospitals</div>
       <div className='filterTagsBodySort'>
