@@ -175,7 +175,7 @@ class App extends React.Component {
 
   getLocationTrack = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
+      navigator.geolocation.watchPosition(
         //watchPosition(  // need to implement getPosition logic with timeout for movement
         (pos) => {
           if (this.loc_locationCoordinates_lat != pos.coords.latitude && this.loc_locationCoordinates_long != pos.coords.longitude) {
