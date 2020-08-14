@@ -36,7 +36,7 @@ class SelectedHospitalSnapShot extends React.Component {
         <Map
           key={new Date().getTime()}
           google={this.props.google}
-          zoom={8}
+          zoom={10}
           containerStyle={containerStyle}
           initialCenter={{
             lat: this.props.userCords[0],

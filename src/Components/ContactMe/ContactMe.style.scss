@@ -1,0 +1,144 @@
+$ruler: 16px;
+$color-red: #ae1100;
+$color-bg: #ebecf0;
+$color-shadow: #babecc;
+$color-white: #fff;
+.bod_Skeleton {
+  background-color: #ebecf0;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: -0.2px;
+}
+.bod_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.bod_ImageHolder {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.errorHolder {
+  width: 100%;
+  padding: 15px;
+  color: #b37c67;
+}
+.div_Welcome {
+  display: flex;
+  width: 50%;
+  color: $color-shadow;
+  text-shadow: 1px 1px 1px $color-white;
+  flex-direction: column;
+  justify-content: center;
+  h2 {
+    height: 35px;
+    text-decoration: overline;
+    text-decoration-color: #95a6b5;
+  }
+}
+
+.div_avatar {
+  display: flex;
+  width: 50%;
+  padding: 5px;
+}
+.div_Avatar_ImgContainer {
+  width: 100%;
+  height: 25vh;
+  border-radius: 10px;
+  background: #ebecf0;
+
+  box-shadow: 6px 6px 12px #c8c9cc, -6px -6px 12px #ffffff;
+}
+.avt_inner {
+  padding: 5px;
+  background-image: url("./../../assets/dev_pic.jpg"); /* The image used */
+  border-radius: 5px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 22vh;
+  margin: 10px;
+}
+.bod_FormHolder {
+  width: 100%;
+}
+.bod_ActionHolder {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  margin-bottom: 40px;
+}
+.desContainer {
+  padding: 20px 0;
+  color: #8b8998;
+}
+
+.formContainer {
+  button,
+  input,
+  textarea {
+    border: 0;
+    outline: 0;
+    // font-size: $ruler;
+    border-radius: 5px;
+    padding: $ruler;
+    background-color: $color-bg;
+    text-shadow: 1px 1px 0 $color-white;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  input {
+    height: 45px;
+  }
+  textarea {
+    height: 150px;
+  }
+  input,
+  textarea {
+    margin-right: $ruler/2;
+    box-shadow: inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
+    width: 100%;
+
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+    appearance: none;
+    -webkit-appearance: none;
+
+    &:focus {
+      box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+    }
+  }
+
+  button {
+    color: #61677c;
+    font-weight: bold;
+    box-shadow: -5px -5px 20px $color-white, 5px 5px 20px $color-shadow;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    font-weight: 600;
+
+    &:hover {
+      box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
+    }
+
+    &:active {
+      box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+    }
+  }
+}
+
+.btnContactMe {
+  letter-spacing: 0.025em;
+  box-shadow: 3px 3px 6px #b8b9be, -3px -3px 6px #fff;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 0.55rem 0.95rem;
+  border-radius: 0.55rem;
+  margin-right: 30px;
+  color: #8f8e96;
+}
