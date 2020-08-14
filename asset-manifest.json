@@ -1,19 +1,18 @@
 {
   "files": {
-    "main.css": "/cv19ht/static/css/main.65720af4.chunk.css",
-    "main.js": "/cv19ht/static/js/main.96a8f94f.chunk.js",
-    "main.js.map": "/cv19ht/static/js/main.96a8f94f.chunk.js.map",
+    "main.css": "/cv19ht/static/css/main.fd0ba772.chunk.css",
+    "main.js": "/cv19ht/static/js/main.5c3f3a7c.chunk.js",
+    "main.js.map": "/cv19ht/static/js/main.5c3f3a7c.chunk.js.map",
     "runtime-main.js": "/cv19ht/static/js/runtime-main.86e215a4.js",
     "runtime-main.js.map": "/cv19ht/static/js/runtime-main.86e215a4.js.map",
-    "static/js/2.8a23902b.chunk.js": "/cv19ht/static/js/2.8a23902b.chunk.js",
-    "static/js/2.8a23902b.chunk.js.map": "/cv19ht/static/js/2.8a23902b.chunk.js.map",
+    "static/js/2.c41f32b1.chunk.js": "/cv19ht/static/js/2.c41f32b1.chunk.js",
+    "static/js/2.c41f32b1.chunk.js.map": "/cv19ht/static/js/2.c41f32b1.chunk.js.map",
     "index.html": "/cv19ht/index.html",
-    "precache-manifest.58b5f5df47ed678f5b1cbf2dea4f0a9e.js": "/cv19ht/precache-manifest.58b5f5df47ed678f5b1cbf2dea4f0a9e.js",
+    "precache-manifest.b79629ad89388a1fabd828d70a6b20c3.js": "/cv19ht/precache-manifest.b79629ad89388a1fabd828d70a6b20c3.js",
     "service-worker.js": "/cv19ht/service-worker.js",
-    "static/css/main.65720af4.chunk.css.map": "/cv19ht/static/css/main.65720af4.chunk.css.map",
-    "static/js/2.8a23902b.chunk.js.LICENSE.txt": "/cv19ht/static/js/2.8a23902b.chunk.js.LICENSE.txt",
+    "static/css/main.fd0ba772.chunk.css.map": "/cv19ht/static/css/main.fd0ba772.chunk.css.map",
+    "static/js/2.c41f32b1.chunk.js.LICENSE.txt": "/cv19ht/static/js/2.c41f32b1.chunk.js.LICENSE.txt",
     "static/media/Ambulance.style.scss": "/cv19ht/static/media/ambulance2.e72a7e98.png",
-    "static/media/ContactMe.style.scss": "/cv19ht/static/media/dev_pic.a883d4ef.jpg",
     "static/media/HospitalListModal.style.scss": "/cv19ht/static/media/hospital_bg.ec8aec7e.jpg",
     "static/media/App.css": "/cv19ht/static/media/iframeLoader.8da39085.gif",
     "static/media/AddressDisplay.style.scss": "/cv19ht/static/media/loc_headBg.d64636ff.jpg",
@@ -22,8 +21,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.86e215a4.js",
-    "static/js/2.8a23902b.chunk.js",
-    "static/css/main.65720af4.chunk.css",
-    "static/js/main.96a8f94f.chunk.js"
+    "static/js/2.c41f32b1.chunk.js",
+    "static/css/main.fd0ba772.chunk.css",
+    "static/js/main.5c3f3a7c.chunk.js"
   ]
 }
