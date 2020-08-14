@@ -64,6 +64,7 @@ export default class ContactMe extends React.Component {
     this.setState(
       {
         snkBar: false,
+        errorMessage: "",
       },
       () => this.props.onClose()
     );
