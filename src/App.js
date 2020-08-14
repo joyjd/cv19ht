@@ -53,7 +53,7 @@ const env = "prod"; // prod -  dev
 
 class App extends React.Component {
   geoLocationMove = null;
-
+  locChangeAlertCount = 0;
   proxyNeedFlag = false;
   googleFetchTryCount = 0;
 
@@ -103,6 +103,8 @@ class App extends React.Component {
     console.log("prevProps" + prevProps);
     console.log("CurrentProps" + this.props);
     if (prevProps.commuteFlag != this.props.commuteFlag) {
+      ++this.locChangeAlertCount;
+      console.log("locChangeAlertCount====================================" + this.locChangeAlertCount);
       if (this.props.commuteFlag != undefined && !this.props.commuteFlag && this.geoLocationMove != null) {
         navigator.geolocation.clearWatch(this.geoLocationMove);
       }
@@ -251,9 +253,12 @@ class App extends React.Component {
           //watchPosition(  // need to implement getPosition logic with timeout for movement
           (pos) => {
             if (this.loc_locationCoordinates_lat != pos.coords.latitude && this.loc_locationCoordinates_long != pos.coords.longitude) {
-              this.setState({
-                alertBar: true,
-              });
+              if (this.locChangeAlertCount > 1) {
+                this.setState({
+                  alertBar: true,
+                });
+              }
+
               console.log(pos.coords.latitude);
               console.log(pos.coords.longitude);
               this.getFormattedAddress(pos.coords.latitude, pos.coords.longitude);
