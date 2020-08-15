@@ -217,7 +217,9 @@ class App extends React.Component {
         this.geoLocationMove = navigator.geolocation.watchPosition(
           //watchPosition(  // need to implement getPosition logic with timeout for movement
           (pos) => {
-            if (this.loc_locationCoordinates_lat != pos.coords.latitude && this.loc_locationCoordinates_long != pos.coords.longitude) {
+            // if (this.loc_locationCoordinates_lat != pos.coords.latitude && this.loc_locationCoordinates_long != pos.coords.longitude) {
+
+            if (Number.parseFloat(this.loc_locationCoordinates_lat).toFixed(3) != Number.parseFloat(pos.coords.latitude).toFixed(3) || Number.parseFloat(this.loc_locationCoordinates_long).toFixed(3) != Number.parseFloat(pos.coords.longitude).toFixed(3)) {
               this.temp_alert_data = null;
               this.temp_alert_data = [pos.coords.latitude, pos.coords.longitude];
               this.setState({
@@ -255,12 +257,12 @@ class App extends React.Component {
 
               this.props.setLocationModal(true);
             }
-          } /* ,
+          },
           {
-            timeout: 10000,
+            timeout: Infinity,
             maximumAge: 10000,
             enableHighAccuracy: true,
-          } */
+          }
         );
       } else {
         /* if (this.geoLocationMove != null) {
