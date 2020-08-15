@@ -16,7 +16,7 @@ const SideAlert = (props) => {
   const { vertical, horizontal } = state;
 
   return (
-    <Snackbar autoHideDuration={2000} key={Grow} TransitionComponent={TransitionLeft} anchorOrigin={{ vertical, horizontal }} open={props.open} onClose={props.handleAlertClose} message='I love snacks' key={vertical + horizontal}>
+    <Snackbar autoHideDuration={2000} key={Grow} TransitionComponent={TransitionLeft} anchorOrigin={{ vertical, horizontal }} open={props.open} onClose={props.handleAlertClose} key={vertical + horizontal}>
       <SnackbarContent
         style={{
           backgroundColor: "#000000eb",
@@ -25,7 +25,11 @@ const SideAlert = (props) => {
           color: "#c4fff4",
           border: "3px solid #284065ba",
         }}
-        message={<span id='client-snackbar'>Updating your current location ..</span>}
+        message={
+          <span id='client-snackbar'>
+            Updating your current location ..{props.c_data[0]},{props.c_data[1]}
+          </span>
+        }
       />
     </Snackbar>
   );

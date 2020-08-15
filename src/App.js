@@ -59,6 +59,8 @@ class App extends React.Component {
 
   errorBodyMessage = "";
   hospitalList = [];
+
+  temp_alert_data = null;
   loc_locationCoordinates_lat = null;
   loc_locationCoordinates_long = null;
   loc_cordChangeFlag = null;
@@ -216,6 +218,8 @@ class App extends React.Component {
           //watchPosition(  // need to implement getPosition logic with timeout for movement
           (pos) => {
             if (this.loc_locationCoordinates_lat != pos.coords.latitude && this.loc_locationCoordinates_long != pos.coords.longitude) {
+              this.temp_alert_data = null;
+              this.temp_alert_data = [pos.coords.latitude, pos.coords.longitude];
               this.setState({
                 alertBar: true,
               });
@@ -568,7 +572,7 @@ class App extends React.Component {
               </React.Fragment>
             }
           />
-          <SideAlert open={this.state.alertBar} handleAlertClose={() => this.handleAlertClose()} />
+          <SideAlert c_data={this.temp_alert_data} open={this.state.alertBar} handleAlertClose={() => this.handleAlertClose()} />
         </Container>
 
         {!this.state.openBackDrop ? <Footer /> : null}
