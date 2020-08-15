@@ -251,12 +251,12 @@ class App extends React.Component {
 
               this.props.setLocationModal(true);
             }
-          },
+          } /* ,
           {
             timeout: 10000,
             maximumAge: 10000,
             enableHighAccuracy: true,
-          }
+          } */
         );
       } else {
         /* if (this.geoLocationMove != null) {
