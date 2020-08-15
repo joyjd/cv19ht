@@ -51,7 +51,7 @@ export default function WelcomeModal(props) {
                 This web-app helps you in tracking hospitals providing care for COVID19 patients based on your location.
               </div>
               <br />
-              <div className='div_2'> To aid you in the best way,enable permission to access your device location when prompted.</div>
+              <div className='div_2'> To aid you in the best way,enable permission to access your device location when asked next.</div>
               Stay safe.
             </div>
           </div>

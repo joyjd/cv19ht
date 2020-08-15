@@ -1,0 +1,29 @@
+.LocationblockedContainer {
+  background: #0f0c29; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.LocationBlockBody {
+  width: 100%;
+  height: 100%;
+  background-image: url("./../../assets/mb_loc1.png"); /* The image used */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: contain; /* Resize the background image to cover the entire container */
+  -webkit-user-select: none;
+  padding: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ffffff;
+  padding: 50px;
+}
+
+.IconContainer {
+  display: flex;
+  align-items: center;
+}

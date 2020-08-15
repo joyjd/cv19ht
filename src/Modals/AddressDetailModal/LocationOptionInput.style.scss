@@ -24,3 +24,7 @@
   @include space(padding, top, 5px);
   @include space(padding, bottom, 5px);
 }
+.errorContainer {
+  margin: 10px 0;
+  color: red;
+}

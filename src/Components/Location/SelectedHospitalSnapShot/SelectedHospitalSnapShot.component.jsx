@@ -19,7 +19,7 @@ class SelectedHospitalSnapShot extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.searchText != null) {
       return false;
-    } else if (nextProps.selectedHospitalList == this.props.selectedHospitalList) {
+    } else if (JSON.stringify(nextProps.selectedHospitalList.sort()) == JSON.stringify(this.props.selectedHospitalList.sort())) {
       return false;
     } else {
       if (JSON.stringify(nextProps.selectedHospitalZoneTags) == JSON.stringify(this.props.selectedHospitalZoneTags)) {

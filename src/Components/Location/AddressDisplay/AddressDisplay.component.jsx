@@ -11,7 +11,7 @@ import Dialog from "@material-ui/core/Dialog";
 import CloseIcon from "@material-ui/icons/Close";
 import "./../AddressDisplay/AddressDisplay.style.scss";
 
-const AddressDisplay = ({ formattedAddress, setCommuteFlag }) => {
+const AddressDisplay = ({ accessPermission, formattedAddress, setCommuteFlag }) => {
   const [state, setState] = React.useState({
     commuteFlag: false,
     infoFlag: false,
@@ -56,18 +56,20 @@ const AddressDisplay = ({ formattedAddress, setCommuteFlag }) => {
         <div className='AddressContainer'>
           <div className='addressHolder'>
             <address>{formattedAddress}</address>
-            <div className='commuterHolder'>
-              <CustomSwitch handleChangeSwitch={(e) => handleChangeSwitch(e)} />
-              <div className={state.commuteFlag ? "labelSwitchActive" : "labelSwitchDefault"}>
-                <div className='textSpan'> I am commuting/travelling right now.</div>
-                <div className='enbContainer'>
-                  <span className='EnableDisable'>{state.commuteFlag ? "Enabled" : "Disabled"}</span>
-                  <span onClick={() => openInfoFlag()}>
-                    <InfoIcon style={{ color: "#a3cccb" }} fontSize='medium' />
-                  </span>
+            {accessPermission ? (
+              <div className='commuterHolder'>
+                <CustomSwitch handleChangeSwitch={(e) => handleChangeSwitch(e)} />
+                <div className={state.commuteFlag ? "labelSwitchActive" : "labelSwitchDefault"}>
+                  <div className='textSpan'> I am commuting/travelling right now.</div>
+                  <div className='enbContainer'>
+                    <span className='EnableDisable'>{state.commuteFlag ? "Enabled" : "Disabled"}</span>
+                    <span onClick={() => openInfoFlag()}>
+                      <InfoIcon style={{ color: "#a3cccb" }} fontSize='medium' />
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : null}
           </div>
         </div>
       </div>

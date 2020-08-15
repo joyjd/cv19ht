@@ -57,7 +57,7 @@ class Location extends React.Component {
       <div>
         <div className='locationCardContainer'>
           <Paper elevation={3} className='transparentBorder'>
-            <AddressDisplay />
+            <AddressDisplay accessPermission={this.props.accessPermission} />
             <MapsDisplay />
             <div className='addressInputHolder'>
               <div className='addressInputIconHolder'>

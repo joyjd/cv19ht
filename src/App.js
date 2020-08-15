@@ -32,7 +32,7 @@ import { CommunicatorFetch } from "./Utils/Communicator/Communicator.component";
 import ApiUrls from "./Utils/ApiUrls.data";
 
 import { ErrorModal } from "./Modals/ErrorModal/ErrorModal.component";
-import WelcomeModal from "./Modals/WelcomeModal/WelcomeModal.component";
+//import WelcomeModal from "./Modals/WelcomeModal/WelcomeModal.component";
 import LocationOptionInput from "./Modals/AddressDetailModal/LocationOptionInput.component";
 
 import { setTotalHospitalDetails } from "./redux/totalHospitalDetails/totalHospital.action";
@@ -48,10 +48,12 @@ import { dummyLoc } from "./assets/dummyLoc";
 import { getHospitalProfileAll } from "./firebase/firebase.util";
 
 import SideAlert from "./Utils/SideAlert/SideALert.component";
+import DisplayLocationModal from "./Modals/PermissionDeniedModal/DisplayLocationModal.component";
 
 const env = "prod"; // prod -  dev
 
 class App extends React.Component {
+  loc_PermissionAccess = true;
   geoLocationMove = null;
   locChangeAlertCount = 0;
   proxyNeedFlag = false;
@@ -73,6 +75,7 @@ class App extends React.Component {
       snackBar: false,
       alertBar: false,
       snackBarMessage: "",
+      openPermissionDeniedAlert: false,
     };
   }
 
@@ -81,7 +84,6 @@ class App extends React.Component {
     this.setState(
       {
         openWelcomeAlert: true,
-        openPermissionDeniedAlert: false,
       },
       () => this.prepareHospitalData()
     );
@@ -219,7 +221,7 @@ class App extends React.Component {
           (pos) => {
             // if (this.loc_locationCoordinates_lat != pos.coords.latitude && this.loc_locationCoordinates_long != pos.coords.longitude) {
 
-            if (Number.parseFloat(this.loc_locationCoordinates_lat).toFixed(3) != Number.parseFloat(pos.coords.latitude).toFixed(3) || Number.parseFloat(this.loc_locationCoordinates_long).toFixed(3) != Number.parseFloat(pos.coords.longitude).toFixed(3)) {
+            if (Number.parseFloat(this.loc_locationCoordinates_lat).toFixed(2) != Number.parseFloat(pos.coords.latitude).toFixed(2) || Number.parseFloat(this.loc_locationCoordinates_long).toFixed(2) != Number.parseFloat(pos.coords.longitude).toFixed(2)) {
               this.temp_alert_data = null;
               this.temp_alert_data = [pos.coords.latitude, pos.coords.longitude];
               this.setState({
@@ -251,11 +253,12 @@ class App extends React.Component {
             } else {
               //show pop up if denied
               this.handleBackDropClose();
+              this.loc_PermissionAccess = false;
               this.setState({
                 openPermissionDeniedAlert: true,
               });
 
-              this.props.setLocationModal(true);
+              //this.props.setLocationModal(true);
             }
           },
           {
@@ -304,11 +307,12 @@ class App extends React.Component {
             } else {
               //show pop up if denied
               this.handleBackDropClose();
+              this.loc_PermissionAccess = false;
               this.setState({
                 openPermissionDeniedAlert: true,
               });
 
-              this.props.setLocationModal(true);
+              //this.props.setLocationModal(true);
             }
           }
         );
@@ -530,13 +534,7 @@ class App extends React.Component {
       {
         openBackDrop: true,
       },
-      () => {
-        if (el.locality == "" && el.district == "" && el.pin == "") {
-          this.getLocationTrack();
-        } else {
-          this.searchGoogleForUserDetails(el);
-        }
-      }
+      () => this.searchGoogleForUserDetails(el)
     );
   };
 
@@ -550,6 +548,15 @@ class App extends React.Component {
       alertBar: false,
     });
   };
+
+  handleCloseDeniedPermissionAlert = () => {
+    this.setState(
+      {
+        openPermissionDeniedAlert: false,
+      },
+      () => this.props.setLocationModal(true)
+    );
+  };
   render() {
     console.log("App Component rendered");
     return (
@@ -557,7 +564,7 @@ class App extends React.Component {
         <CssBaseline />
         <Header />
         <Container maxWidth='md' className='containerApp'>
-          <Location />
+          <Location accessPermission={this.loc_PermissionAccess} />
           <Hospital />
           <BackDropDefault open={this.state.openBackDrop} />
           <Snackbar
@@ -565,7 +572,6 @@ class App extends React.Component {
             autoHideDuration={10000}
             TransitionComponent={this.TransitionDown}
             message={this.state.snackBarMessage}
-            key={Fade}
             action={
               <React.Fragment>
                 <IconButton size='small' aria-label='close' color='inherit' onClick={() => this.handleCloseSnackBar()}>
@@ -578,6 +584,7 @@ class App extends React.Component {
         </Container>
 
         {!this.state.openBackDrop ? <Footer /> : null}
+        <DisplayLocationModal open={this.state.openPermissionDeniedAlert} onClose={(el) => this.handleCloseDeniedPermissionAlert(el)} />
         {/*  <WelcomeModal open={this.state.openWelcomeAlert} onClose={(el) => this.handleCloseWelcomeAlert(el)} /> */}
         <LocationOptionInput open={this.props.locationModal} onClose={(el) => this.handleCloseLocationOptionAlert(el)} />
         <ErrorModal open={this.state.viewErrorModal} onclose={() => this.handleErrorClose()} body={this.errorBodyMessage} />

@@ -17,6 +17,7 @@ export default class LocationOptionInput extends React.Component {
       locality: "",
       district: "",
       pin: "",
+      errorMssg: "",
       state: "West Bengal",
       country: "India",
     };
@@ -28,10 +29,23 @@ export default class LocationOptionInput extends React.Component {
     this.setState({ [nam]: val });
   };
 
+  handleSubmit = () => {
+    if (this.state.locality == "" || this.state.district == "" || this.state.pin == "") {
+      this.setState({ errorMssg: "All fields must be filled" });
+    } else {
+      this.setState({ errorMssg: "" }, () => this.props.onClose(this.state));
+    }
+  };
+
   render() {
     return (
       <Dialog
         BackdropProps={{
+          style: {
+            background: "#495aa0cc",
+          },
+        }}
+        PaperProps={{
           style: {
             background: "#495aa0cc",
           },
@@ -43,7 +57,7 @@ export default class LocationOptionInput extends React.Component {
         aria-describedby='Get user Location'
       >
         <Header />
-        <Container style={{ backgroundColor: "#495aa0cc" }}>
+        <Container>
           <div className='shadowCustom locBodyHolder'>
             <Paper elevation={3}>
               <div className='locPromptheader'>Provide Address Details</div>
@@ -70,8 +84,9 @@ export default class LocationOptionInput extends React.Component {
                   />
                 </div>
                 <div className='textFieldContainer'>* Currently we are only supporting this application within West Bengal</div>
+                <div className='errorContainer'>{this.state.errorMssg}</div>
                 <div className='textFieldContainer'>
-                  <Button variant='contained' color='primary' onClick={() => this.props.onClose(this.state)}>
+                  <Button variant='contained' color='primary' onClick={() => this.handleSubmit()}>
                     Submit Location Details
                   </Button>
                 </div>
