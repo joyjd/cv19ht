@@ -63,12 +63,35 @@
   display: flex;
 }
 .labelSwitchDefault {
-  padding-top: 10px;
+  padding-top: 8px;
   font-weight: bold;
   color: #0000008a;
 }
 .labelSwitchActive {
-  padding-top: 10px;
+  padding-top: 8px;
   font-weight: bold;
   color: #3f51b5;
+}
+.commuterHolder svg {
+  margin-bottom: -8px;
+}
+.textSpan {
+  margin-right: 6px;
+}
+.infoBody {
+  padding: 20px;
+}
+.InfoCloseDiv {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  padding: 10px 20px;
+}
+.EnableDisable {
+  font-weight: normal;
+  font-size: small;
+  margin-right: 10px;
+}
+.enbContainer {
+  margin-top: 5px;
 }

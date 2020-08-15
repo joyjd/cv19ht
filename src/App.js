@@ -45,7 +45,7 @@ import { setCordChangeFlag } from "./redux/userAddress/cordChangeFlag.action";
 
 import { dummyLoc } from "./assets/dummyLoc";
 
-import { createHospitalProfile, getHospitalProfileAll } from "./firebase/firebase.util";
+import { getHospitalProfileAll } from "./firebase/firebase.util";
 
 import SideAlert from "./Utils/SideAlert/SideALert.component";
 
@@ -83,7 +83,6 @@ class App extends React.Component {
       },
       () => this.prepareHospitalData()
     );
-    // createHospitalProfile();
   }
 
   componentWillUnmount() {
@@ -104,7 +103,7 @@ class App extends React.Component {
     console.log("CurrentProps" + this.props);
     if (prevProps.commuteFlag != this.props.commuteFlag) {
       ++this.locChangeAlertCount;
-      console.log("locChangeAlertCount====================================" + this.locChangeAlertCount);
+      //console.log("locChangeAlertCount====================================" + this.locChangeAlertCount);
       if (this.props.commuteFlag != undefined && !this.props.commuteFlag && this.geoLocationMove != null) {
         navigator.geolocation.clearWatch(this.geoLocationMove);
       }
@@ -119,9 +118,23 @@ class App extends React.Component {
         this.hospitalList = Object.assign([], tempArr);
       })
       .then(() => getHospitalProfileAll())
-      .then((data) => {
-        this.arrangeHospitalKeyMap(data);
-      });
+      .then(
+        (data) => {
+          console.log("App firebase===========================================================================" + data);
+          if (data == undefined || data == "" || Array.isArray(data) || typeof data != "object") {
+            CommunicatorFetch(ApiUrls.getHospitalDetails).then((data) => {
+              this.arrangeHospitalKeyMap(data);
+            });
+          } else {
+            this.arrangeHospitalKeyMap(data);
+          }
+        },
+        (error) => {
+          CommunicatorFetch(ApiUrls.getHospitalDetails).then((data) => {
+            this.arrangeHospitalKeyMap(data);
+          });
+        }
+      );
   };
 
   arrangeHospitalKeyMap(data) {

@@ -69,6 +69,12 @@ export default class ContactMe extends React.Component {
       () => this.props.onClose()
     );
   };
+
+  closeSnackBar = () => {
+    this.setState({
+      snkBar: false,
+    });
+  };
   render() {
     return (
       <div>
@@ -109,7 +115,7 @@ export default class ContactMe extends React.Component {
                     </div>
                     <div className='formContainer'>
                       <label>
-                        <input id='userName' name='userName' onChange={(e) => this.handleChange(e, "userName")} type='text' placeholder='Your Name' required />
+                        <input id='userName' name='userName' onChange={(e) => this.handleChange(e, "userName")} type='text' value={this.state.name} placeholder='Your Name' required />
                       </label>
                       <label>
                         <textarea id='feedbackDesc' name='feedbackDesc' onChange={(e) => this.handleChange(e, "feedbackDesc")} required value={this.state.feedback} placeholder='Your Message To Me...' rows='4' cols='35' />
@@ -136,6 +142,7 @@ export default class ContactMe extends React.Component {
             horizontal: "left",
           }}
           open={this.state.snkBar}
+          onClose={() => this.closeSnackBar()}
           autoHideDuration={2000}
           message='Message delivered succesfully!'
         />
