@@ -450,7 +450,7 @@ class App extends React.Component {
             this.setState({
               openBackDrop: false,
               snackBar: true,
-              snackBarMessage: "The location obtained seems a non-valid address or a place outside West Bengal.Since currently we are supporting only within West Bengal, hence your default area is set as Kolkata.",
+              snackBarMessage: "The location obtained seems a non-valid address or a place outside West Bengal.Since currently we are only supporting within West Bengal, hence your default area is set as Kolkata.",
             });
           }
         }
