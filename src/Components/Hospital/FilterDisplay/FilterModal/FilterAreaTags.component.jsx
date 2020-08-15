@@ -24,7 +24,7 @@ class FilterTags extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.selectedHospitalZoneTags != null && this.props.hospitalDetails != null) {
+    if (this.props.selectedHospitalZoneTags !== null && this.props.hospitalDetails !== null) {
       this.setState({
         selectedTags: this.props.selectedHospitalZoneTags,
         leftTags: Object.keys(this.props.hospitalDetails).filter((el) => !this.props.selectedHospitalZoneTags.includes(el)),
@@ -33,13 +33,13 @@ class FilterTags extends React.Component {
   }
 
   componentDidUpdate(prevprops) {
-    if (prevprops.selectedHospitalZoneTags != this.props.selectedHospitalZoneTags) {
+    if (prevprops.selectedHospitalZoneTags !== this.props.selectedHospitalZoneTags) {
       console.log(this.props.selectedHospitalZoneTags);
       console.log(this.state.selectedTags);
 
       this.loc_selectedTags = this.props.selectedHospitalZoneTags;
       this.loc_leftTags = Object.keys(this.props.hospitalDetails).filter((el) => !this.props.selectedHospitalZoneTags.includes(el));
-      if (this.loc_selectedTags != this.state.selectedTags) {
+      if (this.loc_selectedTags !== this.state.selectedTags) {
         this.updateLocateStates();
       }
     }
@@ -62,25 +62,25 @@ class FilterTags extends React.Component {
   };
 
   handleFilterChange = (type, el) => {
-    if (type == "del") {
+    if (type === "del") {
       let temp = this.state.selectedTags;
       temp.splice(
-        temp.findIndex((e) => e == el),
+        temp.findIndex((e) => e === el),
         1
       );
 
       this.setState({
         selectedTags: temp,
-        leftTags: this.state.leftTags.concat(el),
+        leftTags: this.state.leftTags.concat(el).sort(),
       });
     } else {
       let temp = this.state.leftTags;
       temp.splice(
-        temp.findIndex((e) => e == el),
+        temp.findIndex((e) => e === el),
         1
       );
       this.setState({
-        selectedTags: this.state.selectedTags.concat(el),
+        selectedTags: this.state.selectedTags.concat(el).sort(),
         leftTags: temp,
       });
     }

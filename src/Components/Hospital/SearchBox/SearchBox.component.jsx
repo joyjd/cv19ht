@@ -19,7 +19,7 @@ class SearchBox extends React.Component {
     };
   }
   componentDidMount() {
-    if (this.props.hospitalDetails != null) {
+    if (this.props.hospitalDetails !== null) {
       this.prepareSearchEngine();
     }
   }
@@ -34,7 +34,7 @@ class SearchBox extends React.Component {
 
         //lookup in detailslist
         if (this.props.completeHospitalData[el["h_name"]]) {
-          if (this.props.completeHospitalData[el["h_name"]]["name"] != el["h_name"]) {
+          if (this.props.completeHospitalData[el["h_name"]]["name"] !== el["h_name"]) {
             tempResult.push({
               [el["h_name"]]: [el["h_name"], this.props.completeHospitalData[el["h_name"]]["name"]],
             });
@@ -60,7 +60,7 @@ class SearchBox extends React.Component {
     let finalKeys = [];
     let finalResult = [];
     let res = this.state.searchEngine.filter((ob) => {
-      return ob[Object.keys(ob)[0]].filter((e) => e.toLowerCase().includes(this.state.searchText.toLowerCase())).length != 0;
+      return ob[Object.keys(ob)[0]].filter((e) => e.toLowerCase().includes(this.state.searchText.toLowerCase())).length !== 0;
     });
 
     res.forEach((el) => finalKeys.push(Object.keys(el)[0]));
@@ -88,7 +88,7 @@ class SearchBox extends React.Component {
   };
 
   handleSearchEngine = (el) => {
-    if (el.target.value.trim() != "") {
+    if (el.target.value.trim() !== "") {
       this.props.setSearchText(el.target.value);
       this.setState({ searchText: el.target.value }, () => this.getSearchResults());
     } else {

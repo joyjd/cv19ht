@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import "./../TagsDisplay/TagsDisplay.style.scss";
 
 const TagsDisplay = (props) => {
-  return props.locationTags != null && props.selectedHospitalZoneTags != null ? (
-    props.tagtype == "userTag" ? (
+  return props.locationTags !== null && props.selectedHospitalZoneTags !== null ? (
+    props.tagtype === "userTag" ? (
       <div className='staticTagHolderContainer'>
         {props.locationTags.map((elem, index) => (
           <div key={index} className='staticKeyTags'>

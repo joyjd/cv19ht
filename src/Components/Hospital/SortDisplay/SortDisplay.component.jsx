@@ -18,17 +18,17 @@ class SortDisplay extends React.Component {
   }
 
   sortData = () => {
-    if (this.sortOptions == "isChecked_op_hospital") {
+    if (this.sortOptions === "isChecked_op_hospital") {
       let temp = this.props.selectedHospitalList.sort((a, b) => Number(a["h_dist"]) - Number(b["h_dist"]));
       let lastIndex = null;
       let remArr = [];
       temp.forEach((hospital, index) => {
-        if (hospital["h_dist"] == "") {
+        if (hospital["h_dist"] === "") {
           lastIndex = index;
         }
       });
 
-      if (lastIndex != null) {
+      if (lastIndex !== null) {
         remArr = temp.splice(0, lastIndex + 1);
       }
       console.log(remArr);

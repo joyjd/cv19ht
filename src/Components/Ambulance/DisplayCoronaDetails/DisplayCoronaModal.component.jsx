@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -47,7 +46,7 @@ const useStyles = makeStyles({
 
 const DisplayCoronaDetails = (props) => {
   const classes = useStyles();
-  return props.c_data != null ? (
+  return props.c_data !== null ? (
     <Dialog fullScreen open={props.open} onClose={props.onclose} aria-labelledby='Display Corona Details' aria-describedby='Display Corona Details'>
       <Header />
       <div className='filterTagsHeader'>View COVID19 Information</div>
@@ -85,7 +84,7 @@ const DisplayCoronaDetails = (props) => {
         </div>
 
         <div className='actionHolder'>
-          <Button variant='contained' color='primary' onClick={() => props.onClose()} color='primary'>
+          <Button variant='contained' color='primary' onClick={() => props.onClose()}>
             Close
           </Button>
         </div>

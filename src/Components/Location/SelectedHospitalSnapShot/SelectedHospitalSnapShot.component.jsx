@@ -1,5 +1,5 @@
 import React from "react";
-import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import GoogleCredentials from "./../../../Utils/GoogleCredentials";
 import "./../SelectedHospitalSnapShot/SelectedHospitalSnapShot.style.scss";
 
@@ -17,12 +17,15 @@ class SelectedHospitalSnapShot extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.props.searchText != null) {
+    if (this.props.searchText !== null) {
       return false;
-    } else if (JSON.stringify(nextProps.selectedHospitalList.sort()) == JSON.stringify(this.props.selectedHospitalList.sort())) {
+    } else if (JSON.stringify(nextProps.selectedHospitalList.sort()) === JSON.stringify(this.props.selectedHospitalList.sort())) {
       return false;
     } else {
-      if (JSON.stringify(nextProps.selectedHospitalZoneTags) == JSON.stringify(this.props.selectedHospitalZoneTags)) {
+      if (JSON.stringify(nextProps.selectedHospitalZoneTags) === JSON.stringify(this.props.selectedHospitalZoneTags)) {
+        if (JSON.stringify(nextProps.selectedHospitalList.sort()) !== JSON.stringify(this.props.selectedHospitalList.sort())) {
+          return true;
+        }
         return false;
       } else {
         return true;
@@ -31,7 +34,7 @@ class SelectedHospitalSnapShot extends React.Component {
   }
 
   render() {
-    return this.props.selectedHospitalList != null ? (
+    return this.props.selectedHospitalList !== null ? (
       <div className='mapHolderHospitalSnapshot'>
         <Map
           key={new Date().getTime()}

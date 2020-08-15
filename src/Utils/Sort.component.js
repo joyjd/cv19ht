@@ -3,12 +3,12 @@ export const customSort = (hospitalList) => {
   let lastIndex = null;
   let remArr = [];
   temp.forEach((hospital, index) => {
-    if (hospital["h_dist"] == "") {
+    if (hospital["h_dist"] === "") {
       lastIndex = index;
     }
   });
 
-  if (lastIndex != null) {
+  if (lastIndex !== null) {
     remArr = temp.splice(0, lastIndex + 1);
   }
   //console.log(remArr);

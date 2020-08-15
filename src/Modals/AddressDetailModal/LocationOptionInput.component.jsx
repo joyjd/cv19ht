@@ -1,10 +1,7 @@
-import React, { useState } from "react";
-
-import Dialog from "@material-ui/core/Dialog";
-import Slide from "@material-ui/core/Slide";
+import React from "react";
 import { Header } from "./../../Components/Header/Header.component";
+import Dialog from "@material-ui/core/Dialog";
 import Container from "@material-ui/core/Container";
-import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
@@ -30,7 +27,7 @@ export default class LocationOptionInput extends React.Component {
   };
 
   handleSubmit = () => {
-    if (this.state.locality == "" || this.state.district == "" || this.state.pin == "") {
+    if (this.state.locality === "" || this.state.district === "" || this.state.pin === "") {
       this.setState({ errorMssg: "All fields must be filled" });
     } else {
       this.setState({ errorMssg: "" }, () => this.props.onClose(this.state));

@@ -9,13 +9,12 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Fab from "@material-ui/core/Fab";
-import Avatar from "@material-ui/core/Avatar";
+
 import FindInPageIcon from "@material-ui/icons/FindInPage";
 import "./../HospitalItem/HospitalItem.style.scss";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 import * as geolib from "geolib";
 import PriorityHighIcon from "@material-ui/icons/PriorityHigh";
-import { customSort } from "./../../../../Utils/Sort.component";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -51,7 +50,7 @@ const formatter = new Intl.NumberFormat("en-US", {
 const HospitalItem = (props) => {
   const classes = useStyles();
 
-  return props.userCords != null ? (
+  return props.userCords !== null ? (
     <TableContainer component={Paper} id='hospitalDetailTable'>
       <Table className={classes.table} aria-label='customized table'>
         <TableHead>
@@ -71,7 +70,7 @@ const HospitalItem = (props) => {
                   <strong> {el["h_name"]}</strong>
                 </div>
                 <div className='distanceIndicator'>
-                  {el["h_loc"] != "" ? (
+                  {el["h_loc"] !== "" ? (
                     <span className='distanceData'>
                       <DirectionsRunIcon />
                     </span>
@@ -80,8 +79,8 @@ const HospitalItem = (props) => {
                       <PriorityHighIcon />
                     </span>
                   )}
-                  <span>{el["h_loc"] != "" ? (el["h_dist"] = formatter.format(geolib.getPreciseDistance({ latitude: props.userCords[0], longitude: props.userCords[1] }, { latitude: el["h_loc"]["lat"], longitude: el["h_loc"]["lng"] }) / 1000)) : ""}</span>
-                  {el["h_loc"] != "" ? <span>Km away*</span> : <span>Data not known</span>}
+                  <span>{el["h_loc"] !== "" ? (el["h_dist"] = formatter.format(geolib.getPreciseDistance({ latitude: props.userCords[0], longitude: props.userCords[1] }, { latitude: el["h_loc"]["lat"], longitude: el["h_loc"]["lng"] }) / 1000)) : ""}</span>
+                  {el["h_loc"] !== "" ? <span>Km away*</span> : <span>Data not known</span>}
                 </div>
               </StyledTableCell>
               <StyledTableCell align='right'>{el["h_zone"]}</StyledTableCell>
@@ -109,7 +108,7 @@ const HospitalItem = (props) => {
           ))}
         </TableBody>
       </Table>
-      {props.selectedHospitalList.length == 0 ? <div className='noResultFoundcontainer'>No hospitals found.</div> : <span></span>}
+      {props.selectedHospitalList.length === 0 ? <div className='noResultFoundcontainer'>No hospitals found.</div> : <span></span>}
     </TableContainer>
   ) : null;
 };

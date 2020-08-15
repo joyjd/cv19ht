@@ -1,9 +1,6 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
-import AppBar from "@material-ui/core/AppBar";
-import Container from "@material-ui/core/Container";
+
 import "./../Footer/Footer.style.scss";
-import Avatar from "@material-ui/core/Avatar";
 
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 

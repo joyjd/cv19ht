@@ -30,7 +30,7 @@ const DisplayAmbulance = (props) => {
           <Iframe iframe={iframe} pin={props.addressComponents[props.addressComponents.length - 1]["long_name"]} userCords={props.userCords} />
         </div>
         <div className='actionHolder'>
-          <Button variant='contained' color='primary' onClick={() => props.onclose()} color='primary'>
+          <Button variant='contained' color='primary' onClick={() => props.onclose()}>
             Close
           </Button>
         </div>

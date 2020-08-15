@@ -2,7 +2,7 @@ import React from "react";
 import "./../PermissionDeniedModal/DisplayLocationModal.style.scss";
 import Dialog from "@material-ui/core/Dialog";
 import Slide from "@material-ui/core/Slide";
-import DialogActions from "@material-ui/core/DialogActions";
+
 import ReportProblemIcon from "@material-ui/icons/ReportProblem";
 import PermDeviceInformationIcon from "@material-ui/icons/PermDeviceInformation";
 import Container from "@material-ui/core/Container";

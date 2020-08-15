@@ -1,23 +1,14 @@
 import React from "react";
-//import logo from "./logo.svg";
+
 import "./App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
-/* import Typography from "@material-ui/core/Typography"; */
+
 import Container from "@material-ui/core/Container";
 import Snackbar from "@material-ui/core/Snackbar";
 import Slide from "@material-ui/core/Slide";
-import Fade from "@material-ui/core/Fade";
 
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-/* import Fab from "@material-ui/core/Fab";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import Zoom from "@material-ui/core/Zoom";
-import { makeStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import Backdrop from "@material-ui/core/Backdrop";
-import CircularProgress from "@material-ui/core/CircularProgress"; */
 
 import { BackDropDefault } from "./Utils/BackDropDefault/BackDropOrg.component";
 
@@ -32,7 +23,7 @@ import { CommunicatorFetch } from "./Utils/Communicator/Communicator.component";
 import ApiUrls from "./Utils/ApiUrls.data";
 
 import { ErrorModal } from "./Modals/ErrorModal/ErrorModal.component";
-//import WelcomeModal from "./Modals/WelcomeModal/WelcomeModal.component";
+
 import LocationOptionInput from "./Modals/AddressDetailModal/LocationOptionInput.component";
 
 import { setTotalHospitalDetails } from "./redux/totalHospitalDetails/totalHospital.action";
@@ -94,10 +85,10 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.showLocation != this.props.showLocation) {
+    if (prevProps.showLocation !== this.props.showLocation) {
       this.handleCloseWelcomeAlert();
     }
-    if (this.loc_cordChangeFlag != this.props.userCordChangeFlag) {
+    if (this.loc_cordChangeFlag !== this.props.userCordChangeFlag) {
       console.log("inside app update");
       this.loc_cordChangeFlag = !this.props.userCordChangeFlag;
       this.getLocationWhenCordsChangedByUser();
@@ -105,10 +96,10 @@ class App extends React.Component {
     }
     console.log("prevProps" + prevProps);
     console.log("CurrentProps" + this.props);
-    if (prevProps.commuteFlag != this.props.commuteFlag) {
+    if (prevProps.commuteFlag !== this.props.commuteFlag) {
       ++this.locChangeAlertCount;
       //console.log("locChangeAlertCount====================================" + this.locChangeAlertCount);
-      if (this.props.commuteFlag != undefined && !this.props.commuteFlag && this.geoLocationMove != null) {
+      if (this.props.commuteFlag !== undefined && !this.props.commuteFlag && this.geoLocationMove !== null) {
         navigator.geolocation.clearWatch(this.geoLocationMove);
       }
       this.getLocationTrack();
@@ -118,14 +109,14 @@ class App extends React.Component {
   prepareHospitalData = () => {
     CommunicatorFetch(ApiUrls.getHospitalCodes)
       .then((data) => {
-        let tempArr = data.filter((elem) => Object.keys(elem).length >= 4).filter((el) => el["vacant"] != 0 && typeof el["vacant"] !== "string");
+        let tempArr = data.filter((elem) => Object.keys(elem).length >= 4).filter((el) => el["vacant"] !== 0 && typeof el["vacant"] !== "string");
         this.hospitalList = Object.assign([], tempArr);
       })
       .then(() => getHospitalProfileAll())
       .then(
         (data) => {
           console.log("App firebase===========================================================================" + data);
-          if (data == undefined || data == "" || Array.isArray(data) || typeof data != "object") {
+          if (data === undefined || data === "" || Array.isArray(data) || typeof data !== "object") {
             CommunicatorFetch(ApiUrls.getHospitalDetails).then((data) => {
               this.arrangeHospitalKeyMap(data);
             });
@@ -143,11 +134,10 @@ class App extends React.Component {
 
   arrangeHospitalKeyMap(data) {
     let hospitalDetailsData = data;
-    let tempDup = {};
     let tempMap = {};
     for (let i = 0, j = this.hospitalList.length - 1; i <= this.hospitalList.length / 2, j >= this.hospitalList.length / 2; i++, j--) {
       if (tempMap[this.hospitalList[i]["district"]]) {
-        if (tempMap[this.hospitalList[i]["district"]].find((el) => el["name"] == this.hospitalList[i]["name"]) == undefined) {
+        if (tempMap[this.hospitalList[i]["district"]].find((el) => el["name"] === this.hospitalList[i]["name"]) === undefined) {
           tempMap[this.hospitalList[i]["district"]].push({
             h_name: this.hospitalList[i]["name"],
             c_bed: this.hospitalList[i]["vacant"],
@@ -169,7 +159,7 @@ class App extends React.Component {
       }
 
       if (tempMap[this.hospitalList[j]["district"]]) {
-        if (tempMap[this.hospitalList[j]["district"]].find((el) => el["name"] == this.hospitalList[j]["name"]) == undefined) {
+        if (tempMap[this.hospitalList[j]["district"]].find((el) => el["name"] === this.hospitalList[j]["name"]) === undefined) {
           tempMap[this.hospitalList[j]["district"]].push({
             h_name: this.hospitalList[j]["name"],
             c_bed: this.hospitalList[j]["vacant"],
@@ -212,16 +202,16 @@ class App extends React.Component {
   getLocationTrack = () => {
     if (navigator.geolocation) {
       if (this.props.commuteFlag) {
-        /* if (this.geoLocationStatic != null) {
+        /* if (this.geoLocationStatic !== null) {
           navigator.geolocation.clearWatch(this.geoLocationStatic);
         } */
 
         this.geoLocationMove = navigator.geolocation.watchPosition(
           //watchPosition(  // need to implement getPosition logic with timeout for movement
           (pos) => {
-            // if (this.loc_locationCoordinates_lat != pos.coords.latitude && this.loc_locationCoordinates_long != pos.coords.longitude) {
+            // if (this.loc_locationCoordinates_lat !== pos.coords.latitude && this.loc_locationCoordinates_long !== pos.coords.longitude) {
 
-            if (Number.parseFloat(this.loc_locationCoordinates_lat).toFixed(2) != Number.parseFloat(pos.coords.latitude).toFixed(2) || Number.parseFloat(this.loc_locationCoordinates_long).toFixed(2) != Number.parseFloat(pos.coords.longitude).toFixed(2)) {
+            if (Number.parseFloat(this.loc_locationCoordinates_lat).toFixed(2) !== Number.parseFloat(pos.coords.latitude).toFixed(2) || Number.parseFloat(this.loc_locationCoordinates_long).toFixed(2) !== Number.parseFloat(pos.coords.longitude).toFixed(2)) {
               this.temp_alert_data = null;
               this.temp_alert_data = [pos.coords.latitude, pos.coords.longitude];
               this.setState({
@@ -238,7 +228,7 @@ class App extends React.Component {
           },
           (error) => {
             //ifgeolocation failed
-            if (error.message == "Timeout expired") {
+            if (error.message === "Timeout expired") {
               this.handleBackDropClose();
               this.errorBodyMessage = "Geo location timed out";
               this.setState(
@@ -268,13 +258,13 @@ class App extends React.Component {
           }
         );
       } else {
-        /* if (this.geoLocationMove != null) {
+        /* if (this.geoLocationMove !== null) {
           navigator.geolocation.clearWatch(this.geoLocationMove);
         } */
         navigator.geolocation.getCurrentPosition(
           //watchPosition(  // need to implement getPosition logic with timeout for movement
           (pos) => {
-            if (this.loc_locationCoordinates_lat != pos.coords.latitude && this.loc_locationCoordinates_long != pos.coords.longitude) {
+            if (this.loc_locationCoordinates_lat !== pos.coords.latitude && this.loc_locationCoordinates_long !== pos.coords.longitude) {
               if (this.locChangeAlertCount > 1) {
                 this.setState({
                   alertBar: true,
@@ -292,7 +282,7 @@ class App extends React.Component {
           },
           (error) => {
             //ifgeolocation failed
-            if (error.message == "Timeout expired") {
+            if (error.message === "Timeout expired") {
               this.handleBackDropClose();
               this.errorBodyMessage = "Geo location timed out";
               this.setState(
@@ -325,7 +315,7 @@ class App extends React.Component {
     this.loc_locationCoordinates_long = long; //for local check
     CommunicatorFetch(ApiUrls.getUserCurrentLocation, lat + "," + long).then(
       (data) => {
-        if (data.results.length != 0) {
+        if (data.results.length !== 0) {
           this.props.setFormattedAddress(data.results[0].formatted_address);
           this.props.setUserCords([data.results[0].geometry.location.lat, data.results[0].geometry.location.lng]);
           this.props.setAddressComponents(data.results[0].address_components);
@@ -335,7 +325,7 @@ class App extends React.Component {
           });
         } else {
           // Google denied Map, hence need to show proper error messages
-          if (env == "prod") {
+          if (env === "prod") {
             this.errorBodyMessage = "Well, it seems Google MAP API is denied at the moment. This is something unusual. Please refresh the page or try again in sometime.";
             this.setState(
               {
@@ -346,7 +336,7 @@ class App extends React.Component {
             );
           }
           //current implementation for DEV purposes start
-          else if (env == "dev") {
+          else if (env === "dev") {
             let data = dummyLoc;
             this.props.setFormattedAddress(data.results[0].formatted_address);
 
@@ -362,7 +352,7 @@ class App extends React.Component {
       },
       (error) => {
         // Google Web api failed, hence need to show proper error messages
-        if (env == "prod") {
+        if (env === "prod") {
           this.errorBodyMessage = "Well, it seems Google MAP API failed at the moment. This is something unusual. Please refresh the page or try again in sometime.";
           this.setState(
             {
@@ -373,7 +363,7 @@ class App extends React.Component {
           );
         }
         //current implementation for DEV purposesstart
-        else if (env == "dev") {
+        else if (env === "dev") {
           let data = dummyLoc;
           this.props.setFormattedAddress(data.results[0].formatted_address);
           this.props.setUserCords([data.results[0].geometry.location.lat, data.results[0].geometry.location.lng]);
@@ -405,7 +395,7 @@ class App extends React.Component {
 
     googleFetchCall.then(
       (data) => {
-        if (data["candidates"].length != 0) {
+        if (data["candidates"].length !== 0) {
           this.props.setUserCords([data["candidates"][0].geometry.location.lat, data["candidates"][0].geometry.location.lng]);
 
           //make custom address componnets
@@ -430,7 +420,7 @@ class App extends React.Component {
         } else {
           //show pop up for google denial
           ++this.googleFetchTryCount;
-          if (this.googleFetchTryCount == 1) {
+          if (this.googleFetchTryCount === 1) {
             this.proxyNeedFlag = true;
             this.searchGoogleForUserDetails(el);
           }
@@ -468,7 +458,7 @@ class App extends React.Component {
       (error) => {
         //show pop up for google denial
         ++this.googleFetchTryCount;
-        if (this.googleFetchTryCount == 1) {
+        if (this.googleFetchTryCount === 1) {
           this.proxyNeedFlag = true;
           this.searchGoogleForUserDetails(el);
         }

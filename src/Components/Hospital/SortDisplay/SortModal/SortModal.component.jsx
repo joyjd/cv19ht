@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 import Dialog from "@material-ui/core/Dialog";
 import { Header } from "./../../../Header/Header.component";
@@ -14,7 +13,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 
 export default function SortModal(props) {
-  const [value, setValue] = React.useState(props.initialVal == "" ? "isChecked_op_hospital" : props.initialVal);
+  const [value, setValue] = React.useState(props.initialVal === "" ? "isChecked_op_hospital" : props.initialVal);
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -39,10 +38,10 @@ export default function SortModal(props) {
           </RadioGroup>
         </div>
         <div className='dividerHolder displayEqual'>
-          <Button variant='contained' color='primary' onClick={() => props.onClose(false)} color='primary'>
+          <Button variant='contained' color='primary' onClick={() => props.onClose(false)}>
             Cancel
           </Button>
-          <Button variant='contained' color='primary' onClick={() => props.onClose(true)} color='primary' autoFocus>
+          <Button variant='contained' color='primary' onClick={() => props.onClose(true)} autoFocus>
             Sort
           </Button>
         </div>

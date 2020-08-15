@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+
 import DialogContent from "@material-ui/core/DialogContent";
 import Container from "@material-ui/core/Container";
 import Dialog from "@material-ui/core/Dialog";
@@ -10,12 +10,12 @@ import Snackbar from "@material-ui/core/Snackbar";
 export default class ContactMe extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { feedback: "", name: "", email: "joydas1611@gmail.com", errorMessage: "", snkBar: false };
+    this.state = { feedback: "", name: "", email: "joydas1611@gmail.com", errorMessage: "", snkBar: false, onTransition: false };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event, type) {
-    if (type == "feedbackDesc") {
+    if (type === "feedbackDesc") {
       this.setState({ feedback: event.target.value });
     } else {
       this.setState({ name: event.target.value });
@@ -24,18 +24,19 @@ export default class ContactMe extends React.Component {
 
   handleSubmit = (event) => {
     const templateId = "template_lddOxOX0";
-    if (this.state.name != "" && this.state.feedback != "") {
+    if (this.state.name !== "" && this.state.feedback !== "") {
       this.setState(
         {
           errorMessage: "",
+          onTransition: true,
         },
         () => this.sendFeedback(templateId, { message_html: this.state.feedback, from_name: this.state.name, reply_to: this.state.email })
       );
-    } else if (this.state.name == "") {
+    } else if (this.state.name === "") {
       this.setState({
         errorMessage: "Opps ! You missed out your name.",
       });
-    } else if (this.state.feedback == "") {
+    } else if (this.state.feedback === "") {
       this.setState({
         errorMessage: "Please dont send me blank messages !",
       });
@@ -50,11 +51,13 @@ export default class ContactMe extends React.Component {
           feedback: "",
           name: "",
           snkBar: true,
+          onTransition: false,
         });
       })
       // Handle errors here however you like, or use a React error boundary
       .catch((err) =>
         this.setState({
+          onTransition: false,
           errorMessage: "Message sending failed.Please try again in sometime.",
         })
       );
@@ -121,10 +124,10 @@ export default class ContactMe extends React.Component {
                         <textarea id='feedbackDesc' name='feedbackDesc' onChange={(e) => this.handleChange(e, "feedbackDesc")} required value={this.state.feedback} placeholder='Your Message To Me...' rows='4' cols='35' />
                       </label>
                     </div>
-                    {this.state.errorMessage != "" ? <div className='errorHolder'>{this.state.errorMessage}</div> : null}
+                    {this.state.errorMessage !== "" ? <div className='errorHolder'>{this.state.errorMessage}</div> : null}
                   </div>
                   <div className='bod_ActionHolder'>
-                    <div className='btnContactMe' onClick={this.handleSubmit}>
+                    <div className={this.state.onTransition ? "btnContactMe disableDiv" : "btnContactMe"} onClick={this.handleSubmit}>
                       Send Message
                     </div>
                     <div className='btnContactMe' onClick={() => this.closeModal()}>

@@ -19,7 +19,7 @@ export const createHospitalProfile = async (h_name, h_data) => {
   const snapShot = await hospRef.get();
 
   //console.log(firestore.doc("hospitals/abc"));
-  if (!snapShot.exists && (h_data != null || h_data != undefined || h_data != "" || h_data != {})) {
+  if (!snapShot.exists && (h_data !== null || h_data !== undefined || h_data !== "" || h_data !== {})) {
     try {
       await hospRef.set({
         ...h_data,

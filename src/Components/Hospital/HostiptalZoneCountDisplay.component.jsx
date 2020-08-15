@@ -1,8 +1,7 @@
-import React from "react";
 import { connect } from "react-redux";
 
 const HostiptalZoneCountDisplay = ({ selectedHospitalZoneTags }) => {
-  return selectedHospitalZoneTags != null ? selectedHospitalZoneTags.length : null;
+  return selectedHospitalZoneTags !== null ? selectedHospitalZoneTags.length : null;
 };
 
 const mapStateToProps = (state) => ({

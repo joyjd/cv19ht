@@ -5,7 +5,7 @@ import "./../Hospital/Hospital.style.scss";
 import Paper from "@material-ui/core/Paper";
 import LocalHospitalIcon from "@material-ui/icons/LocalHospital";
 import DomainTwoToneIcon from "@material-ui/icons/DomainTwoTone";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
+
 import Typography from "@material-ui/core/Typography";
 import ExposureIcon from "@material-ui/icons/Exposure";
 
@@ -35,9 +35,9 @@ class Hospital extends React.Component {
 
   componentDidMount() {}
   componentDidUpdate() {
-    if (this.props.locationTags != null && this.props.hospitalDetails != null && this.props.userCords != null && this.props.searchText == null) {
+    if (this.props.locationTags !== null && this.props.hospitalDetails !== null && this.props.userCords !== null && this.props.searchText === null) {
       this.prepareSelectedZoneHospitalList();
-    } else if (this.props.locationTags != null && this.props.hospitalDetails != null && this.props.userCords != null && this.props.searchText != null) {
+    } else if (this.props.locationTags !== null && this.props.hospitalDetails !== null && this.props.userCords !== null && this.props.searchText !== null) {
       this.pendingChange = true; //********** IMPLEMENT LATER */
     }
   }
@@ -49,7 +49,7 @@ class Hospital extends React.Component {
     this.props.locationTags.forEach((elem) => {
       if (this.props.hospitalDetails[capitalletter(elem)]) {
         this.props.hospitalDetails[capitalletter(elem)].forEach((el) => {
-          if (el["h_loc"]["lat"] != undefined || el["h_loc"]["lng"] != undefined) {
+          if (el["h_loc"]["lat"] !== undefined || el["h_loc"]["lng"] !== undefined) {
             el["h_dist"] = Number(geolib.getPreciseDistance({ latitude: this.props.userCords[0], longitude: this.props.userCords[1] }, { latitude: el["h_loc"]["lat"], longitude: el["h_loc"]["lng"] }) / 1000);
           }
           // console.log(el["h_dist"]);
@@ -59,7 +59,7 @@ class Hospital extends React.Component {
       }
     });
     //By default Show Kolkata zone- if nothing matches
-    if (hospitalZoneTags.length == 0) {
+    if (hospitalZoneTags.length === 0) {
       this.props.hospitalDetails["Kolkata"].forEach((elem) => {
         tempHptlList.push(elem);
       });
@@ -73,7 +73,7 @@ class Hospital extends React.Component {
   };
 
   render() {
-    return this.props.locationTags != null ? (
+    return this.props.locationTags !== null ? (
       <Paper elevation={3} className='transparentBorder' id='containerHospitalList'>
         <div className='hospitalTitleContainer'>
           <div className='hospitalIconholder transparentBorder'>
@@ -89,13 +89,13 @@ class Hospital extends React.Component {
         <SearchBox />
         <div className='customButtonGroup'>
           <Paper variant='outlined' square>
-            {this.props.searchText == null ? (
+            {this.props.searchText === null ? (
               <div className='btnCol'>
                 <FilterDisplay />
                 <SortDisplay />
               </div>
             ) : null}
-            {this.props.searchText == null ? (
+            {this.props.searchText === null ? (
               <div>
                 <div className='tagHeaderTitle'>
                   <Typography color='textSecondary'>

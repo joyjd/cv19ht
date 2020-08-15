@@ -66,7 +66,7 @@ $color-white: #fff;
 .bod_ActionHolder {
   width: 100%;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   margin-bottom: 40px;
 }
 .desContainer {
@@ -141,4 +141,9 @@ $color-white: #fff;
   border-radius: 0.55rem;
   margin-right: 30px;
   color: #8f8e96;
+}
+
+.disableDiv {
+  opacity: 0.5;
+  pointer-events: none;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
+
 import "./../Location/Location.style.scss";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
@@ -23,7 +23,7 @@ class Location extends React.Component {
     this.state = {};
   }
   componentDidUpdate() {
-    if (this.props.addressComponents != null) {
+    if (this.props.addressComponents !== null) {
       this.prepareLocationTags();
     }
   }
@@ -53,7 +53,7 @@ class Location extends React.Component {
   };
 
   render() {
-    return this.props.addressComponents != null ? (
+    return this.props.addressComponents !== null ? (
       <div>
         <div className='locationCardContainer'>
           <Paper elevation={3} className='transparentBorder'>

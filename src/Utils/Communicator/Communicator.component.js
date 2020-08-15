@@ -1,4 +1,3 @@
-import React from "react";
 import GoogleCredentials from "./../GoogleCredentials";
 
 const apiKey = "&key=" + GoogleCredentials.apiKey;
@@ -8,7 +7,7 @@ export const CommunicatorFetch = (urlName, params, proxyNeed) => {
   console.log("Communication fetched==" + urlName);
   let url;
   if (params !== undefined) {
-    if (proxyNeed != undefined) {
+    if (proxyNeed !== undefined) {
       url = proxyurl + urlName + params + apiKey;
     } else {
       url = urlName + params + apiKey;

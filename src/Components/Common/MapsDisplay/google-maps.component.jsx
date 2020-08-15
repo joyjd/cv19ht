@@ -1,5 +1,5 @@
 import React from "react";
-import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import GoogleCredentials from "./../../../Utils/GoogleCredentials";
 import "./../MapsDisplay/google-maps.style.scss";
 

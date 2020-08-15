@@ -52,7 +52,6 @@ class Ambulance extends React.Component {
   };
   handleScroll = () => {
     const scrollY = window.scrollY;
-    const scrollTop = this.myRef.current.scrollTop;
     const offsetTop = this.myRef.current.offsetTop;
     let leftPosition = scrollY - offsetTop;
     leftPosition = leftPosition + 250;
@@ -60,10 +59,10 @@ class Ambulance extends React.Component {
     this.myRef2.current.style.left = leftPosition + "px";
     //this.myRef2.current.style.transition = "left 1s";
 
-    if (this.ambulanceTravelNode != null && this.ambulanceTravelNode > leftPosition) {
+    if (this.ambulanceTravelNode !== null && this.ambulanceTravelNode > leftPosition) {
       this.myRef2.current.classList.add("displayAmb2");
       this.myRef2.current.classList.remove("displayAmb1");
-    } else if (this.ambulanceTravelNode != null && leftPosition < 0) {
+    } else if (this.ambulanceTravelNode !== null && leftPosition < 0) {
       this.myRef2.current.classList.remove("displayAmb2");
       this.myRef2.current.classList.add("displayAmb1");
     }

@@ -12,7 +12,7 @@ import HospitalItem from "./HospitalItem/HospitalItem.component";
 import { HospitalModalDetailTemplate } from "./../../../Modals/HospitalDetailsModal/HospitalModalDetailTemplate.component";
 import HospitalListModal from "./HospitalListModal/HospitalListModal.component";
 import BackDropCustom from "./../../../Utils/BackDropCustom/BackDropCustom.component";
-import { createHospitalProfile, getHospitalProfileAll } from "./../../../firebase/firebase.util";
+import { createHospitalProfile } from "./../../../firebase/firebase.util";
 import { ErrorModal } from "./../../../Modals/ErrorModal/ErrorModal.component";
 
 import { setRawHospitalData } from "./../../../redux/totalHospitalDetails/rawHospitalData.action";
@@ -42,19 +42,19 @@ class HospitalListDisplay extends React.Component {
     };
   }
   componentDidMount() {
-    if (this.props.completeHospitalData != null) {
+    if (this.props.completeHospitalData !== null) {
       this.completeHospitalData = this.props.completeHospitalData;
     }
   }
   componentDidUpdate() {
-    if (this.props.completeHospitalData != null) {
+    if (this.props.completeHospitalData !== null) {
       this.completeHospitalData = this.props.completeHospitalData;
     }
   }
 
   createHospitalDetailModayBody = (data, c_bed, h_dist) => {
     let tempHtml;
-    if (typeof data == "string") {
+    if (typeof data === "string") {
       tempHtml = <HospitalModalDetailTemplate c_bed={c_bed} h_dist={h_dist} />;
       this.modalContent.headerTitle = data;
     } else {
@@ -106,7 +106,7 @@ class HospitalListDisplay extends React.Component {
       firstCall
         .then(
           (data) => {
-            if (data["candidates"].length != 0 && data["status"] == "OK") {
+            if (data["candidates"].length !== 0 && data["status"] === "OK") {
               let place_id = data["candidates"][0]["place_id"];
               let prms = place_id + "&fields=name,geometry,photos,rating,adr_address,business_status,formatted_address,formatted_phone_number,international_phone_number,opening_hours,website,price_level,rating,review,user_ratings_total";
               return prms;
@@ -118,7 +118,7 @@ class HospitalListDisplay extends React.Component {
           (error) => {
             //handle error scenerio for first call
             ++this.googleFetchTryCountFirstCall;
-            if (this.googleFetchTryCountFirstCall == 1) {
+            if (this.googleFetchTryCountFirstCall === 1) {
               this.proxyNeedFlagFirstCall = true;
               this.handleHospitalDetails(h_name, h_zone, c_bed, h_dist);
             }
@@ -138,16 +138,16 @@ class HospitalListDisplay extends React.Component {
         .then((prms) => (this.proxyNeedFlagSecondCall ? CommunicatorFetch(ApiUrls.getHospitalCompleteDetails, prms, "proxyNeeded") : CommunicatorFetch(ApiUrls.getHospitalCompleteDetails, prms)))
         .then(
           (data) => {
-            if (data != "") {
+            if (data !== "") {
               //get the new data
-              if (data["status"] == "OK") {
+              if (data["status"] === "OK") {
                 // this.completeHospitalData[h_name] = data["result"];
 
                 createHospitalProfile(h_name, data["result"]);
                 this.completeHospitalData[h_name] = data["result"];
                 this.props.setRawHospitalData(this.completeHospitalData);
                 //UPDATE h_dist
-                this.props.selectedHospitalList[this.props.selectedHospitalList.findIndex((el) => el.h_name == h_name)]["h_loc"] = data["result"]["geometry"]["location"];
+                this.props.selectedHospitalList[this.props.selectedHospitalList.findIndex((el) => el.h_name === h_name)]["h_loc"] = data["result"]["geometry"]["location"];
                 this.props.setSelectedlList(customSort(this.props.selectedHospitalList));
                 //Call function to form body
                 this.createHospitalDetailModayBody(this.completeHospitalData[h_name], c_bed, h_dist);
@@ -164,7 +164,7 @@ class HospitalListDisplay extends React.Component {
           (error) => {
             // handle error scenerio for second call
             ++this.googleFetchTryCountSecondCall;
-            if (this.googleFetchTryCountSecondCall == 1) {
+            if (this.googleFetchTryCountSecondCall === 1) {
               this.proxyNeedFlagSecondCall = true;
               //this.handleHospitalDetails(h_name, h_zone, c_bed, h_dist);
             }
@@ -199,7 +199,7 @@ class HospitalListDisplay extends React.Component {
   };
 
   render() {
-    return this.props.selectedHospitalList != null ? (
+    return this.props.selectedHospitalList !== null ? (
       <CardMedia>
         <div className='hospitalListHoldContainer'>
           <HospitalItem onClick={(h_name, h_zone, c_bed, h_dist) => this.handleHospitalDetailsPre(h_name, h_zone, c_bed, h_dist)} />

@@ -1,7 +1,6 @@
 import React from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
-import Grow from "@material-ui/core/Grow";
 import Slide from "@material-ui/core/Slide";
 
 function TransitionLeft(props) {
@@ -9,14 +8,14 @@ function TransitionLeft(props) {
 }
 
 const SideAlert = (props) => {
-  const [state, setState] = React.useState({
+  const [state] = React.useState({
     vertical: "top",
     horizontal: "left",
   });
   const { vertical, horizontal } = state;
 
-  return props.c_data != null ? (
-    <Snackbar autoHideDuration={4000} key={Grow} TransitionComponent={TransitionLeft} anchorOrigin={{ vertical, horizontal }} open={props.open} onClose={props.handleAlertClose} key={vertical + horizontal}>
+  return props.c_data !== null ? (
+    <Snackbar autoHideDuration={4000} TransitionComponent={TransitionLeft} anchorOrigin={{ vertical, horizontal }} open={props.open} onClose={props.handleAlertClose} key={vertical + horizontal}>
       <SnackbarContent
         style={{
           backgroundColor: "#000000eb",

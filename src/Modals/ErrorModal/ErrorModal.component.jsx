@@ -1,7 +1,7 @@
 import React from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import { makeStyles } from "@material-ui/core/styles";
+
 import "./../ErrorModal/ErrorModal.style.scss";
 import BuildIcon from "@material-ui/icons/Build";
 import NewReleasesIcon from "@material-ui/icons/NewReleases";

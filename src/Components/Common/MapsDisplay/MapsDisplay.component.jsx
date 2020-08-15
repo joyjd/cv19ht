@@ -7,7 +7,7 @@ import "./../MapsDisplay/MapsDisplay.style.scss";
 import GoogleMaps from "./google-maps.component";
 
 const MapsDisplay = ({ userCords }) => {
-  return userCords != null ? (
+  return userCords !== null ? (
     <div className='mapcontainer'>
       <Paper variant='outlined' className='shadowCustom'>
         <div className='mapcontainer'>

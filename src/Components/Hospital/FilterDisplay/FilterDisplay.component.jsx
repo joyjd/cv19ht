@@ -19,16 +19,15 @@ class FilterDisplay extends React.Component {
   }
 
   handleCloseAreaTags = (el, opt) => {
-    if (opt == "") {
+    if (opt === "") {
       let temp = [];
       el.forEach((e) => {
         if (this.props.hospitalDetails[e]) {
           temp = temp.concat(this.props.hospitalDetails[e]);
         }
       });
-
-      this.props.setSelectedlList(customSort(temp));
       this.props.setSelectedHospitalZoneTags(el);
+      this.props.setSelectedlList(customSort(temp));
     }
     this.setState(
       {
@@ -45,7 +44,7 @@ class FilterDisplay extends React.Component {
   };
 
   render() {
-    return this.props.selectedHospitalZoneTags != null && this.props.hospitalDetails != null ? (
+    return this.props.selectedHospitalZoneTags !== null && this.props.hospitalDetails !== null ? (
       <div className='filterDiv'>
         <Button variant='contained' color='primary' onClick={() => this.handleOpenAreaTags()}>
           Filter by Area / Zones
