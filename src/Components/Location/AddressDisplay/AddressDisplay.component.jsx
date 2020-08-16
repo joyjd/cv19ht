@@ -81,7 +81,7 @@ const AddressDisplay = ({ accessPermission, formattedAddress, setCommuteFlag }) 
           Enabling <strong>"I am commuting/travelling right now" </strong> indicates that you are not at a particular position/home but travelling to someplece right now. Once enabled, we will track your current changing location details and update available hospitals nearby to you automatically in a periodic manner as you travel.
           <br />
           <br />
-          Note: If you need to search a particular hospital details or check available hospitals of different zones/areas, we suggest you to <strong>disable this option</strong> so that the location updates doesn't disrupt your activity.
+          Note: If you need to search a particular hospital details,check available hospitals of different zones/areas or custom-change your present location, we suggest you to <strong>disable this option</strong> so that the location updates doesn't disrupt your activity.
         </div>
       </Dialog>
     </div>

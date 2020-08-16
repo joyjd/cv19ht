@@ -59,22 +59,25 @@ class Location extends React.Component {
           <Paper elevation={3} className='transparentBorder'>
             <AddressDisplay accessPermission={this.props.accessPermission} />
             <MapsDisplay />
-            <div className='addressInputHolder'>
-              <div className='addressInputIconHolder'>
-                <BorderColorIcon fontSize='small' />
+
+            {!this.props.commuteFlag ? (
+              <div className='addressInputHolder'>
+                <div className='addressInputIconHolder'>
+                  <BorderColorIcon fontSize='small' />
+                </div>
+                <Button
+                  style={{
+                    fontWeight: "500",
+                    letterSpacing: "0",
+                    textTransform: "none",
+                  }}
+                  size='small'
+                  onClick={() => this.handleOpenLocationModal()}
+                >
+                  Not Correct? Type your current address
+                </Button>
               </div>
-              <Button
-                style={{
-                  fontWeight: "500",
-                  letterSpacing: "0",
-                  textTransform: "none",
-                }}
-                size='small'
-                onClick={() => this.handleOpenLocationModal()}
-              >
-                Not Correct? Type your current address
-              </Button>
-            </div>
+            ) : null}
 
             <TagsDisplay tagtype='userTag' />
             <SelectedHospitalSnapShot />
@@ -93,6 +96,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   addressComponents: state.addressComponents.addressComponents,
+  commuteFlag: state.commmuteFlag.commuteFlag,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Location);
