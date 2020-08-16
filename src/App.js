@@ -397,6 +397,9 @@ class App extends React.Component {
       (data) => {
         if (data["candidates"].length !== 0) {
           this.props.setUserCords([data["candidates"][0].geometry.location.lat, data["candidates"][0].geometry.location.lng]);
+          if (this.props.commuteFlag) {
+            this.props.setuserCordsFlag(true);
+          }
 
           //make custom address componnets
           let address_components = [];
@@ -444,6 +447,9 @@ class App extends React.Component {
             let tmmpAddr = el.locality + "," + el.district + ", pin -" + el.pin;
 
             this.props.setUserCords([22.5726, 88.3639]);
+            if (this.props.commuteFlag) {
+              this.props.setuserCordsFlag(true);
+            }
             this.props.setFormattedAddress(tmmpAddr);
             this.props.setAddressComponents(address_components);
 
@@ -481,6 +487,9 @@ class App extends React.Component {
           let tmmpAddr = el.locality + "," + el.district + ", pin -" + el.pin;
 
           this.props.setUserCords([22.5726, 88.3639]);
+          if (this.props.commuteFlag) {
+            this.props.setuserCordsFlag(true);
+          }
           this.props.setFormattedAddress(tmmpAddr);
           this.props.setAddressComponents(address_components);
 
