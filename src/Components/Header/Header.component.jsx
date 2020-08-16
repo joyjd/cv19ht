@@ -10,13 +10,22 @@ import IconButton from "@material-ui/core/IconButton";
 import "./../Header/Header.style.scss";
 
 export class Header extends React.Component {
+  loc_connection;
   constructor() {
     super();
     this.state = {
       contactMe: false,
+      connection: navigator.connection.effectiveType,
     };
+    this.loc_connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    this.loc_connection.addEventListener("change", () => this.updateConnectionStatus());
   }
 
+  updateConnectionStatus = () => {
+    this.setState({
+      connection: this.loc_connection.effectiveType,
+    });
+  };
   openContactMe = () => {
     this.setState({
       contactMe: true,
@@ -38,6 +47,7 @@ export class Header extends React.Component {
                 <span className='logoHolderText2 '>COVID19</span>
                 <span className='logoHolderText'>HospitalTracker</span>
               </Typography>
+              <div style={{ fontSize: "small" }}>Having speed ={this.state.connection}</div>
             </div>
             <div onClick={() => this.openContactMe()}>
               <IconButton aria-label='delete' style={{ padding: "5px 0", color: "#00fff9" }}>
