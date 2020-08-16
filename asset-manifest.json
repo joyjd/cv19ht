@@ -1,24 +1,17 @@
 {
   "files": {
-    "main.css": "/cv19ht/static/css/main.62bb380d.chunk.css",
-    "main.js": "/cv19ht/static/js/main.84878537.chunk.js",
-    "main.js.map": "/cv19ht/static/js/main.84878537.chunk.js.map",
-    "runtime-main.js": "/cv19ht/static/js/runtime-main.8212f3b8.js",
-    "runtime-main.js.map": "/cv19ht/static/js/runtime-main.8212f3b8.js.map",
-    "static/js/2.3cff971d.chunk.js": "/cv19ht/static/js/2.3cff971d.chunk.js",
-    "static/js/2.3cff971d.chunk.js.map": "/cv19ht/static/js/2.3cff971d.chunk.js.map",
-    "static/js/3.b7b3ca8b.chunk.js": "/cv19ht/static/js/3.b7b3ca8b.chunk.js",
-    "static/js/3.b7b3ca8b.chunk.js.map": "/cv19ht/static/js/3.b7b3ca8b.chunk.js.map",
-    "static/css/4.f3bb38f2.chunk.css": "/cv19ht/static/css/4.f3bb38f2.chunk.css",
-    "static/js/4.3c0c413a.chunk.js": "/cv19ht/static/js/4.3c0c413a.chunk.js",
-    "static/js/4.3c0c413a.chunk.js.map": "/cv19ht/static/js/4.3c0c413a.chunk.js.map",
+    "main.css": "/cv19ht/static/css/main.0d1e37b6.chunk.css",
+    "main.js": "/cv19ht/static/js/main.1f2b8c6f.chunk.js",
+    "main.js.map": "/cv19ht/static/js/main.1f2b8c6f.chunk.js.map",
+    "runtime-main.js": "/cv19ht/static/js/runtime-main.86e215a4.js",
+    "runtime-main.js.map": "/cv19ht/static/js/runtime-main.86e215a4.js.map",
+    "static/js/2.0e65834e.chunk.js": "/cv19ht/static/js/2.0e65834e.chunk.js",
+    "static/js/2.0e65834e.chunk.js.map": "/cv19ht/static/js/2.0e65834e.chunk.js.map",
     "index.html": "/cv19ht/index.html",
-    "precache-manifest.5c1042ad52fe50b98659fddcfe05259a.js": "/cv19ht/precache-manifest.5c1042ad52fe50b98659fddcfe05259a.js",
+    "precache-manifest.9ecb96043f380c04436d7c0a9b85b8ee.js": "/cv19ht/precache-manifest.9ecb96043f380c04436d7c0a9b85b8ee.js",
     "service-worker.js": "/cv19ht/service-worker.js",
-    "static/css/4.f3bb38f2.chunk.css.map": "/cv19ht/static/css/4.f3bb38f2.chunk.css.map",
-    "static/css/main.62bb380d.chunk.css.map": "/cv19ht/static/css/main.62bb380d.chunk.css.map",
-    "static/js/2.3cff971d.chunk.js.LICENSE.txt": "/cv19ht/static/js/2.3cff971d.chunk.js.LICENSE.txt",
-    "static/js/3.b7b3ca8b.chunk.js.LICENSE.txt": "/cv19ht/static/js/3.b7b3ca8b.chunk.js.LICENSE.txt",
+    "static/css/main.0d1e37b6.chunk.css.map": "/cv19ht/static/css/main.0d1e37b6.chunk.css.map",
+    "static/js/2.0e65834e.chunk.js.LICENSE.txt": "/cv19ht/static/js/2.0e65834e.chunk.js.LICENSE.txt",
     "static/media/Ambulance.style.scss": "/cv19ht/static/media/ambulance2.a6c03d3c.png",
     "static/media/HospitalListModal.style.scss": "/cv19ht/static/media/hospital_bg.ec8aec7e.jpg",
     "static/media/App.css": "/cv19ht/static/media/iframeLoader.f0b0cd73.gif",
@@ -28,9 +21,9 @@
     "static/media/LocationOptionInput.style.scss": "/cv19ht/static/media/set_header.a389f7d8.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.8212f3b8.js",
-    "static/js/3.b7b3ca8b.chunk.js",
-    "static/css/main.62bb380d.chunk.css",
-    "static/js/main.84878537.chunk.js"
+    "static/js/runtime-main.86e215a4.js",
+    "static/js/2.0e65834e.chunk.js",
+    "static/css/main.0d1e37b6.chunk.css",
+    "static/js/main.1f2b8c6f.chunk.js"
   ]
 }
