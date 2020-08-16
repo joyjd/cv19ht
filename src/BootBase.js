@@ -1,6 +1,9 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import WelcomeModal from "./Modals/WelcomeModal/WelcomeModal.component";
-import App from "./App";
+//import App from "./App";
+
+const App = lazy(() => import("./App"));
+const renderLoader = () => <p>Loading</p>;
 
 class Bootbase extends React.Component {
   constructor() {
@@ -28,7 +31,7 @@ class Bootbase extends React.Component {
   render() {
     return (
       <div>
-        {this.state.enableAppModule ? <App showLocation={this.state.showLocation} /> : null}
+        <Suspense fallback={renderLoader()}>{this.state.enableAppModule ? <App showLocation={this.state.showLocation} /> : null}</Suspense>
         <WelcomeModal open={this.state.openWelcomeAlert} onClose={(el) => this.handleCloseWelcomeAlert(el)} />
       </div>
     );
