@@ -211,7 +211,7 @@ class App extends React.Component {
           (pos) => {
             // if (this.loc_locationCoordinates_lat !== pos.coords.latitude && this.loc_locationCoordinates_long !== pos.coords.longitude) {
 
-            if (Number.parseFloat(this.loc_locationCoordinates_lat).toFixed(2) !== Number.parseFloat(pos.coords.latitude).toFixed(2) || Number.parseFloat(this.loc_locationCoordinates_long).toFixed(2) !== Number.parseFloat(pos.coords.longitude).toFixed(2)) {
+            if (Number.parseFloat(this.loc_locationCoordinates_lat).toFixed(3) !== Number.parseFloat(pos.coords.latitude).toFixed(3) || Number.parseFloat(this.loc_locationCoordinates_long).toFixed(3) !== Number.parseFloat(pos.coords.longitude).toFixed(3)) {
               this.temp_alert_data = null;
               this.temp_alert_data = [pos.coords.latitude, pos.coords.longitude];
               this.setState({
