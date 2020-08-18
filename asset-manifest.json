@@ -1,17 +1,21 @@
 {
   "files": {
-    "main.css": "/cv19ht/static/css/main.e709a9c9.chunk.css",
-    "main.js": "/cv19ht/static/js/main.f075928e.chunk.js",
-    "main.js.map": "/cv19ht/static/js/main.f075928e.chunk.js.map",
-    "runtime-main.js": "/cv19ht/static/js/runtime-main.86e215a4.js",
-    "runtime-main.js.map": "/cv19ht/static/js/runtime-main.86e215a4.js.map",
-    "static/js/2.267e4d44.chunk.js": "/cv19ht/static/js/2.267e4d44.chunk.js",
-    "static/js/2.267e4d44.chunk.js.map": "/cv19ht/static/js/2.267e4d44.chunk.js.map",
+    "main.css": "/cv19ht/static/css/main.ea8df7ee.chunk.css",
+    "main.js": "/cv19ht/static/js/main.e1ea57fc.chunk.js",
+    "main.js.map": "/cv19ht/static/js/main.e1ea57fc.chunk.js.map",
+    "runtime-main.js": "/cv19ht/static/js/runtime-main.ba7b8cd5.js",
+    "runtime-main.js.map": "/cv19ht/static/js/runtime-main.ba7b8cd5.js.map",
+    "static/js/2.c1ee1844.chunk.js": "/cv19ht/static/js/2.c1ee1844.chunk.js",
+    "static/js/2.c1ee1844.chunk.js.map": "/cv19ht/static/js/2.c1ee1844.chunk.js.map",
+    "static/css/3.391d5bab.chunk.css": "/cv19ht/static/css/3.391d5bab.chunk.css",
+    "static/js/3.ebe349d2.chunk.js": "/cv19ht/static/js/3.ebe349d2.chunk.js",
+    "static/js/3.ebe349d2.chunk.js.map": "/cv19ht/static/js/3.ebe349d2.chunk.js.map",
     "index.html": "/cv19ht/index.html",
-    "precache-manifest.552784c61a308700c8f310146f4147df.js": "/cv19ht/precache-manifest.552784c61a308700c8f310146f4147df.js",
+    "precache-manifest.a1bfdc4b3ae2cde813756f5b7d1c10e9.js": "/cv19ht/precache-manifest.a1bfdc4b3ae2cde813756f5b7d1c10e9.js",
     "service-worker.js": "/cv19ht/service-worker.js",
-    "static/css/main.e709a9c9.chunk.css.map": "/cv19ht/static/css/main.e709a9c9.chunk.css.map",
-    "static/js/2.267e4d44.chunk.js.LICENSE.txt": "/cv19ht/static/js/2.267e4d44.chunk.js.LICENSE.txt",
+    "static/css/3.391d5bab.chunk.css.map": "/cv19ht/static/css/3.391d5bab.chunk.css.map",
+    "static/css/main.ea8df7ee.chunk.css.map": "/cv19ht/static/css/main.ea8df7ee.chunk.css.map",
+    "static/js/2.c1ee1844.chunk.js.LICENSE.txt": "/cv19ht/static/js/2.c1ee1844.chunk.js.LICENSE.txt",
     "static/media/Ambulance.style.scss": "/cv19ht/static/media/ambulance2.a6c03d3c.png",
     "static/media/HospitalListModal.style.scss": "/cv19ht/static/media/hospital_bg.ec8aec7e.jpg",
     "static/media/App.css": "/cv19ht/static/media/iframeLoader.f0b0cd73.gif",
@@ -21,9 +25,9 @@
     "static/media/DoctorListModal.style.scss": "/cv19ht/static/media/set_header.a389f7d8.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.86e215a4.js",
-    "static/js/2.267e4d44.chunk.js",
-    "static/css/main.e709a9c9.chunk.css",
-    "static/js/main.f075928e.chunk.js"
+    "static/js/runtime-main.ba7b8cd5.js",
+    "static/js/2.c1ee1844.chunk.js",
+    "static/css/main.ea8df7ee.chunk.css",
+    "static/js/main.e1ea57fc.chunk.js"
   ]
 }
