@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import "./../FilterModal/FilterAreaTags.style.scss";
 
 import Dialog from "@material-ui/core/Dialog";
-import { Header } from "./../../../Header/Header.component";
+
 import Divider from "@material-ui/core/Divider";
 import Chip from "@material-ui/core/Chip";
 import DoneIcon from "@material-ui/icons/Done";
@@ -90,7 +90,6 @@ class FilterTags extends React.Component {
   render() {
     return this.props.open ? (
       <Dialog fullScreen open={this.props.open} onClose={this.props.onclose} aria-labelledby='Select Hospital Zones' aria-describedby='Option to select Hospital Area Tags'>
-        <Header />
         <div className='filterTagsHeader'>Select Areas/ Zones</div>
         <div className='filterTagsBody'>
           <div>You can select areas/zones to view COVID19 treatment providing hospitals of that area.</div>

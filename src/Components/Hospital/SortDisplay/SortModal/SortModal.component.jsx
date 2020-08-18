@@ -23,7 +23,6 @@ export default function SortModal(props) {
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Dialog fullScreen={fullScreen} open={props.open} onClose={props.onclose} aria-labelledby='Sort Hospitals' aria-describedby='Option to sort Hospitals'>
-      <Header />
       <div className='filterTagsHeader'>Sort Hospitals</div>
       <div className='filterTagsBodySort'>
         <div className='SortTitleDesc'>You can sort list of hospitals according to your view</div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Dialog from "@material-ui/core/Dialog";
-import { Header } from "./../../../Components/Header/Header.component";
+
 import "./../DisplayAmbulance/DisplayAmbulanceModal.style.scss";
 import Divider from "@material-ui/core/Divider";
 
@@ -19,7 +19,6 @@ const Iframe = (props) => {
 const DisplayAmbulance = (props) => {
   return (
     <Dialog fullScreen open={props.open} onClose={props.onclose} aria-labelledby='Display Ambulances' aria-describedby='Display Ambulances'>
-      <Header />
       <div className='filterTagsHeader'>Check Ambulance Services Near You</div>
       <div className='filterTagsBodySortAmbulance'>
         <div className='SortTitleDesc'>View available ambulance services near you.We strongly suggest to call and book an appointment.</div>

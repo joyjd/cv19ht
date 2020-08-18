@@ -25,6 +25,7 @@ import ApiUrls from "./Utils/ApiUrls.data";
 import { ErrorModal } from "./Modals/ErrorModal/ErrorModal.component";
 
 import LocationOptionInput from "./Modals/AddressDetailModal/LocationOptionInput.component";
+import DoctorList from "./Components/DoctorList/DoctorList.component";
 
 import { setTotalHospitalDetails } from "./redux/totalHospitalDetails/totalHospital.action";
 import { setAddressComponents } from "./redux/userAddress/addressComponents.action";
@@ -562,9 +563,11 @@ class App extends React.Component {
       <React.Fragment>
         <CssBaseline />
         <Header />
+        <DoctorList />
         <Container maxWidth='md' className='containerApp'>
           <Location accessPermission={this.loc_PermissionAccess} />
           <Hospital />
+
           <BackDropDefault open={this.state.openBackDrop} />
           <Snackbar
             open={this.state.snackBar}

@@ -7,7 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Dialog from "@material-ui/core/Dialog";
-import { Header } from "./../../../Components/Header/Header.component";
+
 import "./../DisplayAmbulance/DisplayAmbulanceModal.style.scss";
 import Divider from "@material-ui/core/Divider";
 import Paper from "@material-ui/core/Paper";
@@ -48,7 +48,6 @@ const DisplayCoronaDetails = (props) => {
   const classes = useStyles();
   return props.c_data !== null ? (
     <Dialog fullScreen open={props.open} onClose={props.onclose} aria-labelledby='Display Corona Details' aria-describedby='Display Corona Details'>
-      <Header />
       <div className='filterTagsHeader'>View COVID19 Information</div>
       <div className='filterTagsBodyCoronaTable'>
         <div className='SortTitleDesc'>District-wise data of COVID19 pandemic in West Bengal.</div>

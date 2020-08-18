@@ -16,5 +16,5 @@ export const CommunicatorFetch = (urlName, params, proxyNeed) => {
     url = urlName;
   }
   //url =  url;
-  return fetch(url, { cache: "no-store" }).then((response) => response.json());
+  return fetch(url, { cache: "no-store", Pragma: "no-cache", Expires: "0" }).then((response) => response.json());
 };

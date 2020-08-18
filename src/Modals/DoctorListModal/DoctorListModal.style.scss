@@ -1,0 +1,52 @@
+.DocDetails {
+  margin: 20px 2px 0 2px;
+}
+
+.docName {
+  padding: 2px;
+  font-weight: bold;
+  display: flex;
+}
+.docAddress {
+  padding: 0 0px 0 20px;
+  font-size: small;
+  color: grey;
+}
+
+.headerBod {
+  background-image: url("./../../assets/set_header.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 15px;
+  color: #ffffff;
+  border-bottom: 15px solid #24375a30;
+  /* outline-offset: 15px; */
+  z-index: 999;
+  opacity: 1;
+  font-weight: bold;
+  font-size: medium;
+}
+.openclose {
+  display: flex;
+  font-size: small;
+  font-style: italic;
+  padding-left: 20px;
+  font-size: smaller;
+  margin-top: -4px;
+  margin-bottom: 4px;
+  color: #9ba2ad;
+}
+.icon-close {
+  margin-right: 5px;
+  margin-top: 3px;
+}
+.icon-close i {
+  border-radius: 50%;
+  border: 2px solid #9ba2ad;
+  background-color: #9ba2ad;
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  vertical-align: 6px;
+}
