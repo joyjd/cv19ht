@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { connect } from "react-redux";
 
 import "./../Location/Location.style.scss";
@@ -6,15 +6,18 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 
 import AddressDisplay from "./AddressDisplay/AddressDisplay.component";
+
 import MapsDisplay from "./../Common/MapsDisplay/MapsDisplay.component";
 import TagsDisplay from "./../Common/TagsDisplay/TagsDisplay.component";
 import { setLocationTags } from "./../../redux/userAddress/locationTags.action";
 import { setLocationModal } from "./../../redux/locationInput/locationInput.action";
 import Ambulance from "./../Ambulance/Ambulance.component";
-import SelectedHospitalSnapShot from "./SelectedHospitalSnapShot/SelectedHospitalSnapShot.component";
+//import SelectedHospitalSnapShot from "./SelectedHospitalSnapShot/SelectedHospitalSnapShot.component";
 
 import BorderColorIcon from "@material-ui/icons/BorderColor";
 const exclusiveKeywords = ["country"];
+
+const SelectedHospitalSnapShot = React.lazy(() => import("./SelectedHospitalSnapShot/SelectedHospitalSnapShot.component"));
 
 class Location extends React.Component {
   renderCount = 0;
@@ -80,7 +83,9 @@ class Location extends React.Component {
             ) : null}
 
             <TagsDisplay tagtype='userTag' />
-            <SelectedHospitalSnapShot />
+            <Suspense fallback={<div>Loading...</div>}>
+              <SelectedHospitalSnapShot />
+            </Suspense>
           </Paper>
         </div>
         <Ambulance />

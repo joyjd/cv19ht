@@ -6,6 +6,10 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import "./../DoctorListModal/DoctorListModal.style.scss";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Divider from "@material-ui/core/Divider";
+
+import DoctorDetailMaps from "./../../Utils/DoctorDetailMaps/DoctorDetailMaps.component";
 
 class DoctorListModal extends React.Component {
   constructor(props) {
@@ -18,40 +22,48 @@ class DoctorListModal extends React.Component {
         <div className='headerBod'>Medical Practitioners/Centers near you</div>
         <DialogContent>
           <div className='DocListContainerBody'>
-            {this.props.doctorListData != null
-              ? this.props.doctorListData.map((doctor, index) => (
-                  <div key={index} className='DocDetails'>
-                    <div className='docName'>
-                      <div className='docAvatar'>
-                        <AssignmentIndIcon fontSize='small' />
-                      </div>
-                      <div>{doctor.name}</div>
+            {this.props.doctorListData != null ? (
+              this.props.doctorListData.map((doctor, index) => (
+                <div key={index} className='DocDetails'>
+                  <div className='docName'>
+                    <div className='docAvatar'>
+                      <AssignmentIndIcon fontSize='small' />
                     </div>
-                    {doctor["opening_hours"] ? (
-                      doctor["opening_hours"]["open_now"] ? (
-                        <div className='openclose'>
-                          <div className='icon-green'>
-                            <i></i>
-                          </div>
-                          <div>Open Now</div>
-                        </div>
-                      ) : (
-                        <div className='openclose'>
-                          <div className='icon-close'>
-                            <i></i>
-                          </div>
-                          Closed Now
-                        </div>
-                      )
-                    ) : (
-                      <div className='openclose'>Not Known</div>
-                    )}
-
-                    <div className='docAddress'>{doctor.formatted_address}</div>
-                    {/*  <div>{doctor.place_id}</div> */}
+                    <div>{doctor.name}</div>
                   </div>
-                ))
-              : "Loading...."}
+                  {doctor["opening_hours"] ? (
+                    doctor["opening_hours"]["open_now"] ? (
+                      <div className='openclose'>
+                        <div className='icon-green'>
+                          <i></i>
+                        </div>
+                        <div>Open Now</div>
+                      </div>
+                    ) : (
+                      <div className='openclose'>
+                        <div className='icon-close'>
+                          <i></i>
+                        </div>
+                        Closed Now
+                      </div>
+                    )
+                  ) : (
+                    <div className='openclose'>Not Known</div>
+                  )}
+
+                  <div className='docAddress'>{doctor.formatted_address}</div>
+                  {/*  <div>{doctor.place_id}</div> */}
+                  <DoctorDetailMaps docId={doctor.place_id} location={doctor.geometry.location} />
+                  <div className='dividerContainer'>
+                    <Divider />
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div>
+                <CircularProgress />
+              </div>
+            )}
           </div>
         </DialogContent>
         <DialogActions>

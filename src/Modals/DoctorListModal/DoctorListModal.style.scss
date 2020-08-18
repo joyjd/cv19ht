@@ -3,12 +3,12 @@
 }
 
 .docName {
-  padding: 2px;
+  padding: 2px 0;
   font-weight: bold;
   display: flex;
 }
 .docAddress {
-  padding: 0 0px 0 20px;
+  // padding: 0 0px 0 20px;
   font-size: small;
   color: grey;
 }
@@ -31,7 +31,7 @@
   display: flex;
   font-size: small;
   font-style: italic;
-  padding-left: 20px;
+  //padding-left: 20px;
   font-size: smaller;
   margin-top: -4px;
   margin-bottom: 4px;
@@ -49,4 +49,7 @@
   height: 6px;
   display: inline-block;
   vertical-align: 6px;
+}
+.dividerContainer {
+  padding: 10px 0;
 }

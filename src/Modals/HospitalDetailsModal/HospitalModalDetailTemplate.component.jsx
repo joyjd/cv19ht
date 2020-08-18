@@ -98,7 +98,7 @@ export const HospitalModalDetailTemplate = (props) => {
             {props.data !== undefined ? (
               <div className='mapcontainerHospital'>
                 {/* <GoogleMaps draggable={false} currentLat={props.data.geometry.location.lat} currentLong={props.data.geometry.location.lng}></GoogleMaps> */}
-                <GmapIframe hospitalCord={[props.data.geometry.location.lat, props.data.geometry.location.lng]} />
+                <GmapIframe zoom={11} hospitalCord={[props.data.geometry.location.lat, props.data.geometry.location.lng]} />
               </div>
             ) : null}
             {props.h_dist !== "" ? (
